@@ -48,7 +48,7 @@
    ========================================== */
 
 /* ==========================================
-   Fixed Background - Instagram Inspired
+   Liquid Glass Background
    ========================================== */
 
 .background-container {
@@ -57,59 +57,133 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -11;
+    z-index: -15;
     overflow: hidden;
-    pointer-events: none;
-    display: block;
     background-color: var(--c-bg);
+    transition: background-color 400ms cubic-bezier(1, 0.0, 0.4, 1);
+}
+
+.glass-overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(100px) saturate(150%);
+    -webkit-backdrop-filter: blur(100px) saturate(150%);
+    z-index: 2;
+    background: radial-gradient(circle at center, transparent, color-mix(in srgb, var(--c-bg) 20%, transparent));
 }
 
 .gradient-orb {
     position: absolute;
+    width: 80vmax;
+    height: 80vmax;
     border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.25;
+    filter: blur(60px);
+    opacity: 0.6;
+    z-index: 1;
+    mix-blend-mode: screen;
     will-change: transform;
 }
 
-.orb-1 {
-    width: 60vw;
-    height: 60vw;
-    background: radial-gradient(circle, #f09433, transparent);
-    top: -20vw;
-    right: -10vw;
-    animation: floatingOrb 20s infinite alternate ease-in-out;
+/* Light Theme Orbs */
+body:has(input[value="light"]:checked) .gradient-orb {
+    mix-blend-mode: multiply;
+    opacity: 0.3;
 }
 
-.orb-2 {
-    width: 50vw;
-    height: 50vw;
-    background: radial-gradient(circle, #dc2743, transparent);
-    bottom: -15vw;
-    left: -10vw;
-    animation: floatingOrb 25s infinite alternate-reverse ease-in-out;
+body:has(input[value="light"]:checked) .orb-1 {
+    background: radial-gradient(circle, #ff9a9e 0%, transparent 70%);
+    top: -20%;
+    left: -10%;
+    animation: float 20s infinite alternate;
 }
 
-.orb-3 {
-    width: 40vw;
-    height: 40vw;
-    background: radial-gradient(circle, #bc1888, transparent);
-    top: 20%;
+body:has(input[value="light"]:checked) .orb-2 {
+    background: radial-gradient(circle, #a188ff 0%, transparent 70%);
+    bottom: -10%;
+    right: -10%;
+    animation: float 25s infinite alternate-reverse;
+}
+
+body:has(input[value="light"]:checked) .orb-3 {
+    background: radial-gradient(circle, #84fab0 0%, transparent 70%);
+    top: 40%;
     left: 30%;
-    animation: floatingOrb 30s infinite alternate ease-in-out;
+    animation: float 30s infinite alternate;
 }
 
-@keyframes floatingOrb {
+/* Dark Theme Orbs (Instagram Tones) */
+body:has(input[value="dark"]:checked) .gradient-orb {
+    mix-blend-mode: screen;
+    opacity: 0.6;
+}
+
+body:has(input[value="dark"]:checked) .orb-1 {
+    background: radial-gradient(circle, #f09433 0%, transparent 70%);
+    top: -10%;
+    left: -20%;
+    animation: float 18s infinite alternate;
+}
+
+body:has(input[value="dark"]:checked) .orb-2 {
+    background: radial-gradient(circle, #e6683c 0%, transparent 70%);
+    bottom: -20%;
+    right: -10%;
+    animation: float 22s infinite alternate-reverse;
+}
+
+body:has(input[value="dark"]:checked) .orb-3 {
+    background: radial-gradient(circle, #dc2743 0%, transparent 70%);
+    top: 30%;
+    left: 40%;
+    animation: float 26s infinite alternate;
+}
+
+/* Dim Theme Orbs (Oceanic/Cyber) */
+body:has(input[value="dim"]:checked) .gradient-orb {
+    mix-blend-mode: screen;
+    opacity: 0.5;
+}
+
+body:has(input[value="dim"]:checked) .orb-1 {
+    background: radial-gradient(circle, #00c6ff 0%, transparent 70%);
+    top: -20%;
+    right: -10%;
+    animation: float 20s infinite alternate;
+}
+
+body:has(input[value="dim"]:checked) .orb-2 {
+    background: radial-gradient(circle, #0072ff 0%, transparent 70%);
+    bottom: -10%;
+    left: -10%;
+    animation: float 25s infinite alternate-reverse;
+}
+
+body:has(input[value="dim"]:checked) .orb-3 {
+    background: radial-gradient(circle, #bc1888 0%, transparent 70%);
+    bottom: 20%;
+    right: 30%;
+    animation: float 28s infinite alternate;
+}
+
+@keyframes float {
     0% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(10vw, 5vh) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-5vw, 10vh) scale(0.9);
     }
 
     100% {
-        transform: translate(5vw, 5vh);
+        transform: translate(0, 0) scale(1);
     }
 }
 
-/* Use a pseudo-element for truly fixed background layers */
+/* Use a pseudo-element for truly fixed background on all devices */
 body::before {
     content: '';
     position: fixed;
@@ -120,70 +194,26 @@ body::before {
     width: 100vw;
     height: 100vh;
     z-index: -10;
-    background-color: var(--c-bg);
-    pointer-events: none;
-    will-change: auto;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    background-image: url('images/CLipo Bg  Black.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
 }
 
-/* Base immersive Instagram gradients */
+/* Base background images for each theme */
 body:has(input[value="light"]:checked)::before {
-    background: linear-gradient(45deg, #fffaf4 0%, #ffeeee 50%, #f9f0ff 100%);
+    background-image: url('images/bg.png');
 }
 
 body:has(input[value="dark"]:checked)::before {
-    background: linear-gradient(45deg, #1b0f02 0%, #1a0405 50%, #0d041a 100%);
+    background-image: url('images/CLipo Bg  Black.png');
 }
 
 body:has(input[value="dim"]:checked)::before {
-    background: linear-gradient(45deg, #120902 0%, #120405 50%, #080212 100%);
-}
-
-/* Redundant readability layer - ensures text ALWAYS pops */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -9;
-    pointer-events: none;
-    transition: background 400ms ease;
-}
-
-body:has(input[value="light"]:checked)::after {
-    background: rgba(255, 255, 255, 0.4);
-    /* Gentle softening */
-}
-
-body:has(input[value="dark"]:checked)::after {
-    background: rgba(0, 0, 0, 0.5);
-    /* Deepening for contrast */
-}
-
-body:has(input[value="dim"]:checked)::after {
-    background: rgba(0, 0, 0, 0.7);
-    /* Maximum focus */
-}
-
-/* Orb theme overrides - make them feel more like "light leaks" */
-body:has(input[value="light"]:checked) .gradient-orb {
-    opacity: 0.35;
-    mix-blend-mode: soft-light;
-    filter: blur(140px);
-}
-
-body:has(input[value="dark"]:checked) .gradient-orb {
-    opacity: 0.25;
-    mix-blend-mode: screen;
-    filter: blur(120px);
-}
-
-body:has(input[value="dim"]:checked) .gradient-orb {
-    opacity: 0.18;
-    filter: blur(150px);
+    background-image: url('images/CLipo Bg  Black.png');
 }
 
 /* ==========================================
@@ -321,6 +351,13 @@ body {
 
 section {
     scroll-margin-top: 100px;
+}
+
+.section-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
 /* GPU Acceleration for smooth animations */
@@ -1567,6 +1604,39 @@ body:has(input[value="dim"]:checked) .glass-card {
 
 
 
+.video-modal-native {
+    width: 100%;
+    height: 100%;
+    max-height: 80vh;
+    border-radius: 16px;
+    background-color: #000;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 10px;
+    z-index: 100;
+}
+
+.video-modal {
+    max-width: 90vw;
+    width: 1000px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
 .vision-card {
     /* Ensure content flow */
     display: flex;
@@ -1584,8 +1654,7 @@ body:has(input[value="dim"]:checked) .glass-card {
     backdrop-filter: blur(8px) saturate(var(--saturation));
     -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
 
-    box-shadow:
-        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
         inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
         inset -2px -2px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent),
         inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
@@ -1595,7 +1664,8 @@ body:has(input[value="dim"]:checked) .glass-card {
         inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
         0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
         0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease,
+        background-color 0.3s ease;
 }
 
 @media (max-width: 768px) {

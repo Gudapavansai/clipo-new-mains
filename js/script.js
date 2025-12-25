@@ -644,7 +644,7 @@ if (form) {
 // Hero Video Modal Playback
 // ==========================================
 
-function openVideoModal(videoUrl) {
+function openVideoModal(videoUrl, isDirectFile = false) {
     // Remove existing overlay if any
     const existing = document.querySelector('.custom-modal-overlay');
     if (existing) {
@@ -654,7 +654,7 @@ function openVideoModal(videoUrl) {
     const overlay = document.createElement('div');
     overlay.className = 'custom-modal-overlay';
 
-    // Create close button outside modal for better UX on mobile or top right
+    // Create close button
     const closeBtn = document.createElement('button');
     closeBtn.className = 'video-modal-close';
     closeBtn.innerHTML = '&times;';
@@ -663,20 +663,29 @@ function openVideoModal(videoUrl) {
     const modal = document.createElement('div');
     modal.className = 'custom-modal video-modal';
 
-    // Create iframe
-    const iframe = document.createElement('iframe');
-    iframe.src = videoUrl;
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-    iframe.allowFullscreen = true;
+    if (isDirectFile || videoUrl.endsWith('.mp4')) {
+        // Create video element for direct files
+        const video = document.createElement('video');
+        video.src = videoUrl;
+        video.controls = true;
+        video.autoplay = true;
+        video.classList.add('video-modal-native');
+        modal.appendChild(video);
+    } else {
+        // Create iframe for YouTube/Vimeo
+        const iframe = document.createElement('iframe');
+        iframe.src = videoUrl;
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        modal.appendChild(iframe);
+    }
 
-    modal.appendChild(iframe);
-    modal.appendChild(closeBtn); // Append close button to modal relative handling
+    modal.appendChild(closeBtn);
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
     function closeModal() {
         overlay.classList.remove('active');
-        // Stop video by removing iframe
         setTimeout(() => {
             overlay.remove();
         }, 300);
@@ -698,7 +707,7 @@ function openVideoModal(videoUrl) {
 const heroPlayBtn = document.querySelector('.hero__play-btn');
 if (heroPlayBtn) {
     heroPlayBtn.addEventListener('click', () => {
-        // Play local video in modal
-        openVideoModal('./images/clipo-pomo.mp4', true);
+        // Play Cloudinary video in modal since local file is missing
+        openVideoModal('https://res.cloudinary.com/dgsr755tt/video/upload/v1753687256/Render_V2_cku6w4.mp4', true);
     });
 }

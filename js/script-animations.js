@@ -322,8 +322,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
 
+                    // Instagram-inspired multi-color radial gradient
                     glow.style.background =
-                        `radial-gradient(circle at ${x}px ${y}px, rgba(200,80,192,0.45), transparent 70%)`;
+                        `radial-gradient(circle at ${x}px ${y}px, 
+                            rgba(240, 148, 51, 0.4) 0%, 
+                            rgba(220, 39, 67, 0.4) 40%, 
+                            rgba(188, 24, 136, 0.4) 80%, 
+                            transparent 100%)`;
 
                     glow.style.opacity = 1;
                     ticking = false;
