@@ -48,8 +48,8 @@ if (themeToggle && lightRadio && darkRadio) {
         // Determine next theme
         const isLight = lightRadio.checked;
         const nextTheme = isLight ? 'dark' : 'light';
-        // Match CSS colors: #E8E8E9 (Light), #1b1b1d (Dark)
-        const nextColor = nextTheme === 'light' ? '#E8E8E9' : '#1b1b1d';
+        // Match CSS colors: #E8E8E9 (Light), #121212 (Dark)
+        const nextColor = nextTheme === 'light' ? '#E8E8E9' : '#121212';
 
         overlay.style.backgroundColor = nextColor;
 

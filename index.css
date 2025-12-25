@@ -133,11 +133,11 @@ body:has(input[value="light"]:checked)::before {
 }
 
 body:has(input[value="dark"]:checked)::before {
-    background: linear-gradient(45deg, #2d1b08 0%, #2a0e10 50%, #1a082d 100%);
+    background: linear-gradient(45deg, #1b0f02 0%, #1a0405 50%, #0d041a 100%);
 }
 
 body:has(input[value="dim"]:checked)::before {
-    background: linear-gradient(45deg, #1e1205 0%, #1d090a 50%, #11051e 100%);
+    background: linear-gradient(45deg, #120902 0%, #120405 50%, #080212 100%);
 }
 
 /* Redundant readability layer - ensures text ALWAYS pops */
@@ -294,8 +294,8 @@ body {
     --c-light: #fff;
     --c-dark: #000;
 
-    --c-content: #e1e1e1;
-    --c-action: #00e5ff;
+    --c-content: #f5f5f7;
+    --c-action: #dc2743;
 
     --c-bg: #1b1b1d;
 
@@ -352,19 +352,21 @@ body:has(input[value="light"]:checked) {
 }
 
 body:has(input[value="dark"]:checked) {
-    --c-glass: #bbbbbc;
+    --c-glass: rgba(220, 39, 67, 0.15);
+    /* Tinted glass */
     --c-light: #fff;
     --c-dark: #000;
 
-    --c-content: #e1e1e1;
-    --c-action: #00e5ff;
+    --c-content: #f5f5f7;
+    --c-action: #dc2743;
 
-    --c-bg: #1b1b1d;
+    --c-bg: #0d0405;
+    /* Deep Instagram-toned black */
 
     --glass-reflex-dark: 2;
-    --glass-reflex-light: 0.3;
+    --glass-reflex-light: 0.4;
 
-    --saturation: 150%;
+    --saturation: 160%;
 }
 
 body:has(input[value="dim"]:checked) {
@@ -841,7 +843,7 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
         inset -2px -6px 1px -5px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
         inset -1px 2px 3px -1px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
         inset 0px -4px 1px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
-        0px 3px 8px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent);
+        0 4px 15px rgba(220, 39, 67, 0.2);
     /* Springy bounce - refined to be tighter/more Apple-like */
     transition:
         background-color 400ms cubic-bezier(1, 0.0, 0.4, 1),
@@ -872,6 +874,12 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
     /* Add separate transition for scale */
     pointer-events: none;
     will-change: transform;
+}
+
+body:has(input[value="dark"]:checked) .switcher__bubble,
+body:has(input[value="dim"]:checked) .switcher__bubble {
+    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
 }
 
 .switcher--dragging .switcher__bubble {
@@ -1115,7 +1123,14 @@ img {
 }
 
 .hero__btn--primary {
-    background-color: color-mix(in srgb, var(--c-glass) 20%, transparent);
+    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+}
+
+.hero__btn--primary:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
 }
 
 .hero__btn--secondary {
@@ -1457,6 +1472,15 @@ video.hero__device-image {
     color: var(--c-content);
 }
 
+body:has(input[value="dark"]:checked) .section__title,
+body:has(input[value="dim"]:checked) .section__title {
+    background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
 .text-gradient {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     -webkit-background-clip: text;
@@ -1494,6 +1518,13 @@ video.hero__device-image {
     transition: transform 0.4s cubic-bezier(1, 0, 0.4, 1), box-shadow 0.4s cubic-bezier(1, 0, 0.4, 1);
     will-change: transform;
     border: none;
+}
+
+body:has(input[value="dark"]:checked) .glass-card,
+body:has(input[value="dim"]:checked) .glass-card {
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 4px 20px rgba(220, 39, 67, 0.1);
 }
 
 .glass-card:hover {
