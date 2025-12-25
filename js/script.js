@@ -702,4 +702,3 @@ if (heroPlayBtn) {
         openVideoModal('./images/clipo-pomo.mp4', true);
     });
 }
-

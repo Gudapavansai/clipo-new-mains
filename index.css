@@ -1,3 +1,48 @@
+@font-face {
+    font-family: 'Qurova';
+    src: url('qurovafont/Qurova Woff/Qurova-Light.woff2') format('woff2'),
+        url('qurovafont/Qurova Woff/Qurova-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Qurova';
+    src: url('qurovafont/Qurova Woff/Qurova-Regular.woff2') format('woff2'),
+        url('qurovafont/Qurova Woff/Qurova-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Qurova';
+    src: url('qurovafont/Qurova Woff/Qurova-Medium.woff2') format('woff2'),
+        url('qurovafont/Qurova Woff/Qurova-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Qurova';
+    src: url('qurovafont/Qurova Woff/Qurova-SemiBold.woff2') format('woff2'),
+        url('qurovafont/Qurova Woff/Qurova-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Qurova';
+    src: url('qurovafont/Qurova Woff/Qurova-Bold.woff2') format('woff2'),
+        url('qurovafont/Qurova Woff/Qurova-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* ==========================================
    Fixed Background - Works on All Devices
    ========================================== */
@@ -104,9 +149,9 @@ body:has(input[value="dim"]:checked)::before {
 
 /* Global Font Variables */
 :root {
-    --font-heading: "Manrope", ui-sans-serif, system-ui;
-    --font-body: "Manrope", ui-sans-serif, system-ui;
-    --font-numbers: "Manrope", ui-sans-serif, system-ui;
+    --font-heading: "Qurova", "Manrope", ui-sans-serif, system-ui;
+    --font-body: "Qurova", "Manrope", ui-sans-serif, system-ui;
+    --font-numbers: "Qurova", "Manrope", ui-sans-serif, system-ui;
 }
 
 /* Base font classes */
@@ -2174,7 +2219,7 @@ body:has(input[value="dim"]:checked) .footer__logo--dark {
     padding: 6px 12px;
     font-size: 1.4rem;
     letter-spacing: 1px;
-    font-family: var(--font-numbers);
+    font-family: "Inter", sans-serif;
 }
 
 .dw-win {
@@ -2183,7 +2228,7 @@ body:has(input[value="dim"]:checked) .footer__logo--dark {
     padding: 6px 12px;
     font-size: 1.4rem;
     letter-spacing: 1px;
-    font-family: var(--font-numbers);
+    font-family: "Inter", sans-serif;
     display: flex;
     align-items: center;
 }
@@ -2198,6 +2243,7 @@ body:has(input[value="dim"]:checked) .footer__logo--dark {
     text-align: center;
     text-indent: 0.4em;
     /* Offset for tracking center */
+    font-family: "Inter", sans-serif;
 }
 
 .dw-tagline {
