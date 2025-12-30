@@ -59,7 +59,7 @@
     height: 100vh;
     z-index: -15;
     overflow: hidden;
-    background-color: var(--c-bg);
+    background-color: transparent;
     transition: background-color 400ms cubic-bezier(1, 0.0, 0.4, 1);
 }
 
@@ -73,97 +73,11 @@
 }
 
 .gradient-orb {
-    position: absolute;
-    width: 80vmax;
-    height: 80vmax;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.6;
-    z-index: 1;
-    mix-blend-mode: screen;
-    will-change: transform;
+    display: none;
+    /* Removed gradient orbs completely */
 }
 
-/* Light Theme Orbs */
-body:has(input[value="light"]:checked) .gradient-orb {
-    mix-blend-mode: multiply;
-    opacity: 0.3;
-}
-
-body:has(input[value="light"]:checked) .orb-1 {
-    background: radial-gradient(circle, #ff9a9e 0%, transparent 70%);
-    top: -20%;
-    left: -10%;
-    animation: float 20s infinite alternate;
-}
-
-body:has(input[value="light"]:checked) .orb-2 {
-    background: radial-gradient(circle, #a188ff 0%, transparent 70%);
-    bottom: -10%;
-    right: -10%;
-    animation: float 25s infinite alternate-reverse;
-}
-
-body:has(input[value="light"]:checked) .orb-3 {
-    background: radial-gradient(circle, #84fab0 0%, transparent 70%);
-    top: 40%;
-    left: 30%;
-    animation: float 30s infinite alternate;
-}
-
-/* Dark Theme Orbs (Instagram Tones) */
-body:has(input[value="dark"]:checked) .gradient-orb {
-    mix-blend-mode: screen;
-    opacity: 0.6;
-}
-
-body:has(input[value="dark"]:checked) .orb-1 {
-    background: radial-gradient(circle, #f09433 0%, transparent 70%);
-    top: -10%;
-    left: -20%;
-    animation: float 18s infinite alternate;
-}
-
-body:has(input[value="dark"]:checked) .orb-2 {
-    background: radial-gradient(circle, #e6683c 0%, transparent 70%);
-    bottom: -20%;
-    right: -10%;
-    animation: float 22s infinite alternate-reverse;
-}
-
-body:has(input[value="dark"]:checked) .orb-3 {
-    background: radial-gradient(circle, #dc2743 0%, transparent 70%);
-    top: 30%;
-    left: 40%;
-    animation: float 26s infinite alternate;
-}
-
-/* Dim Theme Orbs (Oceanic/Cyber) */
-body:has(input[value="dim"]:checked) .gradient-orb {
-    mix-blend-mode: screen;
-    opacity: 0.5;
-}
-
-body:has(input[value="dim"]:checked) .orb-1 {
-    background: radial-gradient(circle, #00c6ff 0%, transparent 70%);
-    top: -20%;
-    right: -10%;
-    animation: float 20s infinite alternate;
-}
-
-body:has(input[value="dim"]:checked) .orb-2 {
-    background: radial-gradient(circle, #0072ff 0%, transparent 70%);
-    bottom: -10%;
-    left: -10%;
-    animation: float 25s infinite alternate-reverse;
-}
-
-body:has(input[value="dim"]:checked) .orb-3 {
-    background: radial-gradient(circle, #bc1888 0%, transparent 70%);
-    bottom: 20%;
-    right: 30%;
-    animation: float 28s infinite alternate;
-}
+/* All Theme Orbs - HIDDEN */
 
 @keyframes float {
     0% {
@@ -204,8 +118,8 @@ body::before {
 }
 
 /* Base background images for each theme */
-body:has(input[value="light"]:checked)::before {
-    background-image: url('images/bg.png');
+body:has(input[value=\"light\"]:checked)::before {
+    background-image: url('images/CLipo Bg  White.png');
 }
 
 body:has(input[value="dark"]:checked)::before {
@@ -327,7 +241,7 @@ body {
     --c-content: #f5f5f7;
     --c-action: #dc2743;
 
-    --c-bg: #1b1b1d;
+    --c-bg: #1a1a1a;
 
     --glass-reflex-dark: 2;
     --glass-reflex-light: 0.3;
@@ -340,9 +254,7 @@ body {
     background-color: var(--c-bg);
     color: var(--c-content);
 
-    transition: background 400ms cubic-bezier(1, 0.0, 0.4, 1), color 400ms cubic-bezier(1, 0.0, 0.4, 1);
-    /* Ensure body has a background to cover the fixed footer z-index -1 */
-    background-color: var(--c-bg);
+    transition: background-color 400ms cubic-bezier(1, 0.0, 0.4, 1), color 400ms cubic-bezier(1, 0.0, 0.4, 1);
     position: relative;
     min-height: 100vh;
     overflow-x: hidden;
@@ -380,7 +292,7 @@ body:has(input[value="light"]:checked) {
     /* Black text for light mode */
     --c-action: #dc2743;
 
-    --c-bg: #E8E8E9;
+    --c-bg: #f5f5f7;
 
     --glass-reflex-dark: 1;
     --glass-reflex-light: 1;
@@ -389,21 +301,20 @@ body:has(input[value="light"]:checked) {
 }
 
 body:has(input[value="dark"]:checked) {
-    --c-glass: rgba(220, 39, 67, 0.15);
-    /* Tinted glass */
+    --c-glass: #555555;
     --c-light: #fff;
     --c-dark: #000;
 
     --c-content: #f5f5f7;
+    /* Light text for dark mode */
     --c-action: #dc2743;
 
-    --c-bg: #0d0405;
-    /* Deep Instagram-toned black */
+    --c-bg: #1a1a1a;
 
     --glass-reflex-dark: 2;
     --glass-reflex-light: 0.4;
 
-    --saturation: 160%;
+    --saturation: 150%;
 }
 
 body:has(input[value="dim"]:checked) {
@@ -414,7 +325,7 @@ body:has(input[value="dim"]:checked) {
     --c-content: #d5dbe2;
     --c-action: #e6683c;
 
-    --c-bg: #152433;
+    --c-bg: transparent;
 
     --glass-reflex-dark: 2;
     --glass-reflex-light: 0.7;
@@ -913,11 +824,7 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
     will-change: transform;
 }
 
-body:has(input[value="dark"]:checked) .switcher__bubble,
-body:has(input[value="dim"]:checked) .switcher__bubble {
-    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
-    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
-}
+/* Dark theme bubble - uses default glass styling (no gradient) */
 
 .switcher--dragging .switcher__bubble {
     scale: 0.95;
@@ -1378,35 +1285,11 @@ video.hero__device-image {
         z-index: 1000;
     }
 
-    .navbar__logo {
-        height: 50px;
-        /* Match theme button size */
-        width: auto;
-        padding: 0;
-        box-sizing: border-box;
-        background-color: transparent;
-        backdrop-filter: none;
-        border-radius: 0;
-        left: 0;
-        width: 100%;
 
-        padding: 24px 24px;
-        height: auto;
-        /* ❌ remove fixed height */
-
-        display: flex;
-        /* REQUIRED for justify-content */
-        align-items: center;
-        justify-content: space-between;
-
-        pointer-events: auto;
-        /* ❌ don't block clicks */
-        z-index: 1000;
-    }
 
     .navbar__logo {
-        height: 40px;
-        /* Match theme button size */
+        height: 60px;
+        /* Increased logo size for mobile/tablet */
         width: auto;
         padding: 0;
         box-sizing: border-box;
@@ -2067,8 +1950,11 @@ body:has(input[value="dim"]:checked) .section__title {
 }
 
 body:has(input[value="dark"]:checked) .contact__content .section__title,
+body:has(input[value="dim"]:checked) .contact__content .section__title {
+    color: #ffffff;
+}
+
 body:has(input[value="dark"]:checked) .contact__content .section__desc,
-body:has(input[value="dim"]:checked) .contact__content .section__title,
 body:has(input[value="dim"]:checked) .contact__content .section__desc {
     color: var(--c-content);
 }
