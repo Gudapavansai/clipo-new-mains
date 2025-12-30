@@ -119,7 +119,7 @@ body::before {
 
 /* Base background images for each theme */
 body:has(input[value=\"light\"]:checked)::before {
-    background-image: url('images/CLipo Bg  White.png');
+    background-image: url('images/bg.png');
 }
 
 body:has(input[value="dark"]:checked)::before {
