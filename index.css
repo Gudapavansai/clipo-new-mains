@@ -1949,14 +1949,46 @@ body:has(input[value="dim"]:checked) .section__title {
     max-width: 90%;
 }
 
+/* Dark Theme - About Section: White text like hero section */
+body:has(input[value="dark"]:checked) .about__card .section__title,
+body:has(input[value="dim"]:checked) .about__card .section__title {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+    filter: none;
+}
+
+body:has(input[value="dark"]:checked) .about__card .section__desc,
+body:has(input[value="dim"]:checked) .about__card .section__desc {
+    color: #ffffff;
+}
+
+body:has(input[value="dark"]:checked) .vision-card h3,
+body:has(input[value="dim"]:checked) .vision-card h3 {
+    color: #ffffff;
+}
+
+body:has(input[value="dark"]:checked) .vision-card p,
+body:has(input[value="dim"]:checked) .vision-card p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Dark Theme - Contact Section: White text like hero section */
 body:has(input[value="dark"]:checked) .contact__content .section__title,
 body:has(input[value="dim"]:checked) .contact__content .section__title {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: #ffffff;
     color: #ffffff;
+    filter: none;
 }
 
 body:has(input[value="dark"]:checked) .contact__content .section__desc,
 body:has(input[value="dim"]:checked) .contact__content .section__desc {
-    color: var(--c-content);
+    color: #ffffff;
 }
 
 .contact__form {
