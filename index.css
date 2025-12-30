@@ -1400,6 +1400,38 @@ body:has(input[value="dim"]:checked) .section__title {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
+/* Dark Theme - Services Section: White headings */
+body:has(input[value="dark"]:checked) .services .section__title,
+body:has(input[value="dim"]:checked) .services .section__title {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+    filter: none;
+}
+
+body:has(input[value="dark"]:checked) .services .section__subtitle,
+body:has(input[value="dim"]:checked) .services .section__subtitle {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Dark Theme - Pricing Section: White headings */
+body:has(input[value="dark"]:checked) .pricing .section__title,
+body:has(input[value="dim"]:checked) .pricing .section__title {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+    filter: none;
+}
+
+body:has(input[value="dark"]:checked) .pricing .section__subtitle,
+body:has(input[value="dim"]:checked) .pricing .section__subtitle {
+    color: rgba(255, 255, 255, 0.85);
+}
+
 .text-gradient {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     -webkit-background-clip: text;
