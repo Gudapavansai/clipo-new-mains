@@ -113,21 +113,19 @@ body::before {
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    opacity: 0.15;
-    mix-blend-mode: overlay;
 }
 
 /* Base background images for each theme */
-body:has(input[value=\"light\"]:checked)::before {
-    background-image: url('images/bg.png');
+body:has(input[value="light"]:checked)::before {
+    background-image: url('images/bg10.png');
 }
 
 body:has(input[value="dark"]:checked)::before {
-    background-image: url('images/CLipo Bg  Black.png');
+    background-image: url('images/darkmode.png');
 }
 
 body:has(input[value="dim"]:checked)::before {
-    background-image: url('images/CLipo Bg  Black.png');
+    background-image: url('images/darkmode.png');
 }
 
 /* ==========================================
@@ -251,7 +249,7 @@ body {
     font-size: 20px;
     font-family: var(--font-body);
     font-optical-sizing: auto;
-    background-color: var(--c-bg);
+    background-color: transparent;
     color: var(--c-content);
 
     transition: background-color 400ms cubic-bezier(1, 0.0, 0.4, 1), color 400ms cubic-bezier(1, 0.0, 0.4, 1);
@@ -969,9 +967,16 @@ img {
     /* Border & Depth */
     border: 1px solid color-mix(in srgb, var(--c-light) 20%, transparent);
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.1),
-        inset 0 0 0 1px color-mix(in srgb, var(--c-light) 20%, transparent),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+        inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
+        inset -2px -2px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent),
+        inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
+        inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent),
+        inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
+        inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
+        inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
+        0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
+        0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
 .hero__badge-dot {
@@ -1721,42 +1726,11 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     flex-grow: 0;
     flex-shrink: 0;
 
-    /* \"Old\" / Simple Glass Style Override */
-    background-color: color-mix(in srgb, var(--c-light) 5%, transparent);
-    border: 1px solid color-mix(in srgb, var(--c-light) 15%, transparent);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 24px;
+
 }
 
 /* Light Theme - Service Cards with Navigation Bar Glass Effect */
-body:has(input[value="light"]:checked) .service-card {
-    background-color: color-mix(in srgb, var(--c-glass) 15%, transparent);
-    border: none;
-    backdrop-filter: blur(12px) saturate(var(--saturation));
-    -webkit-backdrop-filter: blur(12px) saturate(var(--saturation));
-    box-shadow:
-        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
-        inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
-        inset -2px -2px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent),
-        inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
-        inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent),
-        inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
-        inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
-        inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
-        0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
-        0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    transition:
-        transform 0.3s ease,
-        background-color 400ms cubic-bezier(1, 0.0, 0.4, 1),
-        box-shadow 400ms cubic-bezier(1, 0.0, 0.4, 1);
-}
 
-body:has(input[value="light"]:checked) .service-card:hover {
-    transform: translateY(-4px);
-    background-color: color-mix(in srgb, var(--c-glass) 20%, transparent);
-}
 
 @media (max-width: 992px) {
     .service-card {
@@ -2211,7 +2185,14 @@ textarea.glass-input {
     background-color: color-mix(in srgb, var(--c-glass) 15%, transparent);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+        inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
+        inset -2px -2px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent),
+        inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
+        inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent),
+        inset 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
+        0px -10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .footer__content {
