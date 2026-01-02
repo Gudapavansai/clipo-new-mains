@@ -49,6 +49,33 @@
             }, '-=0.8');
 
         // ==========================================
+        // HERO VIDEO SCROLL CONTROL
+        // ==========================================
+        const heroVideo = document.getElementById('hero-video');
+        if (heroVideo) {
+            const initVideoScroll = () => {
+                gsap.to(heroVideo, {
+                    scrollTrigger: {
+                        trigger: ".hero",
+                        start: "top top",
+                        end: "+=100%",
+                        scrub: 1,
+                        pin: true,
+                        invalidateOnRefresh: true
+                    },
+                    currentTime: heroVideo.duration || 5,
+                    ease: "none"
+                });
+            };
+
+            if (heroVideo.readyState >= 1) {
+                initVideoScroll();
+            } else {
+                heroVideo.addEventListener('loadedmetadata', initVideoScroll);
+            }
+        }
+
+        // ==========================================
         // SECTION TITLES
         // ==========================================
         gsap.utils.toArray('.section__title').forEach(title => {

@@ -117,7 +117,7 @@ body::before {
 
 /* Base background images for each theme */
 body:has(input[value="light"]:checked)::before {
-    background-image: url('./images/bg10.png');
+    background-image: url('./images/bg.png');
 }
 
 body:has(input[value="dark"]:checked)::before {
