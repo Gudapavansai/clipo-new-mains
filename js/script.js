@@ -55,7 +55,7 @@
 
             const isLight = DOM.lightRadio.checked;
             const nextTheme = isLight ? 'dark' : 'light';
-            overlay.style.backgroundColor = nextTheme === 'light' ? '#E8E8E9' : '#121212';
+            overlay.style.backgroundColor = nextTheme === 'light' ? '#f5f5f7' : '#1a1a1a';
 
             const clientX = e.clientX || (e.changedTouches?.[0]?.clientX ?? innerWidth / 2);
             const clientY = e.clientY || (e.changedTouches?.[0]?.clientY ?? innerHeight / 2);

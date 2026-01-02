@@ -117,15 +117,15 @@ body::before {
 
 /* Base background images for each theme */
 body:has(input[value="light"]:checked)::before {
-    background-image: url('images/bg10.png');
+    background-image: url('./images/bg10.png');
 }
 
 body:has(input[value="dark"]:checked)::before {
-    background-image: url('images/darkmode.png');
+    background-image: url('./images/darkmode.png');
 }
 
 body:has(input[value="dim"]:checked)::before {
-    background-image: url('images/darkmode.png');
+    background-image: url('./images/darkmode.png');
 }
 
 /* ==========================================
