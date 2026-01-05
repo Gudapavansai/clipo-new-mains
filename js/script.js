@@ -179,6 +179,23 @@
     DOM.sections.forEach(section => sectionObserver.observe(section));
 
     // ==========================================
+    // FOOTER / CONTACT LOCK
+    // ==========================================
+    const footer = $('.footer');
+    if (footer) {
+        new IntersectionObserver(entries => {
+            const entry = entries[0];
+            if (entry.isIntersecting) {
+                const contactInput = DOM.switcher?.querySelector('input[value="contact"]');
+                if (contactInput && !contactInput.checked) {
+                    contactInput.checked = true;
+                    contactInput.dispatchEvent(new Event('change'));
+                }
+            }
+        }, { threshold: 0.15 }).observe(footer);
+    }
+
+    // ==========================================
     // DRAG NAVIGATION
     // ==========================================
     let isDragging = false, ignoreClick = false, startX = 0, initialTranslate = 0, currentTranslate = 0, maxTranslate = 0, animationFrameId = null;

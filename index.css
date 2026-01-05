@@ -5191,7 +5191,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     }
 
     .switcher__text {
-        font-size: 10px;
+        font-size: 13px;
     }
 }
 
