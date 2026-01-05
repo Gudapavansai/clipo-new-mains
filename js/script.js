@@ -178,6 +178,9 @@
 
     DOM.sections.forEach(section => sectionObserver.observe(section));
 
+    // Flag to track footer visibility
+    let isFooterIntersecting = false;
+
     // ==========================================
     // FOOTER / CONTACT LOCK
     // ==========================================
@@ -185,6 +188,8 @@
     if (footer) {
         new IntersectionObserver(entries => {
             const entry = entries[0];
+            isFooterIntersecting = entry.isIntersecting; // Update flag
+
             if (entry.isIntersecting) {
                 const contactInput = DOM.switcher?.querySelector('input[value="contact"]');
                 if (contactInput && !contactInput.checked) {
@@ -236,6 +241,9 @@
     };
 
     const startDrag = e => {
+        // Requirement 3: Disable drag if footer is visible
+        if (isFooterIntersecting) return;
+
         if (!e.target.closest('.switcher') || (e.type === 'mousedown' && e.button !== 0)) return;
 
         const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
@@ -245,6 +253,7 @@
         const currentIndex = getCheckedIndex();
         const bubbleX = currentIndex * optWidth;
 
+        // Requirement 1 & 2: Only allow dragging if clicking the active bubble
         if (relativeX < bubbleX - 10 || relativeX > bubbleX + optWidth + 10) return;
 
         isDragging = true;
