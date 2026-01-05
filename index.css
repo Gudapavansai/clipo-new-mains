@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Qurova';
-    src: url('qurovafont/Qurova Woff/Qurova-Light.woff2') format('woff2'),
-        url('qurovafont/Qurova Woff/Qurova-Light.woff') format('woff');
+    src: url('qurovafont/webfonts/Qurova-Light.woff2') format('woff2'),
+        url('qurovafont/webfonts/Qurova-Light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
     font-family: 'Qurova';
-    src: url('qurovafont/Qurova Woff/Qurova-Regular.woff2') format('woff2'),
-        url('qurovafont/Qurova Woff/Qurova-Regular.woff') format('woff');
+    src: url('qurovafont/webfonts/Qurova-Regular.woff2') format('woff2'),
+        url('qurovafont/webfonts/Qurova-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -18,8 +18,8 @@
 
 @font-face {
     font-family: 'Qurova';
-    src: url('qurovafont/Qurova Woff/Qurova-Medium.woff2') format('woff2'),
-        url('qurovafont/Qurova Woff/Qurova-Medium.woff') format('woff');
+    src: url('qurovafont/webfonts/Qurova-Medium.woff2') format('woff2'),
+        url('qurovafont/webfonts/Qurova-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -27,8 +27,8 @@
 
 @font-face {
     font-family: 'Qurova';
-    src: url('qurovafont/Qurova Woff/Qurova-SemiBold.woff2') format('woff2'),
-        url('qurovafont/Qurova Woff/Qurova-SemiBold.woff') format('woff');
+    src: url('qurovafont/webfonts/Qurova-SemiBold.woff2') format('woff2'),
+        url('qurovafont/webfonts/Qurova-SemiBold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -36,8 +36,8 @@
 
 @font-face {
     font-family: 'Qurova';
-    src: url('qurovafont/Qurova Woff/Qurova-Bold.woff2') format('woff2'),
-        url('qurovafont/Qurova Woff/Qurova-Bold.woff') format('woff');
+    src: url('qurovafont/webfonts/Qurova-Bold.woff2') format('woff2'),
+        url('qurovafont/webfonts/Qurova-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -124,6 +124,7 @@ body:has(input[value="light"]:checked)::before {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body:has(input[value="dark"]:checked)::before {
@@ -134,6 +135,7 @@ body:has(input[value="dark"]:checked)::before {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body:has(input[value="dim"]:checked)::before {
@@ -141,6 +143,87 @@ body:has(input[value="dim"]:checked)::before {
     /* Fallback */
     background-image: image-set(url('./images/darkmode.webp') type('image/webp'),
             url('./images/darkmode.png') type('image/png'));
+}
+
+/* Global Font Variables - Strictly Qurova */
+:root {
+    --font-heading: "Qurova", sans-serif;
+    --font-body: "Qurova", sans-serif;
+    --font-numbers: "Qurova", sans-serif;
+}
+
+/* Base font classes */
+.price,
+.price .currency,
+.stat__number,
+.number-text {
+    font-family: var(--font-numbers) !important;
+}
+
+input,
+textarea,
+button,
+select {
+    font-family: var(--font-body) !important;
+}
+
+/* Remove number input spinners */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/* Ensure number inputs use Quraova */
+input[type="number"] {
+    font-family: var(--font-numbers) !important;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+body {
+    /* DEFAULT DARK THEME from Reference */
+    --c-glass: #bbbbbc;
+    --c-light: #fff;
+    --c-dark: #000;
+    --c-content: #f5f5f7;
+    --c-action: #dc2743;
+    --c-bg: #1a1a1a;
+    --glass-reflex-dark: 2;
+    --glass-reflex-light: 0.3;
+    --saturation: 150%;
+
+    font-size: 20px;
+    font-family: "Qurova", sans-serif !important;
+    /* Force Qurova */
+    font-optical-sizing: auto;
+    background-color: transparent;
+    color: var(--c-content);
+
+    transition: background-color 400ms cubic-bezier(1, 0.0, 0.4, 1), color 400ms cubic-bezier(1, 0.0, 0.4, 1);
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+section {
+    scroll-margin-top: 100px;
 }
 
 /* ==========================================
@@ -156,18 +239,23 @@ body:has(input[value="dim"]:checked)::before {
 }
 
 /* Mobile Phones - Fixed Background (Stationary) */
+/* Mobile Phones - Fixed Background (Stationary) */
 @media (max-width: 768px) {
     body::before {
         position: fixed;
-        /* Stays in place */
-        height: 100vh;
+        /* Element stays fixed to viewport */
+        top: 0;
+        left: 0;
         width: 100vw;
+        height: 100vh;
         background-attachment: scroll;
-        /* On a fixed element, this looks fixed but performs better */
+        /* Image stays fixed to the element (which is fixed) */
         background-size: cover;
         background-position: center center;
         transform: translateZ(0);
+        /* Hardware accelerate */
         will-change: transform;
+        z-index: -10;
     }
 }
 
@@ -229,24 +317,32 @@ body:has(input[value="dim"]:checked) {
 /* Global Heading Styles with Qurova Font */
 h1,
 h2,
-h3 {
-    font-family: var(--font-heading);
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Qurova", sans-serif !important;
+    font-weight: 600;
+    /* Ensure Bold loads if available */
 }
 
 /* Logo text styling with Qurova */
 .navbar__logo-text,
 .footer__logo-text {
-    font-family: var(--font-heading);
+    font-family: "Qurova", sans-serif !important;
 }
 
 /* Paragraphs use Qurova font */
 p,
+a,
+span,
+li,
 .section__desc,
 .section__subtitle,
 .hero__description,
 .footer__tagline,
 .vision-card p {
-    font-family: var(--font-body);
+    font-family: "Qurova", sans-serif !important;
 }
 
 .service-card p {
@@ -1176,8 +1272,8 @@ video.hero__device-image {
 
     .hero {
         flex-direction: column;
-        /* Less top padding (no header), more bottom padding (header moved to bottom) */
-        padding: 60px 20px;
+        /* More top padding to push content down */
+        padding: 140px 20px 80px 20px;
         text-align: center;
     }
 
@@ -2306,6 +2402,12 @@ body:has(input[value="dim"]:checked) .footer__logo--dark {
     align-items: center;
     gap: 4px;
     transition: transform 0.3s ease;
+    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif !important;
+    /* Specific user request: Normal font */
+}
+
+.dw-brand-link * {
+    font-family: inherit !important;
 }
 
 .dw-brand-link:hover {
