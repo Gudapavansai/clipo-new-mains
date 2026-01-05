@@ -105,14 +105,14 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: -10;
     background-image: url('images/CLipo Bg  Black.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background-attachment: fixed; Removed for mobile stability */
 }
 
 /* Base background images for each theme */
@@ -698,26 +698,33 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
     }
 
     .switcher {
-        height: 84px;
-        /* Native height + safe area */
-        width: 100%;
-        max-width: 100%;
-        border-radius: 0;
-        border-top: 0.5px solid rgba(255, 255, 255, 0.2);
-        border-left: none;
-        border-right: none;
-        bottom: 0px;
-        padding-bottom: env(safe-area-inset-bottom);
-        backdrop-filter: blur(50px) saturate(180%);
-        -webkit-backdrop-filter: blur(50px) saturate(180%);
-        background: rgba(255, 255, 255, 0.85);
-        /* Light mode iOS bar */
-        justify-content: space-around;
+        height: 64px;
+        width: 92vw;
+        max-width: 380px;
+        /* Constraints for pill */
+        border-radius: 99em;
+        /* Pill shape */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        bottom: 30px;
+        /* Floating */
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        padding: 4px;
+        /* Space for bubble */
+
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        background: rgba(255, 255, 255, 0.75);
+        justify-content: space-between;
+
+        transition: none !important;
+        transform: none !important;
     }
 
-    /* Hide the bubble slider on mobile for native feel */
+    /* Restore bubble for Segmented Control style */
     .switcher__bubble {
-        display: none;
+        display: block;
     }
 
     .switcher:active,
