@@ -155,177 +155,43 @@ body:has(input[value="dim"]:checked)::before {
     }
 }
 
-/* Mobile Phones - Scrollable Background for smoothness */
+/* Mobile Phones - Fixed Background (Stationary) */
 @media (max-width: 768px) {
     body::before {
-        position: absolute;
-        /* Scroll with content instead of fixed */
-        height: 100%;
-        /* Cover full scroll height */
-        min-height: 100vh;
+        position: fixed;
+        /* Stays in place */
+        height: 100vh;
+        width: 100vw;
         background-attachment: scroll;
+        /* On a fixed element, this looks fixed but performs better */
         background-size: cover;
-        background-position: center top;
+        background-position: center center;
         transform: translateZ(0);
-        /* Hardware accelerate */
+        will-change: transform;
     }
 }
 
 /* Small Phones */
 @media (max-width: 480px) {
     body::before {
-        position: absolute;
-        height: 100%;
-        min-height: 100vh;
-        background-size: cover;
-        background-position: center top;
-    }
-}
-
-/* Landscape Mode on Mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-    body::before {
-        background-size: cover;
+        position: fixed;
         background-position: center center;
     }
 }
 
-/* Very tall screens (ensure full coverage) */
-@media (min-height: 1200px) {
-    body::before {
-        background-size: cover;
-    }
-}
-
-
-/* Global Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Global Font Variables */
-:root {
-    --font-heading: "Qurova", "Manrope", ui-sans-serif, system-ui;
-    --font-body: "Qurova", "Manrope", ui-sans-serif, system-ui;
-    --font-numbers: "Qurova", "Manrope", ui-sans-serif, system-ui;
-}
-
-/* Base font classes */
-.price,
-.price .currency,
-.stat__number,
-.number-text {
-    font-family: var(--font-numbers) !important;
-}
-
-input,
-textarea,
-button,
-select {
-    font-family: var(--font-body) !important;
-}
-
-/* Remove number input spinners */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
-}
-
-/* Ensure number inputs use Quraova */
-input[type="number"] {
-    font-family: var(--font-numbers) !important;
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
-
-/* Hide scrollbar but keep scroll functionality */
-html {
-    scrollbar-width: none;
-    scroll-behavior: smooth;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE and Edge */
-}
-
-html::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari, Opera */
-}
-
-body {
-    /* DEFAULT DARK THEME from Reference */
-    --c-glass: #bbbbbc;
-    --c-light: #fff;
-    --c-dark: #000;
-
-    --c-content: #f5f5f7;
-    --c-action: #dc2743;
-
-    --c-bg: #1a1a1a;
-
-    --glass-reflex-dark: 2;
-    --glass-reflex-light: 0.3;
-
-    --saturation: 150%;
-
-    font-size: 20px;
-    font-family: var(--font-body);
-    font-optical-sizing: auto;
-    background-color: transparent;
-    color: var(--c-content);
-
-    transition: background-color 400ms cubic-bezier(1, 0.0, 0.4, 1), color 400ms cubic-bezier(1, 0.0, 0.4, 1);
-    position: relative;
-    min-height: 100vh;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-}
-
-section {
-    scroll-margin-top: 100px;
-}
-
-/* GPU Acceleration & Rendering Optimization */
-.hero__device,
-.glass-card,
-.service-card,
-.pricing-card,
-.vision-card {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    contain: paint layout;
-    /* Optimization: Don't render outside bounds */
-}
-
-/* Drastic Performance Boost for Long Pages - REMOVED content-visibility to fix Fixed/Sticky Navbar issues */
-.section-wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    /* content-visibility: auto;  <-- Caused fixed elements to scroll away */
-    /* contain-intrinsic-size: 1px 800px; */
-}
-
+/* Update Themes to have solid fallback colors when image scrolls away */
 body:has(input[value="light"]:checked) {
     --c-glass: #bbbbbc;
     --c-light: #fff;
     --c-dark: #000;
-
     --c-content: #000;
-    /* Black text for light mode */
     --c-action: #dc2743;
-
     --c-bg: #f5f5f7;
+    background-color: var(--c-bg);
+    /* Fallback color */
 
     --glass-reflex-dark: 1;
     --glass-reflex-light: 1;
-
     --saturation: 150%;
 }
 
@@ -333,16 +199,14 @@ body:has(input[value="dark"]:checked) {
     --c-glass: #555555;
     --c-light: #fff;
     --c-dark: #000;
-
     --c-content: #f5f5f7;
-    /* Light text for dark mode */
     --c-action: #dc2743;
-
     --c-bg: #1a1a1a;
+    background-color: var(--c-bg);
+    /* Fallback color */
 
     --glass-reflex-dark: 2;
     --glass-reflex-light: 0.4;
-
     --saturation: 150%;
 }
 
@@ -350,15 +214,15 @@ body:has(input[value="dim"]:checked) {
     --c-light: #99deff;
     --c-dark: #121212;
     --c-glass: hsl(335 200% 74% / 1);
-
     --c-content: #d5dbe2;
     --c-action: #e6683c;
-
-    --c-bg: transparent;
+    --c-bg: #121212;
+    /* Use solid color, not transparent */
+    background-color: var(--c-bg);
+    /* Fallback color */
 
     --glass-reflex-dark: 2;
     --glass-reflex-light: 0.7;
-
     --saturation: 200%;
 }
 
