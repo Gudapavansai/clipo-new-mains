@@ -659,7 +659,21 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
 /* Bold text when bubble is over it */
 .switcher__option.active .switcher__text,
 .switcher__option:has(input:checked) .switcher__text {
-    font-weight: 700;
+    font-weight: 500;
+}
+
+/* Selected state color styling (blue/active) */
+.switcher__option:has(input:checked) {
+    --c: #007AFF;
+    /* iOS Blue */
+    opacity: 1;
+}
+
+/* Dark mode adjustment for iOS Blue */
+@media (prefers-color-scheme: dark) {
+    .switcher__option:has(input:checked) {
+        --c: #0A84FF;
+    }
 }
 
 /* Responsive Switcher: Show icons, hide text on small screens */
@@ -667,31 +681,50 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
 @media (max-width: 1024px) {
     .switcher__text {
         display: block;
-        font-size: 14px;
-        /* Optimized for 5 items fitting in width */
+        font-size: 10px;
         font-weight: 500;
         line-height: 1;
-        white-space: nowrap !important;
+        margin-top: 4px;
     }
 
     .switcher__icon-svg {
         display: none;
     }
 
-    .switcher {
-        height: 60px;
-        width: 92vw;
-        max-width: 580px;
-        transition: height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .switcher__content {
+        flex-direction: column;
+        justify-content: center;
         gap: 0;
-        padding: 4px;
+    }
+
+    .switcher {
+        height: 84px;
+        /* Native height + safe area */
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        border-top: 0.5px solid rgba(255, 255, 255, 0.2);
+        border-left: none;
+        border-right: none;
+        bottom: 0px;
+        padding-bottom: env(safe-area-inset-bottom);
+        backdrop-filter: blur(50px) saturate(180%);
+        -webkit-backdrop-filter: blur(50px) saturate(180%);
+        background: rgba(255, 255, 255, 0.85);
+        /* Light mode iOS bar */
+        justify-content: space-around;
+    }
+
+    /* Hide the bubble slider on mobile for native feel */
+    .switcher__bubble {
+        display: none;
     }
 
     .switcher:active,
     .switcher:focus-within,
     .switcher--dragging {
-        height: 60px;
-        width: 95vw;
+        height: 84px;
+        width: 100%;
     }
 
     .switcher__option {
