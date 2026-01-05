@@ -796,7 +796,8 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.1);
         /* Subtle container border */
-        justify-content: space-between;
+        justify-content: center;
+        gap: 0;
     }
 
     /* Bubble: Glassy & Snappy (Mobile) */
@@ -1418,10 +1419,10 @@ video.hero__device-image {
         translate: 0;
 
         display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
+        flex-wrap: nowrap;
+        gap: 0;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
 
         background: transparent;
 
@@ -1439,6 +1440,17 @@ video.hero__device-image {
         z-index: 1000;
 
         transition: height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .switcher__bubble {
+        left: 6px !important;
+        top: 6px !important;
+        width: calc((100% - 12px) / 5) !important;
+        height: calc(100% - 12px) !important;
+    }
+
+    .switcher__option {
+        flex: 1 1 0 !important;
     }
 
     /* Expand on Touch/Drag */

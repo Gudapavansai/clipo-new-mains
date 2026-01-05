@@ -151,7 +151,7 @@
     // Initialize bubble position
     document.addEventListener('DOMContentLoaded', () => {
         const checkedInput = DOM.switcher?.querySelector('input:checked');
-        if (checkedInput) {
+        if (checkedInput && window.innerWidth > 1024) {
             const data = inputMap.get(checkedInput.value);
             if (data && DOM.bubble && DOM.navOptions.length) {
                 const targetOption = DOM.navOptions[data.index];
@@ -504,14 +504,6 @@
     // ==========================================
     // SECURITY & BRAND PROTECTION
     // ==========================================
-    document.addEventListener('contextmenu', e => e.preventDefault(), false);
 
-    document.addEventListener('keydown', e => {
-        if (e.key === 'F12' ||
-            (e.ctrlKey && e.shiftKey && /^[ijcIJC]$/.test(e.key)) ||
-            (e.ctrlKey && /^[uU]$/.test(e.key))) {
-            e.preventDefault();
-        }
-    }, false);
 
 })();
