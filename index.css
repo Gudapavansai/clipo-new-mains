@@ -1282,7 +1282,7 @@ video.hero__device-image {
         left: 0;
         width: 100%;
 
-        padding: 24px 24px;
+        padding: 20px 24px;
         height: auto;
         /* ❌ remove fixed height */
 
@@ -1299,7 +1299,7 @@ video.hero__device-image {
 
 
     .navbar__logo {
-        height: 60px;
+        height: 40px;
         /* Increased logo size for mobile/tablet */
         width: auto;
         padding: 0;
@@ -1315,7 +1315,7 @@ video.hero__device-image {
         top: 0;
         bottom: auto;
         right: 0;
-        padding: 16px 24px;
+        padding: 20px 24px;
         pointer-events: auto;
         z-index: 1001;
     }
@@ -3818,1402 +3818,1403 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     background-color: color-mix(in srgb, #ff0000 15%, transparent);
     box-shadow: 0 8px 20px -4px rgba(255, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 0, 0, 0.3);
     transform: translateY(-3px) scale(1.15);
+}
 
-    /* Column 2 & 3: Links Lists */
-    .footer__links ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
+/* Column 2 & 3: Links Lists */
+.footer__links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer__links a {
+    text-decoration: none;
+    color: color-mix(in srgb, var(--c-content) 65%, transparent);
+    font-size: 0.95rem;
+    transition: color 0.2s, padding-left 0.2s;
+}
+
+.footer__links a:hover {
+    color: var(--c-action);
+    /* Yellow accent from reference */
+    padding-left: 6px;
+}
+
+/* Column 4: Contact */
+.footer__contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.contact-row svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #ffcc00;
+    /* Specific yellow from reference */
+    margin-top: 3px;
+}
+
+.contact-row span,
+.contact-row a {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--c-content) 70%, transparent);
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-row a:hover {
+    color: var(--c-content);
+}
+
+/* --- Bottom Copyright --- */
+.footer__copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    text-align: center;
+}
+
+.footer__copyright p {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--c-content) 50%, transparent);
+    margin: 0;
+}
+
+.footer__copyright span {
+    color: #ffcc00;
+}
+
+/* Hover accent for the copyright link */
+.footer__copyright a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer__copyright a:hover {
+    color: var(--c-action);
+}
+
+/* Footer Contact Styles - Numbers use Inter font */
+.footer__col {
+    position: relative;
+    z-index: 5;
+}
+
+.footer-phone,
+.footer-email {
+    display: block;
+    color: color-mix(in srgb, var(--c-content) 90%, transparent);
+    font-variant-numeric: normal;
+    letter-spacing: normal;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+}
+
+.footer-phone:hover,
+.footer-email:hover {
+    color: var(--c-action);
+}
+
+.footer-address {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--c-content) 70%, transparent);
+    line-height: 1.6;
+    max-width: 250px;
+    margin: 0;
+}
+
+/* WhatsApp Float (Restoring it) */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background-color: #25D366;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .footer__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 
-    .footer__links a {
-        text-decoration: none;
-        color: color-mix(in srgb, var(--c-content) 65%, transparent);
-        font-size: 0.95rem;
-        transition: color 0.2s, padding-left 0.2s;
+    .footer {
+        padding: 50px 24px 30px;
     }
-
-    .footer__links a:hover {
-        color: var(--c-action);
-        /* Yellow accent from reference */
-        padding-left: 6px;
-    }
-
-    /* Column 4: Contact */
-    .footer__contact-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .contact-row {
-        display: flex;
-        align-items: flex-start;
-        gap: 16px;
-    }
-
-    .contact-row svg {
-        width: 20px;
-        height: 20px;
-        flex-shrink: 0;
-        color: #ffcc00;
-        /* Specific yellow from reference */
-        margin-top: 3px;
-    }
-
-    .contact-row span,
-    .contact-row a {
-        font-size: 0.95rem;
-        color: color-mix(in srgb, var(--c-content) 70%, transparent);
-        line-height: 1.5;
-        text-decoration: none;
-        transition: color 0.2s;
-    }
-
-    .contact-row a:hover {
-        color: var(--c-content);
-    }
-
-    /* --- Bottom Copyright --- */
-    .footer__copyright {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 30px;
-        text-align: center;
-    }
-
-    .footer__copyright p {
-        font-size: 0.9rem;
-        color: color-mix(in srgb, var(--c-content) 50%, transparent);
-        margin: 0;
-    }
-
-    .footer__copyright span {
-        color: #ffcc00;
-    }
-
-    /* Hover accent for the copyright link */
-    .footer__copyright a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    .footer__copyright a:hover {
-        color: var(--c-action);
-    }
-
-    /* Footer Contact Styles - Numbers use Inter font */
-    .footer__col {
-        position: relative;
-        z-index: 5;
-    }
-
-    .footer-phone,
-    .footer-email {
-        display: block;
-        color: color-mix(in srgb, var(--c-content) 90%, transparent);
-        font-variant-numeric: normal;
-        letter-spacing: normal;
-        text-decoration: none;
-        margin-bottom: 10px;
-        transition: color 0.2s;
-    }
-
-    .footer-phone:hover,
-    .footer-email:hover {
-        color: var(--c-action);
-    }
-
-    .footer-address {
-        font-size: 0.95rem;
-        color: color-mix(in srgb, var(--c-content) 70%, transparent);
-        line-height: 1.6;
-        max-width: 250px;
-        margin: 0;
-    }
-
-    /* WhatsApp Float (Restoring it) */
-    .whatsapp-float {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        background-color: #25D366;
-        color: #fff;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s;
-    }
-
-    .whatsapp-float:hover {
-        transform: scale(1.1);
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .footer__grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-    }
-
-    @media (max-width: 600px) {
-        .footer__grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-
-        .footer {
-            padding: 50px 24px 30px;
-        }
-    }
+}
 
 
-    /* ==========================================
+/* ==========================================
    Premium Apple-Inspired Scroll Animations
    ========================================== */
 
-    /* 1. Liquid Reveal Scroll */
-    /* Elements start blurred and low opacity, then "liquidly" resolve into sharpness */
-    .liquid-reveal {
-        opacity: 0;
-        filter: blur(20px);
-        transform: translateY(40px) scale(0.96);
-        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        /* Apple-like ease-out */
-        will-change: opacity, filter, transform;
-    }
+/* 1. Liquid Reveal Scroll */
+/* Elements start blurred and low opacity, then "liquidly" resolve into sharpness */
+.liquid-reveal {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translateY(40px) scale(0.96);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Apple-like ease-out */
+    will-change: opacity, filter, transform;
+}
 
-    .liquid-reveal.active {
-        opacity: 1;
-        filter: blur(0px);
-        transform: translateY(0) scale(1);
-    }
+.liquid-reveal.active {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1);
+}
 
-    /* Stagger delays */
-    [data-delay="100"] {
-        transition-delay: 100ms;
-    }
+/* Stagger delays */
+[data-delay="100"] {
+    transition-delay: 100ms;
+}
 
-    [data-delay="200"] {
-        transition-delay: 200ms;
-    }
+[data-delay="200"] {
+    transition-delay: 200ms;
+}
 
-    [data-delay="300"] {
-        transition-delay: 300ms;
-    }
+[data-delay="300"] {
+    transition-delay: 300ms;
+}
 
-    /* 2. Parallax Depth Stack */
-    /* Base styles for parallax layers */
-    .parallax-container {
-        position: relative;
-        overflow: hidden;
-        transform-style: preserve-3d;
-    }
+/* 2. Parallax Depth Stack */
+/* Base styles for parallax layers */
+.parallax-container {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
 
-    .parallax-layer {
-        will-change: transform;
-        transition: transform 0.1s linear;
-        /* Smooth linear for scroll syncing */
-    }
+.parallax-layer {
+    will-change: transform;
+    transition: transform 0.1s linear;
+    /* Smooth linear for scroll syncing */
+}
 
-    /* 3. Scroll-Triggered Morph */
-    /* Cards that change shape slightly as they traverse the viewport */
-    .morph-card {
-        transition: border-radius 0.6s ease, transform 0.6s ease;
-        will-change: border-radius, transform;
-    }
+/* 3. Scroll-Triggered Morph */
+/* Cards that change shape slightly as they traverse the viewport */
+.morph-card {
+    transition: border-radius 0.6s ease, transform 0.6s ease;
+    will-change: border-radius, transform;
+}
 
-    /* 4. Sticky Story Scroll Sections */
-    /* Layout for sticky text + scrolling content */
-    .sticky-story-section {
-        position: relative;
-        padding: 100px 0;
-    }
+/* 4. Sticky Story Scroll Sections */
+/* Layout for sticky text + scrolling content */
+.sticky-story-section {
+    position: relative;
+    padding: 100px 0;
+}
 
+.sticky-story-track {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.sticky-content {
+    position: sticky;
+    top: 140px;
+    /* Offset for navbar */
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0.4;
+    transition: opacity 0.5s ease;
+}
+
+.sticky-content.active {
+    opacity: 1;
+}
+
+.scrolling-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12vh;
+    /* Large gaps for storytelling */
+}
+
+.story-card {
+    min-height: 400px;
+    /* Glass card styles reused but enhanced */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform-origin: center center;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 5. Scroll Glow Tracking */
+/* A subtle glow that follows the active card/section */
+.scroll-glow-effect {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+}
+
+.glass-card:hover .scroll-glow-effect,
+.glass-card.active-glow .scroll-glow-effect {
+    opacity: 1;
+}
+
+/* Responsive adjustments for sticky story */
+@media (max-width: 900px) {
     .sticky-story-track {
-        display: grid;
-        grid-template-columns: 1fr 1.5fr;
-        gap: 60px;
-        align-items: start;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 40px;
+        grid-template-columns: 1fr;
     }
 
     .sticky-content {
-        position: sticky;
-        top: 140px;
-        /* Offset for navbar */
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        opacity: 0.4;
-        transition: opacity 0.5s ease;
-    }
-
-    .sticky-content.active {
+        position: relative;
+        top: 0;
+        margin-bottom: 40px;
         opacity: 1;
     }
+}
 
-    .scrolling-content {
-        display: flex;
-        flex-direction: column;
-        gap: 12vh;
-        /* Large gaps for storytelling */
+/* Process Steps Sidebar - Premium Timeline */
+.process-steps {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    padding-left: 30px;
+}
+
+.process-step {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--c-content);
+    opacity: 0.4;
+    padding: 20px 0;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    letter-spacing: -0.02em;
+}
+
+/* Glowing Timeline Dot */
+.process-step::before {
+    content: '';
+    position: absolute;
+    left: -37px;
+    /* Align with border line centered */
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 12px;
+    height: 12px;
+    background: var(--c-action);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--c-action);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.process-step.active {
+    opacity: 1;
+    color: #fff;
+    transform: translateX(10px);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.process-step.active::before {
+    transform: translateY(-50%) scale(1);
+}
+
+/* Enhanced Premium Glass Card */
+.story-card {
+    min-height: 450px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(40px) saturate(200%);
+    /* Strong blur */
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    /* Catching light at top */
+    border-radius: 32px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px) scale(1.02) !important;
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.story-card h3 {
+    font-size: 2.5rem;
+    background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.story-card p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+/* Big Number Watermark */
+.story-card::after {
+    content: attr(data-step);
+    font-size: 180px;
+    font-weight: 800;
+    position: absolute;
+    bottom: -40px;
+    right: -20px;
+    color: rgba(255, 255, 255, 0.02);
+    pointer-events: none;
+    z-index: 0;
+    font-family: var(--font-numbers);
+    letter-spacing: -10px;
+}
+
+/* Additional Responsive Breakpoints for Scroll Animations */
+@media (max-width: 768px) {
+    .sticky-story-section {
+        padding: 60px 0;
+    }
+
+    .sticky-story-track {
+        padding: 0 20px;
+        gap: 30px;
     }
 
     .story-card {
-        min-height: 400px;
-        /* Glass card styles reused but enhanced */
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 32px;
+        min-height: 350px;
         padding: 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        transform-origin: center center;
-        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    /* 5. Scroll Glow Tracking */
-    /* A subtle glow that follows the active card/section */
-    .scroll-glow-effect {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(var(--accent-rgb), 0.3) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-        mix-blend-mode: screen;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        z-index: -1;
-        transform: translate(-50%, -50%);
-    }
-
-    .glass-card:hover .scroll-glow-effect,
-    .glass-card.active-glow .scroll-glow-effect {
-        opacity: 1;
-    }
-
-    /* Responsive adjustments for sticky story */
-    @media (max-width: 900px) {
-        .sticky-story-track {
-            grid-template-columns: 1fr;
-        }
-
-        .sticky-content {
-            position: relative;
-            top: 0;
-            margin-bottom: 40px;
-            opacity: 1;
-        }
-    }
-
-    /* Process Steps Sidebar - Premium Timeline */
-    .process-steps {
-        margin-top: 60px;
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        position: relative;
-        border-left: 2px solid rgba(255, 255, 255, 0.1);
-        padding-left: 30px;
-    }
-
-    .process-step {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--c-content);
-        opacity: 0.4;
-        padding: 20px 0;
-        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        cursor: pointer;
-        position: relative;
-        letter-spacing: -0.02em;
-    }
-
-    /* Glowing Timeline Dot */
-    .process-step::before {
-        content: '';
-        position: absolute;
-        left: -37px;
-        /* Align with border line centered */
-        top: 50%;
-        transform: translateY(-50%) scale(0);
-        width: 12px;
-        height: 12px;
-        background: var(--c-action);
-        border-radius: 50%;
-        box-shadow: 0 0 10px var(--c-action);
-        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .process-step.active {
-        opacity: 1;
-        color: #fff;
-        transform: translateX(10px);
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .process-step.active::before {
-        transform: translateY(-50%) scale(1);
-    }
-
-    /* Enhanced Premium Glass Card */
-    .story-card {
-        min-height: 450px;
-        position: relative;
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(40px) saturate(200%);
-        /* Strong blur */
-        -webkit-backdrop-filter: blur(40px) saturate(200%);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-top: 1px solid rgba(255, 255, 255, 0.3);
-        /* Catching light at top */
-        border-radius: 32px;
-        padding: 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 20px;
-        overflow: hidden;
-        box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.2),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
-    }
-
-    .story-card:hover {
-        transform: translateY(-5px) scale(1.02) !important;
-        box-shadow:
-            0 30px 60px rgba(0, 0, 0, 0.3),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
     }
 
     .story-card h3 {
-        font-size: 2.5rem;
-        background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.7));
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin: 0;
-        line-height: 1.1;
+        font-size: 2rem;
     }
 
     .story-card p {
-        font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.7);
-        line-height: 1.6;
-        max-width: 90%;
+        font-size: 1rem;
     }
 
-    /* Big Number Watermark */
     .story-card::after {
-        content: attr(data-step);
-        font-size: 180px;
-        font-weight: 800;
-        position: absolute;
-        bottom: -40px;
-        right: -20px;
-        color: rgba(255, 255, 255, 0.02);
-        pointer-events: none;
-        z-index: 0;
-        font-family: var(--font-numbers);
-        letter-spacing: -10px;
+        font-size: 120px;
+        bottom: -20px;
+        right: -10px;
     }
 
-    /* Additional Responsive Breakpoints for Scroll Animations */
-    @media (max-width: 768px) {
-        .sticky-story-section {
-            padding: 60px 0;
-        }
-
-        .sticky-story-track {
-            padding: 0 20px;
-            gap: 30px;
-        }
-
-        .story-card {
-            min-height: 350px;
-            padding: 40px;
-            border-radius: 24px;
-        }
-
-        .story-card h3 {
-            font-size: 2rem;
-        }
-
-        .story-card p {
-            font-size: 1rem;
-        }
-
-        .story-card::after {
-            font-size: 120px;
-            bottom: -20px;
-            right: -10px;
-        }
-
-        .scrolling-content {
-            gap: 8vh;
-        }
-
-        .process-steps {
-            margin-top: 40px;
-            padding-left: 24px;
-        }
-
-        .process-step {
-            font-size: 1.2rem;
-            padding: 16px 0;
-        }
-
-        .process-step::before {
-            left: -30px;
-            width: 10px;
-            height: 10px;
-        }
+    .scrolling-content {
+        gap: 8vh;
     }
 
-    @media (max-width: 480px) {
-        .sticky-story-section {
-            padding: 40px 0;
-        }
-
-        .sticky-story-track {
-            padding: 0 16px;
-            gap: 24px;
-        }
-
-        .story-card {
-            min-height: 280px;
-            padding: 24px;
-            border-radius: 20px;
-        }
-
-        .story-card h3 {
-            font-size: 1.5rem;
-        }
-
-        .story-card p {
-            font-size: 0.9rem;
-            max-width: 100%;
-        }
-
-        .story-card::after {
-            font-size: 80px;
-            bottom: -10px;
-            letter-spacing: -5px;
-        }
-
-        .scrolling-content {
-            gap: 6vh;
-        }
-
-        .process-steps {
-            margin-top: 30px;
-            padding-left: 20px;
-        }
-
-        .process-step {
-            font-size: 1rem;
-            padding: 12px 0;
-        }
-
-        .process-step::before {
-            left: -26px;
-            width: 8px;
-            height: 8px;
-        }
-
-        /* Reduce blur for performance on mobile */
-        .liquid-reveal {
-            filter: blur(10px);
-            transform: translateY(30px) scale(0.98);
-        }
-
-        .story-card {
-            backdrop-filter: blur(20px) saturate(150%);
-            -webkit-backdrop-filter: blur(20px) saturate(150%);
-        }
+    .process-steps {
+        margin-top: 40px;
+        padding-left: 24px;
     }
 
-    @media (max-width: 360px) {
-        .story-card {
-            padding: 20px;
-            min-height: 240px;
-        }
-
-        .story-card h3 {
-            font-size: 1.3rem;
-        }
-
-        .story-card::after {
-            font-size: 60px;
-        }
+    .process-step {
+        font-size: 1.2rem;
+        padding: 16px 0;
     }
 
+    .process-step::before {
+        left: -30px;
+        width: 10px;
+        height: 10px;
+    }
+}
 
-    /* ==========================================
+@media (max-width: 480px) {
+    .sticky-story-section {
+        padding: 40px 0;
+    }
+
+    .sticky-story-track {
+        padding: 0 16px;
+        gap: 24px;
+    }
+
+    .story-card {
+        min-height: 280px;
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    .story-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .story-card p {
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+
+    .story-card::after {
+        font-size: 80px;
+        bottom: -10px;
+        letter-spacing: -5px;
+    }
+
+    .scrolling-content {
+        gap: 6vh;
+    }
+
+    .process-steps {
+        margin-top: 30px;
+        padding-left: 20px;
+    }
+
+    .process-step {
+        font-size: 1rem;
+        padding: 12px 0;
+    }
+
+    .process-step::before {
+        left: -26px;
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Reduce blur for performance on mobile */
+    .liquid-reveal {
+        filter: blur(10px);
+        transform: translateY(30px) scale(0.98);
+    }
+
+    .story-card {
+        backdrop-filter: blur(20px) saturate(150%);
+        -webkit-backdrop-filter: blur(20px) saturate(150%);
+    }
+}
+
+@media (max-width: 360px) {
+    .story-card {
+        padding: 20px;
+        min-height: 240px;
+    }
+
+    .story-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .story-card::after {
+        font-size: 60px;
+    }
+}
+
+
+/* ==========================================
    Comprehensive Responsive Styles - All Devices
    ========================================== */
 
-    /* Extra Large Screens (1400px+) */
-    @media (min-width: 1400px) {
-        .hero {
-            max-width: 1400px;
-            gap: 100px;
-        }
-
-        .section {
-            max-width: 1400px;
-        }
-
-        .footer__content {
-            max-width: 1400px;
-        }
+/* Extra Large Screens (1400px+) */
+@media (min-width: 1400px) {
+    .hero {
+        max-width: 1400px;
+        gap: 100px;
     }
 
-    /* Large Tablets / Small Laptops (992px - 1200px) */
-    @media (max-width: 1200px) {
-        .hero {
-            gap: 60px;
-            padding: 100px 40px;
-        }
-
-        .section {
-            padding: 80px 40px;
-            gap: 50px;
-        }
-
-        .services__grid,
-        .pricing__grid {
-            gap: 24px;
-        }
-
-        .service-card,
-        .pricing-card {
-            width: calc((100% - 48px) / 3);
-            flex: 0 0 calc((100% - 48px) / 3);
-            padding: 28px;
-        }
-
-        .contact__card,
-        .about__card {
-            padding: 50px;
-        }
+    .section {
+        max-width: 1400px;
     }
 
-    /* Tablets (768px - 992px) */
-    @media (max-width: 992px) {
-        body {
-            font-size: 18px;
-        }
+    .footer__content {
+        max-width: 1400px;
+    }
+}
 
-        .hero {
-            flex-direction: column;
-            gap: 50px;
-            padding: 80px 30px;
-            min-height: auto;
-        }
-
-        .hero__content {
-            max-width: 100%;
-            text-align: center;
-        }
-
-        .hero__buttons {
-            justify-content: center;
-        }
-
-        .hero__description {
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero__device {
-            width: 280px;
-            height: 380px;
-        }
-
-        .section {
-            padding: 70px 24px;
-            gap: 45px;
-        }
-
-        .section__title {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-        }
-
-        /* Services Grid - 2 columns */
-        .services__grid {
-            gap: 20px;
-        }
-
-        .service-card {
-            width: calc((100% - 20px) / 2);
-            flex: 0 0 calc((100% - 20px) / 2);
-            padding: 24px;
-            min-height: 280px;
-        }
-
-        /* Pricing Grid - 2 columns */
-        .pricing__grid {
-            gap: 20px;
-        }
-
-        .pricing-card {
-            width: calc((100% - 20px) / 2);
-            flex: 0 0 calc((100% - 20px) / 2);
-        }
-
-        /* About Section */
-        .about__card {
-            padding: 40px;
-        }
-
-        .about__visions {
-            gap: 20px;
-        }
-
-        .about__stats {
-            gap: 30px;
-            padding-top: 30px;
-            margin-top: 30px;
-        }
-
-        .stat__number {
-            font-size: 2rem;
-        }
-
-        /* Contact Section */
-        .contact__card {
-            grid-template-columns: 1fr;
-            gap: 40px;
-            padding: 40px;
-        }
-
-        .contact__content {
-            text-align: center;
-            align-items: center;
-        }
-
-        .contact__content .section__title {
-            font-size: 2.5rem;
-        }
-
-        .contact__content .section__desc {
-            max-width: 100%;
-        }
-
-        /* Footer */
-        .footer {
-            padding: 60px 24px 100px;
-        }
-
-        .footer__content {
-            gap: 40px;
-        }
-
-        .footer__links {
-            gap: 50px;
-        }
+/* Large Tablets / Small Laptops (992px - 1200px) */
+@media (max-width: 1200px) {
+    .hero {
+        gap: 60px;
+        padding: 100px 40px;
     }
 
-    /* Small Tablets / Large Phones (600px - 768px) */
-    @media (max-width: 768px) {
-        body {
-            font-size: 16px;
-        }
-
-        .navbar {
-            padding: 16px 20px;
-        }
-
-        .navbar__actions {
-            padding: 16px 20px;
-        }
-
-        .navbar__logo {
-            height: 32px;
-        }
-
-        .hero {
-            padding: 60px 20px;
-            gap: 40px;
-        }
-
-        .hero__badge {
-            font-size: 10px;
-            padding: 6px 12px;
-        }
-
-        .hero__title {
-            font-size: clamp(2rem, 6vw, 3rem);
-        }
-
-        .hero__description {
-            font-size: 14px;
-        }
-
-        .hero__buttons {
-            flex-direction: row;
-            gap: 12px;
-            width: auto;
-            justify-content: center;
-        }
-
-        .hero__btn {
-            width: auto;
-            padding: 12px 20px;
-            font-size: 13px;
-            text-align: center;
-            box-sizing: border-box;
-            white-space: nowrap;
-        }
-
-        .hero__device {
-            width: 260px;
-            height: 340px;
-        }
-
-        .section {
-            padding: 50px 16px;
-            gap: 35px;
-        }
-
-        .section__title {
-            font-size: clamp(1.6rem, 5vw, 2.2rem);
-            margin-bottom: 16px;
-        }
-
-        .section__desc,
-        .section__subtitle {
-            font-size: 1rem;
-        }
-
-        /* Glass Cards */
-        .glass-card {
-            padding: 20px;
-            border-radius: 20px;
-        }
-
-        /* Services Grid - 1 column */
-        .services__grid {
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .service-card {
-            width: 100%;
-            max-width: 400px;
-            min-height: auto;
-            padding: 24px;
-            margin: 0 auto;
-        }
-
-        .service-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 16px;
-        }
-
-        .service-card h3 {
-            font-size: 1.1rem;
-        }
-
-        .service-card p {
-            font-size: 0.9rem;
-        }
-
-        /* Pricing Grid - 1 column */
-        .pricing__grid {
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .pricing-card {
-            width: 100%;
-            max-width: 400px;
-            flex: auto;
-            margin: 0 auto;
-        }
-
-        .price {
-            font-size: 2rem;
-        }
-
-        .features li {
-            padding: 10px 0;
-            font-size: 0.9rem;
-        }
-
-        /* About Section */
-        .about__card {
-            padding: 24px;
-            max-width: 100%;
-        }
-
-        .about__visions {
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-top: 24px;
-        }
-
-        .vision-card {
-            padding: 20px;
-        }
-
-        .vision-icon {
-            width: 40px;
-            height: 40px;
-        }
-
-        .vision-card h3 {
-            font-size: 1.1rem;
-        }
-
-        .vision-card p {
-            font-size: 0.9rem;
-        }
-
-        .about__stats {
-            gap: 20px;
-            padding-top: 24px;
-            margin-top: 24px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .stat__number {
-            font-size: 1.8rem;
-        }
-
-        .stat__label {
-            font-size: 0.75rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-
-        .contact__card {
-            padding: 24px;
-            gap: 24px;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: calc(100% - 32px);
-            box-sizing: border-box;
-        }
-
-        .contact__content .section__title {
-            font-size: 1.5rem;
-        }
-
-        .contact__content .section__desc {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .contact__form {
-            width: 100%;
-        }
-
-        .glass-input {
-            padding: 16px 18px;
-            font-size: 16px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .glass-input::placeholder {
-            font-size: 15px;
-        }
-
-        textarea.glass-input {
-            min-height: 100px;
-            font-size: 16px;
-        }
-
-        /* Footer */
-        .footer {
-            padding: 40px 16px 100px;
-        }
-
-        .footer__content {
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .footer__brand {
-            max-width: 100%;
-            text-align: center;
-        }
-
-        .footer__logo {
-            margin: 0 auto 16px;
-        }
-
-        .social-links {
-            justify-content: center;
-        }
-
-        .footer__links {
-            width: 100%;
-            justify-content: space-around;
-            gap: 30px;
-        }
-
-        .footer__col {
-            text-align: center;
-            align-items: center;
-        }
-
-        .footer__bottom {
-            margin-top: 40px;
-            padding-top: 30px;
-            gap: 20px;
-        }
-
-        .dw-digital,
-        .dw-win {
-            font-size: 1.1rem;
-            padding: 4px 10px;
-        }
-
-        .dw-technologies {
-            font-size: 0.7rem;
-        }
-
-        /* Pricing Section Header */
-        .pricing-header-iphone h3 {
-            font-size: 1.5rem;
-        }
-
-        .pricing__footer {
-            font-size: 0.95rem;
-            padding: 0 16px;
-        }
+    .section {
+        padding: 80px 40px;
+        gap: 50px;
     }
 
-    /* Small Phones (480px and below) */
-    @media (max-width: 480px) {
-        body {
-            font-size: 15px;
-        }
-
-        .navbar {
-            padding: 12px 16px;
-        }
-
-        .navbar__actions {
-            padding: 12px 16px;
-        }
-
-        .navbar__logo {
-            height: 36px;
-            width: auto;
-            max-width: 140px;
-            object-fit: contain;
-        }
-
-        .navbar__icon {
-            padding: 10px;
-        }
-
-        .hero {
-            padding: 50px 16px;
-            gap: 30px;
-        }
-
-        .hero__badge {
-            font-size: 9px;
-            padding: 5px 10px;
-            gap: 6px;
-        }
-
-        .hero__badge-dot {
-            width: 6px;
-            height: 6px;
-        }
-
-        .hero__title {
-            font-size: clamp(1.8rem, 7vw, 2.5rem);
-            margin-bottom: 16px;
-        }
-
-        .hero__description {
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
-
-        .hero__buttons {
-            flex-direction: row;
-            gap: 10px;
-            width: auto;
-            justify-content: center;
-        }
-
-        .hero__btn {
-            width: auto;
-            padding: 10px 16px;
-            font-size: 12px;
-            text-align: center;
-            box-sizing: border-box;
-            white-space: nowrap;
-        }
-
-        .hero__device {
-            width: 220px;
-            height: 300px;
-            padding: 8px;
-        }
-
-        .hero__play-btn {
-            width: 40px;
-            height: 40px;
-            bottom: 12px;
-            left: 12px;
-        }
-
-        .section {
-            padding: 40px 12px;
-            gap: 30px;
-        }
-
-        .section__title {
-            font-size: clamp(1.4rem, 6vw, 1.8rem);
-            margin-bottom: 12px;
-        }
-
-        .section__desc,
-        .section__subtitle {
-            font-size: 0.9rem;
-        }
-
-        /* Glass Cards */
-        .glass-card {
-            padding: 16px;
-            border-radius: 16px;
-        }
-
-        /* Service Cards */
-        .service-card {
-            padding: 20px;
-            max-width: 100%;
-        }
-
-        .service-icon {
-            width: 44px;
-            height: 44px;
-        }
-
-        /* Pricing Cards */
-        .pricing-card {
-            max-width: 100%;
-            padding: 24px 20px;
-        }
-
-        .price {
-            font-size: 1.8rem;
-        }
-
-        .price .currency {
-            font-size: 1.2rem;
-        }
-
-        /* About Section */
-        .about__card {
-            padding: 20px;
-        }
-
-        .about__stats {
-            gap: 16px;
-        }
-
-        .stat {
-            min-width: 80px;
-        }
-
-        .stat__number {
-            font-size: 1.5rem;
-        }
-
-        .stat__label {
-            font-size: 0.7rem;
-            letter-spacing: 0.05em;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding-left: 12px;
-            padding-right: 12px;
-        }
-
-        .contact__card {
-            padding: 20px;
-            gap: 20px;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: calc(100% - 24px);
-            box-sizing: border-box;
-        }
-
-        .contact__content .section__title {
-            font-size: 1.3rem;
-        }
-
-        .contact__content .section__desc {
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .contact__form {
-            width: 100%;
-        }
-
-        .glass-input {
-            padding: 16px 16px;
-            font-size: 16px;
-            /* Prevents zooming on iOS */
-            border-radius: 16px;
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 8px;
-        }
-
-        .glass-input::placeholder {
-            font-size: 15px;
-        }
-
-        textarea.glass-input {
-            min-height: 140px;
-            border-radius: 16px;
-            font-size: 16px;
-        }
-
-        .navbar__btn.full-width {
-            padding: 14px 20px;
-            font-size: 14px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Footer */
-        .footer {
-            padding: 30px 12px 100px;
-        }
-
-        .footer__tagline {
-            font-size: 0.85rem;
-        }
-
-        .footer__links {
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .footer__col {
-            gap: 12px;
-        }
-
-        .footer__col h4 {
-            font-size: 0.8rem;
-            margin-bottom: 4px;
-        }
-
-        .footer__col a {
-            font-size: 0.8rem;
-        }
-
-        .social-link {
-            width: 36px;
-            height: 36px;
-        }
-
-        .social-link svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .footer__bottom {
-            gap: 16px;
-        }
-
-        .powered-label {
-            font-size: 0.95rem;
-        }
-
-        .dw-digital,
-        .dw-win {
-            font-size: 1rem;
-            padding: 4px 8px;
-        }
-
-        .dw-technologies {
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
-        }
-
-        .dw-tagline {
-            font-size: 0.8rem;
-        }
-
-        .copyright {
-            font-size: 0.75rem;
-        }
-
-        /* Switcher (Navigation) */
-        .switcher {
-            height: 44px;
-            bottom: 16px;
-            padding: 3px;
-        }
-
-        .switcher__text {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0;
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            width: 36px;
-            height: 36px;
-        }
-
-        .scroll-indicator svg {
-            width: 18px;
-            height: 18px;
-        }
+    .services__grid,
+    .pricing__grid {
+        gap: 24px;
     }
 
-    /* Extra Small Phones (360px and below) */
-    @media (max-width: 360px) {
-        .hero__title {
-            font-size: 1.6rem;
-        }
-
-        .hero__description {
-            font-size: 12px;
-        }
-
-        .hero__device {
-            width: 200px;
-            height: 270px;
-        }
-
-        .section__title {
-            font-size: 1.3rem;
-        }
-
-        .stat__number {
-            font-size: 1.3rem;
-        }
-
-        .price {
-            font-size: 1.6rem;
-        }
-
-        .switcher {
-            --w: calc((100vw - 16px) / 5);
-        }
-
-        .switcher__text {
-            font-size: 10px;
-        }
+    .service-card,
+    .pricing-card {
+        width: calc((100% - 48px) / 3);
+        flex: 0 0 calc((100% - 48px) / 3);
+        padding: 28px;
     }
 
-    /* Landscape Mode - Small Devices */
-    @media (max-height: 500px) and (orientation: landscape) {
-        .hero {
-            min-height: auto;
-            padding: 30px 40px;
-            flex-direction: row;
-            gap: 40px;
-        }
+    .contact__card,
+    .about__card {
+        padding: 50px;
+    }
+}
 
-        .hero__content {
-            text-align: left;
-        }
-
-        .hero__buttons {
-            justify-content: flex-start;
-        }
-
-        .hero__device {
-            width: 200px;
-            height: 280px;
-        }
-
-        .section {
-            padding: 40px 30px;
-        }
+/* Tablets (768px - 992px) */
+@media (max-width: 992px) {
+    body {
+        font-size: 18px;
     }
 
-    /* Print Styles */
-    @media print {
-
-        .navbar,
-        .navbar__actions,
-        .switcher,
-        .scroll-indicator,
-        .background-container {
-            display: none !important;
-        }
-
-        .hero,
-        .section {
-            padding: 20px;
-        }
-
-        .glass-card {
-            box-shadow: none;
-            border: 1px solid #ddd;
-        }
+    .hero {
+        flex-direction: column;
+        gap: 50px;
+        padding: 80px 30px;
+        min-height: auto;
     }
 
-    /* Pricing Section - Equal Spacing for Headers */
+    .hero__content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero__buttons {
+        justify-content: center;
+    }
+
+    .hero__description {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero__device {
+        width: 280px;
+        height: 380px;
+    }
+
+    .section {
+        padding: 70px 24px;
+        gap: 45px;
+    }
+
+    .section__title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    /* Services Grid - 2 columns */
+    .services__grid {
+        gap: 20px;
+    }
+
+    .service-card {
+        width: calc((100% - 20px) / 2);
+        flex: 0 0 calc((100% - 20px) / 2);
+        padding: 24px;
+        min-height: 280px;
+    }
+
+    /* Pricing Grid - 2 columns */
+    .pricing__grid {
+        gap: 20px;
+    }
+
+    .pricing-card {
+        width: calc((100% - 20px) / 2);
+        flex: 0 0 calc((100% - 20px) / 2);
+    }
+
+    /* About Section */
+    .about__card {
+        padding: 40px;
+    }
+
+    .about__visions {
+        gap: 20px;
+    }
+
+    .about__stats {
+        gap: 30px;
+        padding-top: 30px;
+        margin-top: 30px;
+    }
+
+    .stat__number {
+        font-size: 2rem;
+    }
+
+    /* Contact Section */
+    .contact__card {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px;
+    }
+
+    .contact__content {
+        text-align: center;
+        align-items: center;
+    }
+
+    .contact__content .section__title {
+        font-size: 2.5rem;
+    }
+
+    .contact__content .section__desc {
+        max-width: 100%;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 60px 24px 100px;
+    }
+
+    .footer__content {
+        gap: 40px;
+    }
+
+    .footer__links {
+        gap: 50px;
+    }
+}
+
+/* Small Tablets / Large Phones (600px - 768px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .navbar {
+        padding: 16px 20px;
+    }
+
+    .navbar__actions {
+        padding: 16px 20px;
+    }
+
+    .navbar__logo {
+        height: 30px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+        gap: 40px;
+    }
+
+    .hero__badge {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+
+    .hero__title {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .hero__description {
+        font-size: 14px;
+    }
+
+    .hero__buttons {
+        flex-direction: row;
+        gap: 12px;
+        width: auto;
+        justify-content: center;
+    }
+
+    .hero__btn {
+        width: auto;
+        padding: 12px 20px;
+        font-size: 13px;
+        text-align: center;
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+
+    .hero__device {
+        width: 260px;
+        height: 340px;
+    }
+
+    .section {
+        padding: 50px 16px;
+        gap: 35px;
+    }
+
+    .section__title {
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+        margin-bottom: 16px;
+    }
+
+    .section__desc,
+    .section__subtitle {
+        font-size: 1rem;
+    }
+
+    /* Glass Cards */
+    .glass-card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    /* Services Grid - 1 column */
+    .services__grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .service-card {
+        width: 100%;
+        max-width: 400px;
+        min-height: auto;
+        padding: 24px;
+        margin: 0 auto;
+    }
+
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .service-card p {
+        font-size: 0.9rem;
+    }
+
+    /* Pricing Grid - 1 column */
+    .pricing__grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .pricing-card {
+        width: 100%;
+        max-width: 400px;
+        flex: auto;
+        margin: 0 auto;
+    }
+
+    .price {
+        font-size: 2rem;
+    }
+
+    .features li {
+        padding: 10px 0;
+        font-size: 0.9rem;
+    }
+
+    /* About Section */
+    .about__card {
+        padding: 24px;
+        max-width: 100%;
+    }
+
+    .about__visions {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .vision-card {
+        padding: 20px;
+    }
+
+    .vision-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .vision-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .vision-card p {
+        font-size: 0.9rem;
+    }
+
+    .about__stats {
+        gap: 20px;
+        padding-top: 24px;
+        margin-top: 24px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .stat__number {
+        font-size: 1.8rem;
+    }
+
+    .stat__label {
+        font-size: 0.75rem;
+    }
+
+    /* Contact Section */
+    .contact {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .contact__card {
+        padding: 24px;
+        gap: 24px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: calc(100% - 32px);
+        box-sizing: border-box;
+    }
+
+    .contact__content .section__title {
+        font-size: 1.5rem;
+    }
+
+    .contact__content .section__desc {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .contact__form {
+        width: 100%;
+    }
+
+    .glass-input {
+        padding: 16px 18px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .glass-input::placeholder {
+        font-size: 15px;
+    }
+
+    textarea.glass-input {
+        min-height: 100px;
+        font-size: 16px;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 40px 16px 100px;
+    }
+
+    .footer__content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer__brand {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .footer__logo {
+        margin: 0 auto 16px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer__links {
+        width: 100%;
+        justify-content: space-around;
+        gap: 30px;
+    }
+
+    .footer__col {
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer__bottom {
+        margin-top: 40px;
+        padding-top: 30px;
+        gap: 20px;
+    }
+
+    .dw-digital,
+    .dw-win {
+        font-size: 1.1rem;
+        padding: 4px 10px;
+    }
+
+    .dw-technologies {
+        font-size: 0.7rem;
+    }
+
+    /* Pricing Section Header */
+    .pricing-header-iphone h3 {
+        font-size: 1.5rem;
+    }
+
+    .pricing__footer {
+        font-size: 0.95rem;
+        padding: 0 16px;
+    }
+}
+
+/* Small Phones (480px and below) */
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+
+    .navbar {
+        padding: 12px 16px;
+    }
+
+    .navbar__actions {
+        padding: 12px 16px;
+    }
+
+    .navbar__logo {
+        height: 36px;
+        width: auto;
+        max-width: 140px;
+        object-fit: contain;
+    }
+
+    .navbar__icon {
+        padding: 10px;
+    }
+
+    .hero {
+        padding: 50px 16px;
+        gap: 30px;
+    }
+
+    .hero__badge {
+        font-size: 9px;
+        padding: 5px 10px;
+        gap: 6px;
+    }
+
+    .hero__badge-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .hero__title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+        margin-bottom: 16px;
+    }
+
+    .hero__description {
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
+    .hero__buttons {
+        flex-direction: row;
+        gap: 10px;
+        width: auto;
+        justify-content: center;
+    }
+
+    .hero__btn {
+        width: auto;
+        padding: 10px 16px;
+        font-size: 12px;
+        text-align: center;
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+
+    .hero__device {
+        width: 220px;
+        height: 300px;
+        padding: 8px;
+    }
+
+    .hero__play-btn {
+        width: 40px;
+        height: 40px;
+        bottom: 12px;
+        left: 12px;
+    }
+
+    .section {
+        padding: 40px 12px;
+        gap: 30px;
+    }
+
+    .section__title {
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
+        margin-bottom: 12px;
+    }
+
+    .section__desc,
+    .section__subtitle {
+        font-size: 0.9rem;
+    }
+
+    /* Glass Cards */
+    .glass-card {
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    /* Service Cards */
+    .service-card {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .service-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Pricing Cards */
+    .pricing-card {
+        max-width: 100%;
+        padding: 24px 20px;
+    }
+
+    .price {
+        font-size: 1.8rem;
+    }
+
+    .price .currency {
+        font-size: 1.2rem;
+    }
+
+    /* About Section */
+    .about__card {
+        padding: 20px;
+    }
+
+    .about__stats {
+        gap: 16px;
+    }
+
+    .stat {
+        min-width: 80px;
+    }
+
+    .stat__number {
+        font-size: 1.5rem;
+    }
+
+    .stat__label {
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+    }
+
+    /* Contact Section */
+    .contact {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .contact__card {
+        padding: 20px;
+        gap: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: calc(100% - 24px);
+        box-sizing: border-box;
+    }
+
+    .contact__content .section__title {
+        font-size: 1.3rem;
+    }
+
+    .contact__content .section__desc {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .contact__form {
+        width: 100%;
+    }
+
+    .glass-input {
+        padding: 16px 16px;
+        font-size: 16px;
+        /* Prevents zooming on iOS */
+        border-radius: 16px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 8px;
+    }
+
+    .glass-input::placeholder {
+        font-size: 15px;
+    }
+
+    textarea.glass-input {
+        min-height: 140px;
+        border-radius: 16px;
+        font-size: 16px;
+    }
+
+    .navbar__btn.full-width {
+        padding: 14px 20px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 30px 12px 100px;
+    }
+
+    .footer__tagline {
+        font-size: 0.85rem;
+    }
+
+    .footer__links {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .footer__col {
+        gap: 12px;
+    }
+
+    .footer__col h4 {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+
+    .footer__col a {
+        font-size: 0.8rem;
+    }
+
+    .social-link {
+        width: 36px;
+        height: 36px;
+    }
+
+    .social-link svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .footer__bottom {
+        gap: 16px;
+    }
+
+    .powered-label {
+        font-size: 0.95rem;
+    }
+
+    .dw-digital,
+    .dw-win {
+        font-size: 1rem;
+        padding: 4px 8px;
+    }
+
+    .dw-technologies {
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+    }
+
+    .dw-tagline {
+        font-size: 0.8rem;
+    }
+
+    .copyright {
+        font-size: 0.75rem;
+    }
+
+    /* Switcher (Navigation) */
+    .switcher {
+        height: 44px;
+        bottom: 16px;
+        padding: 3px;
+    }
+
+    .switcher__text {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+        width: 36px;
+        height: 36px;
+    }
+
+    .scroll-indicator svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Extra Small Phones (360px and below) */
+@media (max-width: 360px) {
+    .hero__title {
+        font-size: 1.6rem;
+    }
+
+    .hero__description {
+        font-size: 12px;
+    }
+
+    .hero__device {
+        width: 200px;
+        height: 270px;
+    }
+
+    .section__title {
+        font-size: 1.3rem;
+    }
+
+    .stat__number {
+        font-size: 1.3rem;
+    }
+
+    .price {
+        font-size: 1.6rem;
+    }
+
+    .switcher {
+        --w: calc((100vw - 16px) / 5);
+    }
+
+    .switcher__text {
+        font-size: 10px;
+    }
+}
+
+/* Landscape Mode - Small Devices */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 30px 40px;
+        flex-direction: row;
+        gap: 40px;
+    }
+
+    .hero__content {
+        text-align: left;
+    }
+
+    .hero__buttons {
+        justify-content: flex-start;
+    }
+
+    .hero__device {
+        width: 200px;
+        height: 280px;
+    }
+
+    .section {
+        padding: 40px 30px;
+    }
+}
+
+/* Print Styles */
+@media print {
+
+    .navbar,
+    .navbar__actions,
+    .switcher,
+    .scroll-indicator,
+    .background-container {
+        display: none !important;
+    }
+
+    .hero,
+    .section {
+        padding: 20px;
+    }
+
+    .glass-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* Pricing Section - Equal Spacing for Headers */
+.pricing .section__header {
+    margin-bottom: 40px;
+}
+
+.pricing .section__header:not(:first-child) {
+    margin-top: 60px;
+}
+
+@media (max-width: 768px) {
     .pricing .section__header {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
 
     .pricing .section__header:not(:first-child) {
-        margin-top: 60px;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricing .section__header {
+        margin-bottom: 24px;
     }
 
-    @media (max-width: 768px) {
-        .pricing .section__header {
-            margin-bottom: 30px;
-        }
-
-        .pricing .section__header:not(:first-child) {
-            margin-top: 50px;
-        }
+    .pricing .section__header:not(:first-child) {
+        margin-top: 40px;
     }
-
-    @media (max-width: 480px) {
-        .pricing .section__header {
-            margin-bottom: 24px;
-        }
-
-        .pricing .section__header:not(:first-child) {
-            margin-top: 40px;
-        }
-    }
+}
