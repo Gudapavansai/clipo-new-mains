@@ -166,6 +166,9 @@
     const sectionObserver = new IntersectionObserver(entries => {
         const intersecting = entries.find(e => e.isIntersecting);
         if (intersecting) {
+            // Requirement: On mobile, bubble shouldn't move for 'contact' section (wait for footer)
+            if (window.innerWidth <= 1024 && intersecting.target.id === 'contact') return;
+
             const data = inputMap.get(intersecting.target.id);
             if (data && !data.input.checked) {
                 DOM.navInputs.forEach(i => i.parentElement.classList.remove('active'));
