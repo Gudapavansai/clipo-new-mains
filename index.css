@@ -1450,9 +1450,13 @@ video.hero__device-image {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
+    /* Reduced from 24px for tighter spacing */
     color: var(--c-content);
 }
+
+/* ... (Theme overrides remain - skipped in replacement block if not contiguous, but here they are separate. I will just target the title block first or combined if possible) */
+/* Actually, I cannot skip lines inside a block in specific replacement. I will replace title block first. */
 
 body:has(input[value="dark"]:checked) .section__title,
 body:has(input[value="dim"]:checked) .section__title {
@@ -1508,7 +1512,8 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     font-size: 1.1rem;
     line-height: 1.6;
     color: color-mix(in srgb, var(--c-content) 90%, transparent);
-    margin: 20px auto 0;
+    margin: 8px auto 0;
+    /* Reduced from 20px */
 }
 
 /* Reusable Glass Card - Restored to Liquid Glass (Navbar) Theme */
