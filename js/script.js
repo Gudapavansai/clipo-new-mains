@@ -120,6 +120,14 @@
         DOM.navOptions.forEach(opt => opt.classList.remove('active'));
         targetOption.classList.add('active');
 
+        // Mobile: Delegate positioning to CSS for perfect fluid alignment
+        if (window.innerWidth <= 1024) {
+            DOM.bubble.style.transform = '';
+            DOM.bubble.style.width = '';
+            DOM.bubble.style.transition = '';
+            return;
+        }
+
         const switcherRect = DOM.switcher.getBoundingClientRect();
         const optionRect = targetOption.getBoundingClientRect();
         const targetTranslate = optionRect.left - switcherRect.left - 4;

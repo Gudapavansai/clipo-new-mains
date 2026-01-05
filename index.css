@@ -115,9 +115,12 @@ body::before {
     /* background-attachment: fixed; Removed for mobile stability */
 }
 
-/* Base background images for each theme */
+/* Base background images for each theme with WebP Performance Support */
 body:has(input[value="light"]:checked)::before {
     background-image: url('./images/bglight-4k.png');
+    /* Fallback */
+    background-image: image-set(url('./images/bglight-4k.webp') type('image/webp'),
+            url('./images/bglight-4k.png') type('image/png'));
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -125,6 +128,9 @@ body:has(input[value="light"]:checked)::before {
 
 body:has(input[value="dark"]:checked)::before {
     background-image: url('./images/bg-4k.png');
+    /* Fallback */
+    background-image: image-set(url('./images/bg-4k.webp') type('image/webp'),
+            url('./images/bg-4k.png') type('image/png'));
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -132,6 +138,9 @@ body:has(input[value="dark"]:checked)::before {
 
 body:has(input[value="dim"]:checked)::before {
     background-image: url('./images/darkmode.png');
+    /* Fallback */
+    background-image: image-set(url('./images/darkmode.webp') type('image/webp'),
+            url('./images/darkmode.png') type('image/png'));
 }
 
 /* ==========================================
@@ -280,14 +289,7 @@ section {
     scroll-margin-top: 100px;
 }
 
-.section-wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-
-/* GPU Acceleration for smooth animations */
+/* GPU Acceleration & Rendering Optimization */
 .hero__device,
 .glass-card,
 .service-card,
@@ -296,6 +298,18 @@ section {
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
+    contain: paint layout;
+    /* Optimization: Don't render outside bounds */
+}
+
+/* Drastic Performance Boost for Long Pages - REMOVED content-visibility to fix Fixed/Sticky Navbar issues */
+.section-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /* content-visibility: auto;  <-- Caused fixed elements to scroll away */
+    /* contain-intrinsic-size: 1px 800px; */
 }
 
 body:has(input[value="light"]:checked) {
