@@ -54,6 +54,8 @@
         const heroVideo = document.getElementById('hero-video');
         if (heroVideo) {
             const initVideoScroll = () => {
+                if (isMobile) return; // Disable pinning/scrubbing on mobile to prevent "hanging" feel
+
                 gsap.to(heroVideo, {
                     scrollTrigger: {
                         trigger: ".hero",
