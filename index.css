@@ -889,24 +889,58 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
 
 /* Initially position based on Checked state using CSS for load/fallback  */
 /* We can still use :has selectors for initial state or simple clicks if JS doesn't override inline styles immediately */
-.switcher:has(input[c-option="1"]:checked) .switcher__bubble {
-    transform: translateX(0);
+/* Desktop Positioning (Fixed Width) */
+@media (min-width: 1025px) {
+    .switcher:has(input[c-option="1"]:checked) .switcher__bubble {
+        transform: translateX(0);
+    }
+
+    .switcher:has(input[c-option="2"]:checked) .switcher__bubble {
+        transform: translateX(var(--w));
+    }
+
+    .switcher:has(input[c-option="3"]:checked) .switcher__bubble {
+        transform: translateX(calc(var(--w) * 2));
+    }
+
+    .switcher:has(input[c-option="4"]:checked) .switcher__bubble {
+        transform: translateX(calc(var(--w) * 3));
+    }
+
+    .switcher:has(input[c-option="5"]:checked) .switcher__bubble {
+        transform: translateX(calc(var(--w) * 4));
+    }
 }
 
-.switcher:has(input[c-option="2"]:checked) .switcher__bubble {
-    transform: translateX(var(--w));
-}
+/* Mobile Positioning (Fluid/Percentage based) */
+@media (max-width: 1024px) {
 
-.switcher:has(input[c-option="3"]:checked) .switcher__bubble {
-    transform: translateX(calc(var(--w) * 2));
-}
+    /* Set bubble width effectively to 1/5th */
+    .switcher__bubble {
+        width: calc((100% - 8px) / 5) !important;
+        /* Total width minus padding / 5 items */
+    }
 
-.switcher:has(input[c-option="4"]:checked) .switcher__bubble {
-    transform: translateX(calc(var(--w) * 3));
-}
+    /* Move by own width unit (100% of self) */
+    .switcher:has(input[c-option="1"]:checked) .switcher__bubble {
+        transform: translateX(0%);
+    }
 
-.switcher:has(input[c-option="5"]:checked) .switcher__bubble {
-    transform: translateX(calc(var(--w) * 4));
+    .switcher:has(input[c-option="2"]:checked) .switcher__bubble {
+        transform: translateX(100%);
+    }
+
+    .switcher:has(input[c-option="3"]:checked) .switcher__bubble {
+        transform: translateX(200%);
+    }
+
+    .switcher:has(input[c-option="4"]:checked) .switcher__bubble {
+        transform: translateX(300%);
+    }
+
+    .switcher:has(input[c-option="5"]:checked) .switcher__bubble {
+        transform: translateX(400%);
+    }
 }
 
 
