@@ -812,14 +812,14 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
     .switcher__option {
         /* Ensure interaction is easy on mobile */
         opacity: 0.6;
-        padding: 0;
+        padding: 0 12px;
+        /* Add some side padding for text fitting */
 
-        /* Critical: Override desktop fixed width */
+        /* Critical: Use auto width for text-fitting bubble */
         width: auto !important;
-        flex: 1 1 0;
-        /* Distribute equal space */
+        flex: 0 0 auto;
+        /* Don't force equal distribution */
         min-width: 0;
-        /* Allow shrinking below content size if strictly necessary */
     }
 
     /* Active State Enhancement */
@@ -901,10 +901,10 @@ body:has(input[value="dim"]:checked) .theme-toggle .icon-moon {
 /* Mobile Positioning (Fluid/Percentage based) */
 @media (max-width: 1024px) {
 
-    /* Set bubble width effectively to 1/5th */
+    /* Dynamic width from JS, but ensures decent look on load */
     .switcher__bubble {
-        width: calc((100% - 8px) / 5) !important;
-        /* Total width minus padding / 5 items */
+        width: 60px;
+        /* Base width before JS takes over */
     }
 
     /* Move by own width unit (100% of self) */
@@ -6985,6 +6985,12 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
    4. HORIZONTAL SCROLLING SHOWCASE
    =================================== */
 
+.video-showcase-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
 .video-showcase {
     display: flex;
     gap: clamp(20px, 3vw, 32px);
@@ -6995,27 +7001,67 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 
-    /* Custom scrollbar styling */
-    scrollbar-width: thin;
-    scrollbar-color: color-mix(in srgb, var(--c-glass) 30%, transparent) transparent;
+    /* Hide scrollbar for cleaner look with arrows */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .video-showcase::-webkit-scrollbar {
-    height: 8px;
+    display: none;
 }
 
-.video-showcase::-webkit-scrollbar-track {
-    background: color-mix(in srgb, var(--c-glass) 10%, transparent);
-    border-radius: 4px;
+/* Showcase Navigation Arrows */
+.showcase-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--c-content);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
 }
 
-.video-showcase::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--c-glass) 40%, transparent);
-    border-radius: 4px;
+.video-showcase-container:hover .showcase-arrow {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.video-showcase::-webkit-scrollbar-thumb:hover {
-    background: color-mix(in srgb, var(--c-glass) 60%, transparent);
+.showcase-arrow:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-50%) scale(1.1);
+    color: var(--c-action);
+}
+
+.showcase-arrow:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+.showcase-arrow-left {
+    left: -24px;
+}
+
+.showcase-arrow-right {
+    right: -24px;
+}
+
+@media (max-width: 1100px) {
+    .showcase-arrow {
+        display: none;
+        /* Hide arrows on smaller screens where touch is primary */
+    }
 }
 
 /* ===================================

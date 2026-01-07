@@ -120,20 +120,14 @@
         DOM.navOptions.forEach(opt => opt.classList.remove('active'));
         targetOption.classList.add('active');
 
-        // Mobile: Delegate positioning to CSS for perfect fluid alignment
-        if (window.innerWidth <= 1024) {
-            DOM.bubble.style.transform = '';
-            DOM.bubble.style.width = '';
-            DOM.bubble.style.transition = '';
-            return;
-        }
-
         const switcherRect = DOM.switcher.getBoundingClientRect();
         const optionRect = targetOption.getBoundingClientRect();
-        const targetTranslate = optionRect.left - switcherRect.left - 4;
+
+        // Dynamic horizontal translation
+        const targetTranslate = optionRect.left - switcherRect.left - (window.innerWidth <= 1024 ? 4 : 4);
 
         DOM.bubble.style.width = `${optionRect.width}px`;
-        DOM.bubble.style.transition = 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s ease';
+        DOM.bubble.style.transition = 'transform 0.45s cubic-bezier(0.32, 0.72, 0, 1), width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
         DOM.bubble.style.transform = `translateX(${targetTranslate}px)`;
 
         setTimeout(() => { DOM.bubble.style.transition = ''; }, 500);
@@ -1650,18 +1644,64 @@ window.showWhatsAppNotification = function () {
         });
     }
 
-    function openVideoModal(card) {
-        const modal = document.getElementById('videoModal');
-        const modalPlayer = document.getElementById('modalPlayer');
-        const videoType = card.dataset.type;
-        const videoId = card.dataset.videoId;
-        const videoUrl = card.dataset.videoUrl;
+    // Initialize Showcase Navigation Arrows
+    initShowcaseArrows();
+}
 
-        let videoContent = '';
+    function initShowcaseArrows() {
+    const containers = document.querySelectorAll('.video-showcase-container');
 
-        // Create appropriate video embed based on type
-        if (videoType === 'youtube') {
-            videoContent = `
+    containers.forEach(container => {
+        const showcase = container.querySelector('.video-showcase');
+        const leftArrow = container.querySelector('.showcase-arrow-left');
+        const rightArrow = container.querySelector('.showcase-arrow-right');
+
+        if (!showcase || !leftArrow || !rightArrow) return;
+
+        const scrollAmount = 400; // Pixels to scroll
+
+        leftArrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            showcase.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        rightArrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            showcase.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        // Optional: Hide/Disable arrows based on scroll position
+        const updateArrows = () => {
+            const scrollLeft = showcase.scrollLeft;
+            const maxScroll = showcase.scrollWidth - showcase.clientWidth;
+
+            leftArrow.style.opacity = scrollLeft <= 0 ? '0' : '1';
+            leftArrow.style.pointerEvents = scrollLeft <= 0 ? 'none' : 'auto';
+
+            rightArrow.style.opacity = scrollLeft >= maxScroll - 5 ? '0' : '1';
+            rightArrow.style.pointerEvents = scrollLeft >= maxScroll - 5 ? 'none' : 'auto';
+        };
+
+        showcase.addEventListener('scroll', updateArrows);
+        window.addEventListener('resize', updateArrows);
+
+        // Initial run
+        setTimeout(updateArrows, 100);
+    });
+}
+
+function openVideoModal(card) {
+    const modal = document.getElementById('videoModal');
+    const modalPlayer = document.getElementById('modalPlayer');
+    const videoType = card.dataset.type;
+    const videoId = card.dataset.videoId;
+    const videoUrl = card.dataset.videoUrl;
+
+    let videoContent = '';
+
+    // Create appropriate video embed based on type
+    if (videoType === 'youtube') {
+        videoContent = `
                 <iframe 
                     src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
                     frameborder="0" 
@@ -1670,8 +1710,8 @@ window.showWhatsAppNotification = function () {
                     title="YouTube video player">
                 </iframe>
             `;
-        } else if (videoType === 'vimeo') {
-            videoContent = `
+    } else if (videoType === 'vimeo') {
+        videoContent = `
                 <iframe 
                     src="https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0" 
                     frameborder="0" 
@@ -1680,8 +1720,8 @@ window.showWhatsAppNotification = function () {
                     title="Vimeo video player">
                 </iframe>
             `;
-        } else if (videoType === 'native' && videoUrl) {
-            videoContent = `
+    } else if (videoType === 'native' && videoUrl) {
+        videoContent = `
                 <video 
                     controls 
                     autoplay 
@@ -1691,212 +1731,212 @@ window.showWhatsAppNotification = function () {
                     Your browser does not support the video tag.
                 </video>
             `;
-        }
-
-        // Inject video and show modal
-        modalPlayer.innerHTML = videoContent;
-        modal.classList.add('active');
-
-        // Prevent body scroll when modal is open
-        document.body.style.overflow = 'hidden';
-
-        // Optional: Analytics tracking
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'video_play', {
-                'event_category': 'Our Work',
-                'event_label': videoId || videoUrl,
-                'video_type': videoType
-            });
-        }
     }
 
-    // ===================================
-    // 3. SMOOTH SCROLL ENHANCEMENTS
-    // ===================================
+    // Inject video and show modal
+    modalPlayer.innerHTML = videoContent;
+    modal.classList.add('active');
 
-    function initSmoothScroll() {
-        const showcases = document.querySelectorAll('.video-showcase');
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
 
-        showcases.forEach(showcase => {
-            let isDown = false;
-            let startX;
-            let scrollLeft;
+    // Optional: Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'video_play', {
+            'event_category': 'Our Work',
+            'event_label': videoId || videoUrl,
+            'video_type': videoType
+        });
+    }
+}
 
-            // Mouse drag scrolling
-            showcase.addEventListener('mousedown', (e) => {
-                isDown = true;
-                showcase.style.cursor = 'grabbing';
-                startX = e.pageX - showcase.offsetLeft;
-                scrollLeft = showcase.scrollLeft;
-            });
+// ===================================
+// 3. SMOOTH SCROLL ENHANCEMENTS
+// ===================================
 
-            showcase.addEventListener('mouseleave', () => {
-                isDown = false;
-                showcase.style.cursor = 'grab';
-            });
+function initSmoothScroll() {
+    const showcases = document.querySelectorAll('.video-showcase');
 
-            showcase.addEventListener('mouseup', () => {
-                isDown = false;
-                showcase.style.cursor = 'grab';
-            });
+    showcases.forEach(showcase => {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-            showcase.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - showcase.offsetLeft;
-                const walk = (x - startX) * 2; // Scroll speed
-                showcase.scrollLeft = scrollLeft - walk;
-            });
+        // Mouse drag scrolling
+        showcase.addEventListener('mousedown', (e) => {
+            isDown = true;
+            showcase.style.cursor = 'grabbing';
+            startX = e.pageX - showcase.offsetLeft;
+            scrollLeft = showcase.scrollLeft;
+        });
 
-            // Add grab cursor
+        showcase.addEventListener('mouseleave', () => {
+            isDown = false;
             showcase.style.cursor = 'grab';
         });
-    }
 
-    // ===================================
-    // 4. KEYBOARD NAVIGATION
-    // ===================================
-
-    function initKeyboardNav() {
-        const tabs = document.querySelectorAll('.ourwork-tab');
-        let currentIndex = 0;
-
-        tabs.forEach((tab, index) => {
-            if (tab.classList.contains('active')) {
-                currentIndex = index;
-            }
+        showcase.addEventListener('mouseup', () => {
+            isDown = false;
+            showcase.style.cursor = 'grab';
         });
 
-        document.addEventListener('keydown', function (e) {
-            // Only handle arrow keys when modal is not open
-            if (document.getElementById('videoModal').classList.contains('active')) {
-                return;
-            }
-
-            if (e.key === 'ArrowLeft' && currentIndex > 0) {
-                currentIndex--;
-                tabs[currentIndex].click();
-                tabs[currentIndex].focus();
-            } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
-                currentIndex++;
-                tabs[currentIndex].click();
-                tabs[currentIndex].focus();
-            }
+        showcase.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - showcase.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed
+            showcase.scrollLeft = scrollLeft - walk;
         });
-    }
 
-    // ===================================
-    // 5. INTERSECTION OBSERVER ANIMATIONS
-    // ===================================
+        // Add grab cursor
+        showcase.style.cursor = 'grab';
+    });
+}
 
-    function initScrollAnimations() {
-        const cards = document.querySelectorAll('.showcase-card');
+// ===================================
+// 4. KEYBOARD NAVIGATION
+// ===================================
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+function initKeyboardNav() {
+    const tabs = document.querySelectorAll('.ourwork-tab');
+    let currentIndex = 0;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, index * 100); // Stagger animation
-
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    }
-
-    // ===================================
-    // 6. LAZY LOADING FOR VIDEO THUMBNAILS
-    // ===================================
-
-    function initLazyLoading() {
-        const images = document.querySelectorAll('.card-thumbnail img[loading="lazy"]');
-
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.src; // Trigger loading
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-
-            images.forEach(img => imageObserver.observe(img));
+    tabs.forEach((tab, index) => {
+        if (tab.classList.contains('active')) {
+            currentIndex = index;
         }
-    }
+    });
 
-    // ===================================
-    // 7. MOBILE TOUCH OPTIMIZATIONS
-    // ===================================
-
-    function initTouchOptimizations() {
-        if (!('ontouchstart' in window)) return;
-
-        const showcases = document.querySelectorAll('.video-showcase');
-
-        showcases.forEach(showcase => {
-            // Prevent vertical scroll when swiping horizontally
-            let startY = 0;
-            let startX = 0;
-
-            showcase.addEventListener('touchstart', (e) => {
-                startY = e.touches[0].pageY;
-                startX = e.touches[0].pageX;
-            }, { passive: true });
-
-            showcase.addEventListener('touchmove', (e) => {
-                const currentY = e.touches[0].pageY;
-                const currentX = e.touches[0].pageX;
-                const diffY = Math.abs(currentY - startY);
-                const diffX = Math.abs(currentX - startX);
-
-                // If scrolling more horizontally than vertically, prevent default
-                if (diffX > diffY) {
-                    e.preventDefault();
-                }
-            }, { passive: false });
-        });
-    }
-
-    // ===================================
-    // 8. INITIALIZATION
-    // ===================================
-
-    function init() {
-        // Wait for DOM to be ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('keydown', function (e) {
+        // Only handle arrow keys when modal is not open
+        if (document.getElementById('videoModal').classList.contains('active')) {
             return;
         }
 
-        // Initialize all features
-        initTabs();
-        initVideoModal();
-        initSmoothScroll();
-        initKeyboardNav();
-        initScrollAnimations();
-        initLazyLoading();
-        initTouchOptimizations();
+        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            currentIndex--;
+            tabs[currentIndex].click();
+            tabs[currentIndex].focus();
+        } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
+            currentIndex++;
+            tabs[currentIndex].click();
+            tabs[currentIndex].focus();
+        }
+    });
+}
 
-        console.log('✅ Our Work Showcase initialized');
+// ===================================
+// 5. INTERSECTION OBSERVER ANIMATIONS
+// ===================================
+
+function initScrollAnimations() {
+    const cards = document.querySelectorAll('.showcase-card');
+
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100); // Stagger animation
+
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+}
+
+// ===================================
+// 6. LAZY LOADING FOR VIDEO THUMBNAILS
+// ===================================
+
+function initLazyLoading() {
+    const images = document.querySelectorAll('.card-thumbnail img[loading="lazy"]');
+
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.src; // Trigger loading
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    }
+}
+
+// ===================================
+// 7. MOBILE TOUCH OPTIMIZATIONS
+// ===================================
+
+function initTouchOptimizations() {
+    if (!('ontouchstart' in window)) return;
+
+    const showcases = document.querySelectorAll('.video-showcase');
+
+    showcases.forEach(showcase => {
+        // Prevent vertical scroll when swiping horizontally
+        let startY = 0;
+        let startX = 0;
+
+        showcase.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].pageY;
+            startX = e.touches[0].pageX;
+        }, { passive: true });
+
+        showcase.addEventListener('touchmove', (e) => {
+            const currentY = e.touches[0].pageY;
+            const currentX = e.touches[0].pageX;
+            const diffY = Math.abs(currentY - startY);
+            const diffX = Math.abs(currentX - startX);
+
+            // If scrolling more horizontally than vertically, prevent default
+            if (diffX > diffY) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    });
+}
+
+// ===================================
+// 8. INITIALIZATION
+// ===================================
+
+function init() {
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+        return;
     }
 
-    // Run initialization
-    init();
+    // Initialize all features
+    initTabs();
+    initVideoModal();
+    initSmoothScroll();
+    initKeyboardNav();
+    initScrollAnimations();
+    initLazyLoading();
+    initTouchOptimizations();
 
-})();
+    console.log('✅ Our Work Showcase initialized');
+}
+
+// Run initialization
+init();
+
+}) ();
