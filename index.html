@@ -18,8 +18,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Optimized Local Font Preloads - Only critical weights -->
-    <link rel="preload" href="qurovafont/Qurova Woff/Qurova-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="qurovafont/Qurova Woff/Qurova-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="qurovafont/webfonts/Qurova-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="qurovafont/webfonts/Qurova-Bold.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Preload critical background images -->
     <link rel="preload" href="images/instagram-light-bg.png" as="image" type="image/png">
@@ -53,17 +53,17 @@
     </div>
   </label>
   <label class="switcher__option">
-    <input class="switcher__input" type="radio" name="nav" value="clients" c-option="4" />
+    <input class="switcher__input" type="radio" name="nav" value="pricing" c-option="4" />
     <div class="switcher__content">
         <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-        <span class="switcher__text">Our Work</span>
+        <span class="switcher__text">Pricing</span>
     </div>
   </label>
   <label class="switcher__option">
-    <input class="switcher__input" type="radio" name="nav" value="pricing" c-option="5" />
+    <input class="switcher__input" type="radio" name="nav" value="clients" c-option="5" />
     <div class="switcher__content">
         <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/></svg>
-        <span class="switcher__text">Pricing</span>
+        <span class="switcher__text">Portfolio</span>
     </div>
   </label>
   <label class="switcher__option">
@@ -319,16 +319,16 @@
     </div>
 
 
-    <!-- OUR WORK SECTION - GLASSMORPHIC SHOWCASE -->
+    <!-- OUR WORK SECTION -->
     <div class="section-wrapper">
         <section class="section ourwork-showcase" id="clients">
             <!-- Main Section Header -->
             <div class="ourwork-hero">
-                <h1 class="ourwork-hero__title">Our Work</h1>
+                <h1 class="ourwork-hero__title">Visual <span class="text-gradient">Masterpieces</span></h1>
                 <p class="ourwork-hero__description">
-                    Master Clipo Media's creative storytelling with comprehensive case studies and video showcases. 
-                    From fundamental brand films to advanced digital campaigns for real estate, F&B, 
-                    and corporate sectors.
+                    Explore Clipo Media's elite portfolio of cinematic brand films and digital masterpieces. 
+                    From luxury real estate tours to high-energy corporate campaigns, we define the next 
+                    generation of visual storytelling.
                 </p>
                 
                 <!-- Feature Bullets -->
@@ -353,268 +353,177 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Tabbed Navigation -->
             <div class="ourwork-tabs">
-                <button class="ourwork-tab active" data-tab="essentials">Essentials</button>
-                <button class="ourwork-tab" data-tab="implementation">Implementation</button>
-                <button class="ourwork-tab" data-tab="showcase">Showcase</button>
+                <button class="ourwork-tab active" data-tab="essentials">Brand Films</button>
+                <button class="ourwork-tab" data-tab="implementation">Creative Strategy</button>
+                <button class="ourwork-tab" data-tab="showcase">Cinematic Arts</button>
             </div>
-            
-            <!-- Tab Content Container -->
+
+            <!-- Tab Content Area -->
             <div class="ourwork-content">
-                <!-- Tab 1: Essentials -->
+                <!-- Tab Panel 1: Essentials -->
                 <div class="tab-panel active" data-panel="essentials">
                     <div class="tab-header">
-                        <h2 class="tab-title">Essentials</h2>
-                        <p class="tab-subtitle">Fundamental concepts and design principles</p>
+                        <h2 class="tab-title">Elite Brand Films</h2>
+                        <p class="tab-subtitle">Cinematic reels and high-impact visual narratives for premium brands.</p>
                     </div>
-                    
-                    <!-- Horizontal Scrolling Video Cards with Navigation -->
-                    <div class="video-showcase-container">
-                        <button class="showcase-arrow showcase-arrow-left" aria-label="Scroll left">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                        </button>
-                        <div class="video-showcase">
-                            <!-- Video Card 1 -->
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
-                                <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
-                                    <div class="card-thumbnail">
-                                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Build a UIKit with the new design" loading="lazy">
-                                        <div class="card-overlay">
-                                            <button class="play-button" aria-label="Play video">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <span class="platform-badge youtube-badge">YouTube</span>
-                                        <span class="duration-badge">12 min</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <h3 class="card-title">Glass Design Principles</h3>
-                                        <p class="card-description">Understanding transparency, depth and visual hierarchy in glass design.</p>
-                                        <span class="card-link">
-                                            Watch on YouTube
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                                            </svg>
-                                        </span>
-                                    </div>
+
+                    <div class="video-showcase">
+                        <!-- Video Card 1 -->
+                        <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
+                            <div class="card-thumbnail">
+                                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Tech Startup Success" loading="lazy">
+                                <div class="card-overlay">
+                                    <button class="play-button" aria-label="Play video">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
                                 </div>
-                            </a>
-                            
-                            <!-- Video Card 2 -->
-                            <a href="https://www.youtube.com/watch?v=76979871" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
-                                <div class="showcase-card" data-video-id="76979871" data-type="youtube">
-                                    <div class="card-thumbnail">
-                                        <img src="https://img.youtube.com/vi/76979871/maxresdefault.jpg" alt="What's new in UIKit" loading="lazy">
-                                        <div class="card-overlay">
-                                            <button class="play-button" aria-label="Play video">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <span class="platform-badge youtube-badge">YouTube</span>
-                                        <span class="duration-badge">8 min</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <h3 class="card-title">Color Theory in Translucent UI</h3>
-                                        <p class="card-description">How color perception changes with opacity and layering effects.</p>
-                                        <span class="card-link">
-                                            Watch on YouTube
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            
-                            <!-- Video Card 3 -->
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
-                                <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
-                                    <div class="card-thumbnail">
-                                        <img src="images/iphone.jpeg" alt="Design widgets for visionOS" loading="lazy">
-                                        <div class="card-overlay">
-                                            <button class="play-button" aria-label="Play video">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <span class="platform-badge youtube-badge">YouTube</span>
-                                        <span class="duration-badge">10 min</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <h3 class="card-title">Typography for Glass Interfaces</h3>
-                                        <p class="card-description">Ensuring readability and contrast in translucent designs.</p>
-                                        <span class="card-link">
-                                            Watch on YouTube
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            
-                            <!-- Video Card 4 -->
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
-                                <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
-                                    <div class="card-thumbnail">
-                                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Real Estate Campaign" loading="lazy">
-                                        <div class="card-overlay">
-                                            <button class="play-button" aria-label="Play video">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <span class="platform-badge youtube-badge">YouTube</span>
-                                        <span class="duration-badge">15 min</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <h3 class="card-title">Luxury Real Estate Campaign</h3>
-                                        <p class="card-description">Premium property showcase that sold out in 48 hours.</p>
-                                        <span class="card-link">
-                                            Watch on YouTube
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
+                                <span class="platform-badge youtube-badge">YouTube</span>
+                                <span class="duration-badge">2:15</span>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Tech Startup Success</h3>
+                                <p class="card-description">High-energy product trailer for a disruptive fintech brand.</p>
+                                <a href="#" class="card-link">
+                                    Watch Reel
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            </div>
                         </div>
-                        <button class="showcase-arrow showcase-arrow-right" aria-label="Scroll right">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </button>
+
+                        <!-- Video Card 2 -->
+                        <div class="showcase-card" data-video-id="76979871" data-type="vimeo">
+                            <div class="card-thumbnail">
+                                <img src="https://vumbnail.com/76979871.jpg" alt="Culinary Excellence" loading="lazy">
+                                <div class="card-overlay">
+                                    <button class="play-button" aria-label="Play video">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
+                                </div>
+                                <span class="platform-badge">Vimeo</span>
+                                <span class="duration-badge">3:45</span>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Culinary Excellence</h3>
+                                <p class="card-description">Cinematic restaurant showcase focusing on the art of fine dining.</p>
+                                <a href="#" class="card-link">
+                                    Watch Reel
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Video Card 3 -->
+                        <div class="showcase-card" data-video-url="https://res.cloudinary.com/dgsr755tt/video/upload/v1753687256/Render_V2_cku6w4.mp4" data-type="native">
+                            <div class="card-thumbnail">
+                                <img src="images/iphone.jpeg" alt="Luxury Real Estate" loading="lazy">
+                                <div class="card-overlay">
+                                    <button class="play-button" aria-label="Play video">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
+                                </div>
+                                <span class="platform-badge">Native</span>
+                                <span class="duration-badge">1:30</span>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Luxury Real Estate</h3>
+                                <p class="card-description">Premium property tour with cinematic drone shots and smooth pans.</p>
+                                <a href="#" class="card-link">
+                                    Watch Reel
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Tab 2: Implementation -->
+
+                <!-- Tab Panel 2: Implementation -->
                 <div class="tab-panel" data-panel="implementation">
                     <div class="tab-header">
-                        <h2 class="tab-title">Implementation</h2>
-                        <p class="tab-subtitle">Real-world projects and case studies</p>
+                        <h2 class="tab-title">Strategic Execution</h2>
+                        <p class="tab-subtitle">How we transform complex visions into synchronized multi-platform campaigns.</p>
                     </div>
-                    
-                    <div class="video-showcase-container">
-                        <button class="showcase-arrow showcase-arrow-left" aria-label="Scroll left">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                        </button>
-                        <div class="video-showcase">
-                            <!-- Implementation videos would go here -->
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
-                                <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
-                                    <div class="card-thumbnail">
-                                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Restaurant Campaign" loading="lazy">
-                                        <div class="card-overlay">
-                                            <button class="play-button" aria-label="Play video">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <span class="platform-badge youtube-badge">YouTube</span>
-                                        <span class="duration-badge">7 min</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <h3 class="card-title">Restaurant Brand Film</h3>
-                                        <p class="card-description">Cinematic showcase driving 50% increase in reservations.</p>
-                                        <span class="card-link">
-                                            Watch on YouTube
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                                            </svg>
-                                        </span>
-                                    </div>
+                    <div class="video-showcase">
+                        <!-- Video Card 1 -->
+                        <div class="showcase-card" data-video-id="9bZkp7q19f0" data-type="youtube">
+                            <div class="card-thumbnail">
+                                <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" alt="FMCG Product Launch" loading="lazy">
+                                <div class="card-overlay">
+                                    <button class="play-button" aria-label="Play video">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
                                 </div>
-                            </a>
+                                <span class="platform-badge youtube-badge">YouTube</span>
+                                <span class="duration-badge">1:55</span>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">FMCG Product Launch</h3>
+                                <p class="card-description">Strategy and execution for a viral product launch campaign.</p>
+                                <a href="#" class="card-link">
+                                    Watch Reel
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            </div>
                         </div>
-                        <button class="showcase-arrow showcase-arrow-right" aria-label="Scroll right">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </button>
+
+                        <!-- Video Card 2 -->
+                        <div class="showcase-card" data-video-id="ScMzIvxBSi4" data-type="youtube">
+                            <div class="card-thumbnail">
+                                <img src="https://img.youtube.com/vi/ScMzIvxBSi4/maxresdefault.jpg" alt="Brand Evolution" loading="lazy">
+                                <div class="card-overlay">
+                                    <button class="play-button" aria-label="Play video">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
+                                </div>
+                                <span class="platform-badge youtube-badge">YouTube</span>
+                                <span class="duration-badge">4:20</span>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Brand Evolution</h3>
+                                <p class="card-description">Case study on rebranding and market repositioning strategy.</p>
+                                <a href="#" class="card-link">
+                                    Watch Reel
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Tab 3: Showcase -->
+
+                <!-- Tab Panel 3: Showcase -->
                 <div class="tab-panel" data-panel="showcase">
                     <div class="tab-header">
-                        <h2 class="tab-title">Showcase</h2>
-                        <p class="tab-subtitle">Featured work and client success stories</p>
+                        <h2 class="tab-title">Artistic Showcase</h2>
+                        <p class="tab-subtitle">A curated gallery of our most profound creative achievements across industries.</p>
                     </div>
-                    
-                    <div class="video-showcase-container">
-                        <button class="showcase-arrow showcase-arrow-left" aria-label="Scroll left">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                        </button>
-                        <div class="video-showcase">
-                            <!-- Showcase videos would go here -->
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
-                                <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
-                                    <div class="card-thumbnail">
-                                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Tech Startup" loading="lazy">
-                                        <div class="card-overlay">
-                                            <button class="play-button" aria-label="Play video">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <span class="platform-badge youtube-badge">YouTube</span>
-                                        <span class="duration-badge">5 min</span>
-                                    </div>
-                                    <div class="card-content">
-                                        <h3 class="card-title">Tech Startup Success</h3>
-                                        <p class="card-description">How we helped increase social media engagement by 300%.</p>
-                                        <span class="card-link">
-                                            Watch on YouTube
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                                <polyline points="15 3 21 3 21 9"></polyline>
-                                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                                            </svg>
-                                        </span>
-                                    </div>
+                    <div class="video-showcase">
+                        <!-- Additional Showcase Cards here -->
+                        <div class="showcase-card" data-video-id="148751763" data-type="vimeo">
+                            <div class="card-thumbnail">
+                                <img src="https://vumbnail.com/148751763.jpg" alt="Corporate Identity" loading="lazy">
+                                <div class="card-overlay">
+                                    <button class="play-button" aria-label="Play video">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
                                 </div>
-                            </a>
+                                <span class="platform-badge">Vimeo</span>
+                                <span class="duration-badge">2:40</span>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Corporate Identity</h3>
+                                <p class="card-description">Powerful storytelling session for a global corporate brand.</p>
+                                <a href="#" class="card-link">
+                                    Play in modal
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            </div>
                         </div>
-                        <button class="showcase-arrow showcase-arrow-right" aria-label="Scroll right">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </button>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
-    
-    <!-- Video Modal -->
-    <div class="video-modal" id="videoModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close modal">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-            <div class="modal-player" id="modalPlayer">
-                <!-- Video will be injected here -->
-            </div>
-        </div>
     </div>
 
     <!-- CLIENT TESTIMONIALS -->
@@ -802,6 +711,21 @@
                 </p>
             </div>
         </footer>
+    </div>
+
+    </a>
+
+    <!-- VIDEO MODAL FOR OUR WORK SHOWCASE -->
+    <div id="videoModal" class="video-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div id="modalPlayer" class="modal-player">
+                <!-- Video content injected by JS -->
+            </div>
+        </div>
     </div>
 
     <!-- Optimized Script Loading: defer allows parallel download while maintaining order -->

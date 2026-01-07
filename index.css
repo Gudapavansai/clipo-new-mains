@@ -117,10 +117,10 @@ body::before {
 
 /* Base background images for each theme with WebP Performance Support */
 body:has(input[value="light"]:checked)::before {
-    background-image: url('./images/bglight-4k.png');
+    background-image: url('./images/bglight-4k.webp');
     /* Fallback */
     background-image: image-set(url('./images/bglight-4k.webp') type('image/webp'),
-            url('./images/bglight-4k.png') type('image/png'));
+            url('./images/bglight-4k.webp') type('image/webp'));
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -128,10 +128,10 @@ body:has(input[value="light"]:checked)::before {
 }
 
 body:has(input[value="dark"]:checked)::before {
-    background-image: url('./images/bg-4k.png');
+    background-image: url('./images/bg-4k.webp');
     /* Fallback */
     background-image: image-set(url('./images/bg-4k.webp') type('image/webp'),
-            url('./images/bg-4k.png') type('image/png'));
+            url('./images/bg-4k.webp') type('image/webp'));
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -141,7 +141,7 @@ body:has(input[value="dark"]:checked)::before {
 body:has(input[value="dim"]:checked)::before {
     background-image: url('./images/darkmode.png');
     /* Fallback */
-    background-image: image-set(url('./images/darkmode.webp') type('image/webp'),
+    background-image: image-set(url('./images/darkmode.png') type('image/png'),
             url('./images/darkmode.png') type('image/png'));
 }
 
@@ -6982,7 +6982,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 }
 
 /* ===================================
-   4. HORIZONTAL SCROLLING SHOWCASE
+   4. CARD GRID SHOWCASE
    =================================== */
 
 .video-showcase-container {
@@ -6993,75 +6993,37 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
 .video-showcase {
     display: flex;
-    gap: clamp(20px, 3vw, 32px);
-    overflow-x: auto;
-    overflow-y: hidden;
+    flex-wrap: nowrap;
+    gap: 32px;
     padding: 20px 0 40px;
-    scroll-snap-type: x mandatory;
+    overflow-x: auto;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-
-    /* Hide scrollbar for cleaner look with arrows */
-    scrollbar-width: none;
     -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
 .video-showcase::-webkit-scrollbar {
     display: none;
 }
 
-/* Showcase Navigation Arrows */
-.showcase-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--c-content);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.video-showcase-container:hover .showcase-arrow {
-    opacity: 1;
+.showcase-card {
+    flex: 0 0 400px;
+    /* Fixed width for consistent scrolling */
+    max-width: 400px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
 }
 
-.showcase-arrow:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-50%) scale(1.1);
-    color: var(--c-action);
-}
-
-.showcase-arrow:active {
-    transform: translateY(-50%) scale(0.9);
-}
-
-.showcase-arrow-left {
-    left: -24px;
-}
-
-.showcase-arrow-right {
-    right: -24px;
-}
-
-@media (max-width: 1100px) {
-    .showcase-arrow {
-        display: none;
-        /* Hide arrows on smaller screens where touch is primary */
-    }
+/* Showcase Navigation Arrows - Hidden for Grid Layout */
+.showcase-arrow {
+    display: none;
 }
 
 /* ===================================
@@ -7073,18 +7035,23 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     text-decoration: none;
     color: inherit;
     display: block;
-    /* Ensure link doesn't interfere with scrolling */
-    pointer-events: auto;
     -webkit-tap-highlight-color: transparent;
 }
 
-.showcase-card {
-    flex: 0 0 auto;
-    width: clamp(280px, 35vw, 420px);
-    scroll-snap-align: start;
-    transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-    /* Ensure card receives pointer events */
-    pointer-events: auto;
+.showcase-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.showcase-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.showcase-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.showcase-card:nth-child(4) {
+    animation-delay: 0.4s;
 }
 
 .showcase-card:hover {
@@ -7096,7 +7063,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
     margin-bottom: 20px;
     background: color-mix(in srgb, var(--c-bg) 90%, transparent);
@@ -7109,7 +7076,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 16px;
     transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -7130,7 +7097,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     justify-content: center;
     opacity: 0;
     transition: opacity 300ms ease;
-    border-radius: 20px;
+    border-radius: 16px;
 }
 
 .showcase-card:hover .card-overlay {
@@ -7369,8 +7336,10 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
         font-size: 14px;
     }
 
-    .showcase-card {
-        width: clamp(260px, 40vw, 380px);
+    .video-showcase {
+        grid-template-columns: none;
+        display: flex;
+        overflow-x: auto;
     }
 }
 
@@ -7440,12 +7409,15 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     }
 
     .video-showcase {
-        gap: 16px;
+        grid-template-columns: none;
+        display: flex;
+        gap: 20px;
         padding: 16px 0 32px;
     }
 
     .showcase-card {
-        width: clamp(240px, 75vw, 320px);
+        flex: 0 0 300px;
+        width: 300px;
     }
 
     .card-thumbnail {
@@ -7478,10 +7450,6 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     .ourwork-tab {
         padding: 8px 10px;
         font-size: 11px;
-    }
-
-    .showcase-card {
-        width: clamp(220px, 80vw, 280px);
     }
 
     .card-title {
