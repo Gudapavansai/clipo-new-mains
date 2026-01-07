@@ -174,10 +174,16 @@
     const sectionObserver = new IntersectionObserver(entries => {
         const intersecting = entries.find(e => e.isIntersecting);
         if (intersecting) {
-            // Requirement: On mobile, bubble shouldn't move for 'contact' section (wait for footer)
-            if (window.innerWidth <= 1024 && intersecting.target.id === 'contact') return;
+            const isMobile = window.innerWidth <= 1024;
+            const sectionId = intersecting.target.id;
 
-            const data = inputMap.get(intersecting.target.id);
+            // On mobile, handle contact section differently - only move bubble when footer is visible
+            if (isMobile && sectionId === 'contact') {
+                // Don't move bubble to contact section yet, wait for footer observer
+                return;
+            }
+
+            const data = inputMap.get(sectionId);
             if (data && !data.input.checked) {
                 DOM.navInputs.forEach(i => i.parentElement.classList.remove('active'));
                 data.input.checked = true;
@@ -185,7 +191,10 @@
                 moveBubbleToIndex(data.index);
             }
         }
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    }, {
+        rootMargin: window.innerWidth <= 1024 ? '-30% 0px -30% 0px' : '-45% 0px -45% 0px',
+        threshold: 0
+    });
 
     DOM.sections.forEach(section => sectionObserver.observe(section));
 
@@ -193,7 +202,7 @@
     let isFooterIntersecting = false;
 
     // ==========================================
-    // FOOTER / CONTACT LOCK
+    // FOOTER / CONTACT LOCK (Mobile specific)
     // ==========================================
     const footer = $('.footer');
     if (footer) {
@@ -201,11 +210,36 @@
             const entry = entries[0];
             isFooterIntersecting = entry.isIntersecting; // Update flag
 
+            const isMobile = window.innerWidth <= 1024;
+
             if (entry.isIntersecting) {
+                // On mobile and desktop: When footer is visible, move bubble to contact
                 const contactInput = DOM.switcher?.querySelector('input[value="contact"]');
                 if (contactInput && !contactInput.checked) {
                     contactInput.checked = true;
-                    contactInput.dispatchEvent(new Event('change'));
+                    const contactData = inputMap.get('contact');
+                    if (contactData) {
+                        moveBubbleToIndex(contactData.index);
+                    }
+                }
+            } else if (isMobile) {
+                // On mobile: When footer is NOT visible and we're in pricing section,
+                // move bubble to pricing instead of keeping it on contact
+                const pricingSection = $('#pricing');
+                if (pricingSection) {
+                    const pricingRect = pricingSection.getBoundingClientRect();
+                    const viewportHeight = window.innerHeight;
+                    const isPricingVisible = pricingRect.top < viewportHeight * 0.7 &&
+                        pricingRect.bottom > viewportHeight * 0.3;
+
+                    if (isPricingVisible) {
+                        const pricingInput = DOM.switcher?.querySelector('input[value="pricing"]');
+                        const pricingData = inputMap.get('pricing');
+                        if (pricingInput && !pricingInput.checked && pricingData) {
+                            pricingInput.checked = true;
+                            moveBubbleToIndex(pricingData.index);
+                        }
+                    }
                 }
             }
         }, { threshold: 0.15 }).observe(footer);
