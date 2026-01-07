@@ -1,0 +1,721 @@
+/* ==========================================
+   OUR WORK SECTION - GLASSMORPHIC SHOWCASE
+   Premium Apple-style video gallery
+   ========================================== */
+
+/* ===================================
+   1. SECTION CONTAINER
+   =================================== */
+
+.ourwork-showcase {
+    padding: 60px 60px;
+    /* Reduced from 100px for less margin */
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* ===================================
+   2. HERO HEADER SECTION (MATCHED TO SITE)
+   =================================== */
+
+.ourwork-hero {
+    max-width: 700px;
+    margin: 0 auto 32px;
+    /* Reduced for compact spacing */
+    text-align: center;
+}
+
+.ourwork-hero__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    /* Same as .section__title */
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    /* Same as .section__title */
+    color: var(--c-content);
+    letter-spacing: normal;
+    /* Removed tight letter-spacing */
+}
+
+.ourwork-hero__description {
+    font-size: 1.1rem;
+    /* Same as .section__subtitle */
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--c-content) 75%, transparent);
+    margin: 8px auto 24px;
+    /* Reduced bottom margin */
+    max-width: 600px;
+    /* Same as .section__header */
+}
+
+/* Feature Bullets */
+.ourwork-features {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(20px, 3vw, 32px);
+    /* Reduced gap */
+    flex-wrap: wrap;
+    margin-top: 16px;
+    /* Reduced from 32px */
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Reduced from 10px */
+    font-size: 14px;
+    /* Smaller, consistent */
+    font-weight: 500;
+    color: color-mix(in srgb, var(--c-content) 85%, transparent);
+}
+
+.feature-icon {
+    width: 6px;
+    /* Reduced from 8px */
+    height: 6px;
+    flex-shrink: 0;
+}
+
+/* Green dot */
+.feature-item:nth-child(1) .feature-icon {
+    color: #34c759;
+}
+
+/* Blue dot */
+.feature-item:nth-child(2) .feature-icon {
+    color: #007aff;
+}
+
+/* Purple dot */
+.feature-item:nth-child(3) .feature-icon {
+    color: #af52de;
+}
+
+/* ===================================
+   3. TABBED NAVIGATION
+   =================================== */
+
+.ourwork-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin: 0 auto 40px;
+    /* Reduced for compact spacing */
+    max-width: fit-content;
+    padding: 6px;
+    background: color-mix(in srgb, var(--c-glass) 15%, transparent);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 14px;
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 15%), transparent),
+        inset 0 1px 0 0 color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 30%), transparent),
+        0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid color-mix(in srgb, var(--c-light) 10%, transparent);
+}
+
+.ourwork-tab {
+    padding: 12px 28px;
+    font-size: clamp(14px, 1.5vw, 16px);
+    font-weight: 500;
+    font-family: var(--font-body);
+    color: color-mix(in srgb, var(--c-content) 70%, transparent);
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    white-space: nowrap;
+}
+
+.ourwork-tab:hover {
+    color: var(--c-content);
+    background: color-mix(in srgb, var(--c-glass) 10%, transparent);
+}
+
+.ourwork-tab.active {
+    color: var(--c-content);
+    background: color-mix(in srgb, var(--c-glass) 25%, transparent);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 15%), transparent),
+        inset 0 1px 0 0 color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 40%), transparent),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+/* ===================================
+   3. TAB CONTENT PANELS
+   =================================== */
+
+.ourwork-content {
+    position: relative;
+    width: 100%;
+}
+
+.tab-panel {
+    display: none;
+    opacity: 0;
+    animation: fadeIn 500ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tab Header */
+.tab-header {
+    text-align: center;
+    margin-bottom: 48px;
+    /* Reduced to match section spacing */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    /* Match .section__title */
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    /* Match .section__title */
+    color: var(--c-content);
+}
+
+.tab-subtitle {
+    font-size: 1.1rem;
+    /* Match .section__subtitle */
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--c-content) 75%, transparent);
+    margin: 8px auto 0;
+    /* Match .section__subtitle */
+}
+
+/* ===================================
+   4. HORIZONTAL SCROLLING SHOWCASE
+   =================================== */
+
+.video-showcase {
+    display: flex;
+    gap: clamp(20px, 3vw, 32px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 0 40px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /* Custom scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--c-glass) 30%, transparent) transparent;
+}
+
+.video-showcase::-webkit-scrollbar {
+    height: 8px;
+}
+
+.video-showcase::-webkit-scrollbar-track {
+    background: color-mix(in srgb, var(--c-glass) 10%, transparent);
+    border-radius: 4px;
+}
+
+.video-showcase::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--c-glass) 40%, transparent);
+    border-radius: 4px;
+}
+
+.video-showcase::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--c-glass) 60%, transparent);
+}
+
+/* ===================================
+   5. VIDEO SHOWCASE CARDS
+   =================================== */
+
+.showcase-card {
+    flex: 0 0 auto;
+    width: clamp(280px, 35vw, 420px);
+    scroll-snap-align: start;
+    transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.showcase-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Card Thumbnail Container */
+.card-thumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: color-mix(in srgb, var(--c-bg) 90%, transparent);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) 10%, transparent);
+}
+
+.card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.showcase-card:hover .card-thumbnail img {
+    transform: scale(1.05);
+}
+
+/* Dark Overlay on Thumbnail */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.1) 0%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.6) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 300ms ease;
+    border-radius: 20px;
+}
+
+.showcase-card:hover .card-overlay {
+    opacity: 1;
+}
+
+/* Play Button */
+.play-button {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    outline: none;
+}
+
+.play-button:hover {
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.play-button:active {
+    transform: scale(0.95);
+}
+
+.play-button svg {
+    margin-left: 3px;
+    /* Visual centering */
+}
+
+/* Platform Badge (YouTube) */
+.platform-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 6px;
+    z-index: 2;
+}
+
+.youtube-badge {
+    background: rgba(255, 0, 0, 0.9);
+}
+
+/* Duration Badge */
+.duration-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 6px;
+    z-index: 2;
+}
+
+/* ===================================
+   6. CARD CONTENT
+   =================================== */
+
+.card-content {
+    padding: 0 4px;
+}
+
+.card-title {
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 12px;
+    color: var(--c-content);
+}
+
+.card-description {
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--c-content) 70%, transparent);
+    margin: 0 0 16px;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: color-mix(in srgb, var(--c-content) 85%, transparent);
+    text-decoration: none;
+    transition: all 200ms ease;
+}
+
+.card-link:hover {
+    color: var(--c-action);
+    gap: 12px;
+}
+
+.card-link svg {
+    opacity: 0.7;
+    transition: opacity 200ms ease;
+}
+
+.card-link:hover svg {
+    opacity: 1;
+}
+
+/* ===================================
+   7. VIDEO MODAL
+   =================================== */
+
+.video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: modalFadeIn 300ms ease forwards;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+@keyframes modalFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.modal-content {
+    position: relative;
+    width: 90vw;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    background: color-mix(in srgb, var(--c-bg) 95%, transparent);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) 15%, transparent);
+    animation: modalSlideUp 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes modalSlideUp {
+    from {
+        transform: translateY(50px) scale(0.95);
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 200ms ease;
+}
+
+.modal-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.modal-close:active {
+    transform: scale(0.95);
+}
+
+.modal-player {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-player iframe,
+.modal-player video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 24px;
+}
+
+/* ===================================
+   8. RESPONSIVE DESIGN
+   =================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .ourwork-tabs {
+        padding: 5px;
+    }
+
+    .ourwork-tab {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .showcase-card {
+        width: clamp(260px, 40vw, 380px);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .ourwork-showcase {
+        padding: 40px 20px;
+        /* Reduced from 60px for less margin */
+    }
+
+    .ourwork-hero {
+        margin-bottom: 40px;
+        /* Reduced */
+    }
+
+    .ourwork-hero__title {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+        /* Smaller to match sections */
+        margin-bottom: 8px;
+    }
+
+    .ourwork-hero__description {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+
+    .ourwork-features {
+        gap: 12px;
+        /* Tighter */
+        margin-top: 12px;
+    }
+
+    .feature-item {
+        font-size: 13px;
+        /* Smaller */
+    }
+
+    .feature-icon {
+        width: 5px;
+        height: 5px;
+    }
+
+    .ourwork-tabs {
+        width: 100%;
+        max-width: 100%;
+        padding: 4px;
+        gap: 4px;
+    }
+
+    .ourwork-tab {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .tab-header {
+        margin-bottom: 32px;
+    }
+
+    .tab-title {
+        font-size: 2rem;
+    }
+
+    .tab-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .video-showcase {
+        gap: 16px;
+        padding: 16px 0 32px;
+    }
+
+    .showcase-card {
+        width: clamp(240px, 75vw, 320px);
+    }
+
+    .card-thumbnail {
+        border-radius: 16px;
+        margin-bottom: 16px;
+    }
+
+    .card-thumbnail img {
+        border-radius: 16px;
+    }
+
+    .play-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .modal-content {
+        width: 95vw;
+        border-radius: 16px;
+    }
+
+    .modal-player iframe,
+    .modal-player video {
+        border-radius: 16px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .ourwork-tab {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .showcase-card {
+        width: clamp(220px, 80vw, 280px);
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .card-description {
+        font-size: 13px;
+    }
+}
+
+/* ===================================
+   9. DARK MODE ENHANCEMENTS
+   =================================== */
+
+body:has(input[value="dark"]:checked) .ourwork-tab.active,
+body:has(input[value="dim"]:checked) .ourwork-tab.active {
+    background: color-mix(in srgb, var(--c-glass) 30%, transparent);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 20%), transparent),
+        inset 0 1px 0 0 color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 50%), transparent),
+        0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+body:has(input[value="dark"]:checked) .card-thumbnail,
+body:has(input[value="dim"]:checked) .card-thumbnail {
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) 15%, transparent);
+}
+
+/* ===================================
+   10. SMOOTH SCROLLING INDICATORS
+   =================================== */
+
+.video-showcase::before,
+.video-showcase::after {
+    content: '';
+    position: sticky;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.video-showcase::before {
+    left: 0;
+    background: linear-gradient(to right,
+            var(--c-bg),
+            transparent);
+}
+
+.video-showcase::after {
+    right: 0;
+    background: linear-gradient(to left,
+            var(--c-bg),
+            transparent);
+}
+
+@media (max-width: 768px) {
+
+    .video-showcase::before,
+    .video-showcase::after {
+        width: 20px;
+    }
+}

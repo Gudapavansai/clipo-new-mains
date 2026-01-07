@@ -1,0 +1,347 @@
+/* ==========================================
+   SECTION SPACING SYSTEM - BEST PRACTICES
+   ========================================== */
+
+/* ===================================
+   1. CSS Custom Properties for Spacing
+   =================================== */
+:root {
+    /* Vertical Section Spacing */
+    --section-spacing-mobile: clamp(80px, 12vw, 100px);
+    --section-spacing-tablet: clamp(100px, 15vw, 140px);
+    --section-spacing-desktop: clamp(120px, 18vw, 180px);
+
+    /* Horizontal Section Padding */
+    --section-padding-mobile: clamp(20px, 5vw, 32px);
+    --section-padding-tablet: clamp(40px, 6vw, 60px);
+    --section-padding-desktop: clamp(60px, 8vw, 100px);
+
+    /* Internal Component Gaps */
+    --gap-small: clamp(24px, 3vw, 32px);
+    --gap-medium: clamp(40px, 5vw, 60px);
+    --gap-large: clamp(60px, 8vw, 100px);
+
+    /* Section Header Spacing */
+    --header-margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+/* ===================================
+   2. IMPROVED SECTION BASE STYLES
+   =================================== */
+
+/* Base section with fluid responsive spacing */
+.section {
+    padding: var(--section-spacing-mobile) var(--section-padding-mobile);
+    max-width: 1400px;
+    /* Wider max-width for better use of space */
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-medium);
+    box-sizing: border-box;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .section {
+        padding: var(--section-spacing-tablet) var(--section-padding-tablet);
+        gap: var(--gap-large);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .section {
+        padding: var(--section-spacing-desktop) var(--section-padding-desktop);
+    }
+}
+
+/* ===================================
+   3. SECTION SPACING MODIFIERS
+   =================================== */
+
+/* Compact spacing - for sections that need less space */
+.section--compact {
+    padding-top: calc(var(--section-spacing-mobile) * 0.6);
+    padding-bottom: calc(var(--section-spacing-mobile) * 0.6);
+}
+
+@media (min-width: 768px) {
+    .section--compact {
+        padding-top: calc(var(--section-spacing-tablet) * 0.6);
+        padding-bottom: calc(var(--section-spacing-tablet) * 0.6);
+    }
+}
+
+@media (min-width: 1024px) {
+    .section--compact {
+        padding-top: calc(var(--section-spacing-desktop) * 0.6);
+        padding-bottom: calc(var(--section-spacing-desktop) * 0.6);
+    }
+}
+
+/* Expanded spacing - for hero sections or featured content */
+.section--expanded {
+    padding-top: calc(var(--section-spacing-mobile) * 1.4);
+    padding-bottom: calc(var(--section-spacing-mobile) * 1.4);
+}
+
+@media (min-width: 768px) {
+    .section--expanded {
+        padding-top: calc(var(--section-spacing-tablet) * 1.4);
+        padding-bottom: calc(var(--section-spacing-tablet) * 1.4);
+    }
+}
+
+@media (min-width: 1024px) {
+    .section--expanded {
+        padding-top: calc(var(--section-spacing-desktop) * 1.4);
+        padding-bottom: calc(var(--section-spacing-desktop) * 1.4);
+    }
+}
+
+/* No top padding - for sections that follow immediately */
+.section--no-top {
+    padding-top: 0;
+}
+
+/* No bottom padding - for sections that precede another */
+.section--no-bottom {
+    padding-bottom: 0;
+}
+
+/* ===================================
+   4. SECTION HEADER SPACING
+   =================================== */
+
+.section__header {
+    text-align: center;
+    max-width: 700px;
+    margin-bottom: var(--header-margin-bottom);
+}
+
+.section__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: clamp(16px, 2vw, 24px);
+    /* Balanced spacing */
+    color: var(--c-content);
+}
+
+.section__subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--c-content) 85%, transparent);
+    margin-top: clamp(12px, 1.5vw, 20px);
+}
+
+/* ===================================
+   5. COMPONENT SPACING INSIDE SECTIONS
+   =================================== */
+
+/* Grid layouts */
+.services__grid,
+.pricing__grid,
+.testimonials-grid,
+.videos-grid {
+    display: grid;
+    gap: var(--gap-medium);
+    width: 100%;
+}
+
+/* Two column grid */
+@media (min-width: 768px) {
+
+    .services__grid,
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--gap-large);
+    }
+}
+
+/* Three column grid for larger screens */
+@media (min-width: 1200px) {
+    .services__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ===================================
+   6. VERTICAL RHYTHM - CONSISTENT SPACING
+   =================================== */
+
+/* Consistent vertical spacing for text elements */
+.section h2+p,
+.section h3+p {
+    margin-top: clamp(12px, 2vw, 20px);
+}
+
+.section p+p {
+    margin-top: clamp(16px, 2.5vw, 24px);
+}
+
+/* Button groups */
+.hero__buttons,
+.cta__buttons {
+    display: flex;
+    gap: clamp(12px, 2vw, 20px);
+    margin-top: clamp(24px, 4vw, 40px);
+}
+
+/* ===================================
+   7. SECTION DIVIDERS (Optional)
+   =================================== */
+
+/* Subtle visual separator between sections */
+.section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            color-mix(in srgb, var(--c-glass) 20%, transparent) 50%,
+            transparent);
+    margin: var(--section-spacing-mobile) 0;
+}
+
+@media (min-width: 768px) {
+    .section-divider {
+        margin: var(--section-spacing-tablet) 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-divider {
+        margin: var(--section-spacing-desktop) 0;
+    }
+}
+
+/* ===================================
+   8. WRAPPER SPACING CONTROL
+   =================================== */
+
+/* Section wrapper - controls spacing between major sections */
+.section-wrapper+.section-wrapper {
+    margin-top: 0;
+    /* Rely on internal section padding */
+}
+
+/* Add breathing room between specific sections */
+.section-wrapper:has(.hero)+.section-wrapper {
+    margin-top: clamp(-20px, -2vw, 0px);
+    /* Slight overlap for flow */
+}
+
+/* ===================================
+   9. MOBILE-SPECIFIC ADJUSTMENTS
+   =================================== */
+
+@media (max-width: 767px) {
+
+    /* Reduce spacing on mobile for better content density */
+    .section {
+        gap: var(--gap-small);
+    }
+
+    /* Tighter header spacing on mobile */
+    .section__header {
+        margin-bottom: clamp(32px, 5vw, 48px);
+    }
+
+    /* Stack buttons vertically on small screens with less gap */
+    .hero__buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .hero__btn {
+        width: 100%;
+    }
+}
+
+/* ===================================
+   10. ANTI-PATTERNS TO AVOID
+   =================================== */
+
+/*
+❌ AVOID THESE:
+
+1. Fixed pixel values without responsiveness:
+   .section { padding: 150px 60px; } 
+
+2. Inconsistent spacing across sections:
+   .section1 { margin-bottom: 80px; }
+   .section2 { margin-bottom: 120px; }
+   
+3. Excessive spacing that breaks visual flow:
+   .section { padding: 300px 0; }
+   
+4. Insufficient mobile spacing:
+   @media (max-width: 768px) {
+     .section { padding: 20px 10px; }
+   }
+
+5. Using margins instead of padding for section spacing:
+   .section { margin: 100px 0; } // Use padding instead
+
+✅ USE THESE INSTEAD:
+
+1. Fluid responsive spacing:
+   padding: clamp(80px, 12vw, 160px);
+   
+2. CSS custom properties for consistency:
+   padding: var(--section-spacing);
+   
+3. Moderate spacing that maintains flow:
+   padding: clamp(100px, 15vw, 140px);
+   
+4. Proportional mobile scaling:
+   padding: clamp(60px, 10vw, 80px);
+   
+5. Padding for section spacing:
+   padding: var(--section-spacing) var(--section-padding);
+*/
+
+/* ===================================
+   USAGE EXAMPLES IN YOUR HTML:
+   =================================== */
+
+/*
+<!-- Standard section -->
+<div class="section-wrapper">
+    <section class="section services" id="services">
+        ...
+    </section>
+</div>
+
+<!-- Compact section (e.g., testimonials) -->
+<div class="section-wrapper">
+    <section class="section section--compact testimonials">
+        ...
+    </section>
+</div>
+
+<!-- Expanded section (e.g., hero or featured content) -->
+<div class="section-wrapper">
+    <section class="section section--expanded hero">
+        ...
+    </section>
+</div>
+
+<!-- Section with divider -->
+<div class="section-wrapper">
+    <section class="section pricing">
+        ...
+    </section>
+</div>
+<div class="section-divider"></div>
+<div class="section-wrapper">
+    <section class="section contact">
+        ...
+    </section>
+</div>
+*/

@@ -506,4 +506,1363 @@
     // ==========================================
 
 
+})();/* ===================================
+   CLIENT VIDEO SECTION JAVASCRIPT
+   Add this to your js/script.js file
+   =================================== */
+
+// Video Category Filtering System
+function initVideoFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const videoCards = document.querySelectorAll('.video-card');
+
+    if (!filterButtons.length || !videoCards.length) return;
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Add active class to clicked button
+            button.classList.add('active');
+
+            const category = button.dataset.category;
+
+            // Filter video cards
+            videoCards.forEach((card, index) => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+
+                    // Re-trigger animation
+                    card.style.animation = 'none';
+                    setTimeout(() => {
+                        card.style.animation = `fadeInUp 0.6s ease forwards`;
+                        card.style.animationDelay = `${index * 0.1}s`;
+                    }, 10);
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+}
+
+// Lazy Load Videos (Performance Optimization)
+function initVideoLazyLoading() {
+    const videoCards = document.querySelectorAll('.video-card');
+
+    if (!videoCards.length || !('IntersectionObserver' in window)) return;
+
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const wrapper = entry.target.querySelector('.video-wrapper');
+                const iframe = wrapper?.querySelector('iframe');
+                const video = wrapper?.querySelector('video');
+
+                // Load iframe if it has data-src
+                if (iframe && iframe.dataset.src && !iframe.src) {
+                    wrapper.classList.add('loading');
+                    iframe.src = iframe.dataset.src;
+
+                    iframe.addEventListener('load', () => {
+                        wrapper.classList.remove('loading');
+                    });
+                }
+
+                // Preload video metadata
+                if (video && video.preload === 'none') {
+                    video.preload = 'metadata';
+                }
+
+                // Stop observing once loaded
+                videoObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        rootMargin: '50px', // Start loading 50px before entering viewport
+        threshold: 0.1
+    });
+
+    videoCards.forEach(card => {
+        videoObserver.observe(card);
+    });
+}
+
+// Track Video Interactions (Analytics)
+function initVideoTracking() {
+    const videoCards = document.querySelectorAll('.video-card');
+
+    videoCards.forEach(card => {
+        const iframe = card.querySelector('iframe');
+        const video = card.querySelector('video');
+        const title = card.querySelector('.video-info h3')?.textContent || 'Unknown';
+        const category = card.dataset.category || 'uncategorized';
+
+        // Track iframe clicks
+        if (iframe) {
+            card.addEventListener('click', () => {
+                console.log('Video clicked:', {
+                    title,
+                    category,
+                    type: 'iframe',
+                    timestamp: new Date().toISOString()
+                });
+
+                // Send to your analytics if needed
+                // Example: gtag('event', 'video_click', { video_title: title });
+            });
+        }
+
+        // Track native video plays
+        if (video) {
+            video.addEventListener('play', () => {
+                console.log('Video played:', {
+                    title,
+                    category,
+                    type: 'native',
+                    timestamp: new Date().toISOString()
+                });
+            });
+
+            video.addEventListener('ended', () => {
+                console.log('Video completed:', {
+                    title,
+                    category,
+                    timestamp: new Date().toISOString()
+                });
+            });
+        }
+    });
+}
+
+// Auto-play videos on hover (Optional)
+function initVideoHoverPlay() {
+    const videoCards = document.querySelectorAll('.video-card');
+
+    videoCards.forEach(card => {
+        const video = card.querySelector('video');
+
+        if (!video) return;
+
+        card.addEventListener('mouseenter', () => {
+            if (video.paused) {
+                video.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                });
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            if (!video.paused) {
+                video.pause();
+            }
+        });
+    });
+}
+
+// Fullscreen video functionality
+function initVideoFullscreen() {
+    const videoCards = document.querySelectorAll('.video-card');
+
+    videoCards.forEach(card => {
+        const video = card.querySelector('video');
+
+        if (!video) return;
+
+        // Double-click for fullscreen
+        video.addEventListener('dblclick', () => {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        });
+    });
+}
+
+// Keyboard navigation for video filters
+function initVideoKeyboardNav() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    if (!filterButtons.length) return;
+
+    filterButtons.forEach((button, index) => {
+        button.addEventListener('keydown', (e) => {
+            let targetIndex;
+
+            switch (e.key) {
+                case 'ArrowLeft':
+                    targetIndex = index > 0 ? index - 1 : filterButtons.length - 1;
+                    break;
+                case 'ArrowRight':
+                    targetIndex = index < filterButtons.length - 1 ? index + 1 : 0;
+                    break;
+                case 'Home':
+                    targetIndex = 0;
+                    break;
+                case 'End':
+                    targetIndex = filterButtons.length - 1;
+                    break;
+                default:
+                    return;
+            }
+
+            e.preventDefault();
+            filterButtons[targetIndex].focus();
+            filterButtons[targetIndex].click();
+        });
+    });
+}
+
+// Video statistics counter
+function updateVideoStats() {
+    const totalVideos = document.querySelectorAll('.video-card').length;
+    const testimonials = document.querySelectorAll('[data-category="testimonials"]').length;
+    const caseStudies = document.querySelectorAll('[data-category="case-studies"]').length;
+    const brandFilms = document.querySelectorAll('[data-category="brand-films"]').length;
+
+    console.log('Video Statistics:', {
+        total: totalVideos,
+        testimonials,
+        caseStudies,
+        brandFilms
+    });
+}
+
+// Initialize all video features
+function initClientVideos() {
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeVideoFeatures);
+    } else {
+        initializeVideoFeatures();
+    }
+}
+
+function initializeVideoFeatures() {
+    initVideoFilters();
+    initVideoLazyLoading();
+    initVideoTracking();
+    initVideoKeyboardNav();
+    updateVideoStats();
+
+    // Optional features (uncomment if needed)
+    // initVideoHoverPlay();
+    // initVideoFullscreen();
+
+    console.log('✅ Client video section initialized');
+}
+
+// Run initialization
+initClientVideos();
+
+// Export functions for external use (if using modules)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initVideoFilters,
+        initVideoLazyLoading,
+        initVideoTracking,
+        updateVideoStats
+    };
+}
+/* ===================================
+   FEEDBACK RATING SYSTEM JAVASCRIPT
+   Add this to your js/script.js file
+   =================================== */
+
+// Star Rating Feedback System
+class FeedbackSystem {
+    constructor() {
+        this.starRating = document.getElementById('starRating');
+        this.ratingText = document.getElementById('ratingText');
+        this.feedbackForm = document.getElementById('feedbackForm');
+        this.feedbackSuccess = document.getElementById('feedbackSuccess');
+        this.feedbackResetBtn = document.getElementById('feedbackResetBtn');
+        this.totalRatingsElement = document.getElementById('totalRatings');
+        this.averageScoreElement = document.getElementById('averageScore');
+        this.starsDisplay = document.getElementById('starsDisplay');
+        this.reviewsList = document.getElementById('reviewsList');
+
+        this.ratingLabels = {
+            1: 'Terrible 😞',
+            2: 'Poor 😕',
+            3: 'Average 😐',
+            4: 'Good 😊',
+            5: 'Excellent! 🎉'
+        };
+
+        this.init();
+    }
+
+    init() {
+        if (!this.feedbackForm) return;
+
+        this.attachEventListeners();
+        this.updateAverageRating();
+        this.displayRecentReviews();
+
+        console.log('✅ Feedback system initialized');
+    }
+
+    attachEventListeners() {
+        // Star hover and selection
+        if (this.starRating) {
+            const stars = this.starRating.querySelectorAll('label');
+            const inputs = this.starRating.querySelectorAll('input');
+
+            stars.forEach(star => {
+                star.addEventListener('mouseenter', () => this.handleStarHover(star));
+            });
+
+            this.starRating.addEventListener('mouseleave', () => this.handleStarLeave());
+
+            inputs.forEach(input => {
+                input.addEventListener('change', () => this.handleStarSelect(input));
+            });
+        }
+
+        // Form submission
+        if (this.feedbackForm) {
+            this.feedbackForm.addEventListener('submit', (e) => this.handleSubmit(e));
+        }
+
+        // Reset button
+        if (this.feedbackResetBtn) {
+            this.feedbackResetBtn.addEventListener('click', () => this.resetForm());
+        }
+    }
+
+    handleStarHover(star) {
+        const rating = star.previousElementSibling.value;
+        this.ratingText.textContent = this.ratingLabels[rating];
+        this.ratingText.classList.add('selected');
+    }
+
+    handleStarLeave() {
+        const checkedStar = this.starRating.querySelector('input:checked');
+        if (checkedStar) {
+            this.ratingText.textContent = this.ratingLabels[checkedStar.value];
+        } else {
+            this.ratingText.textContent = 'Select a rating';
+            this.ratingText.classList.remove('selected');
+        }
+    }
+
+    handleStarSelect(input) {
+        this.ratingText.textContent = this.ratingLabels[input.value];
+        this.ratingText.classList.add('selected');
+
+        // Add vibration feedback on mobile
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10);
+        }
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this.feedbackForm);
+        const rating = formData.get('rating');
+
+        if (!rating) {
+            this.showNotification('Please select a rating before submitting', 'error');
+            return;
+        }
+
+        const feedbackData = {
+            rating: parseInt(rating),
+            name: formData.get('name') || 'Anonymous',
+            email: formData.get('email') || '',
+            comment: formData.get('comment') || '',
+            timestamp: new Date().toISOString(),
+            page: window.location.pathname,
+            userAgent: navigator.userAgent
+        };
+
+        // Show loading state
+        this.feedbackForm.classList.add('loading');
+
+        try {
+            // Save to storage (choose your method)
+            await this.saveToLocalStorage(feedbackData);
+
+            // Uncomment the method you want to use:
+            // await this.sendToServer(feedbackData);
+            // await this.sendToGoogleSheets(feedbackData);
+
+            // Show success message
+            this.showSuccess();
+
+            // Update displays
+            this.updateAverageRating();
+            this.displayRecentReviews();
+
+            console.log('✅ Feedback submitted:', feedbackData);
+
+        } catch (error) {
+            console.error('❌ Error submitting feedback:', error);
+            this.showNotification('Sorry, there was an error. Please try again.', 'error');
+            this.feedbackForm.classList.remove('loading');
+        }
+    }
+
+    // Storage Methods
+
+    async saveToLocalStorage(feedbackData) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                let ratings = JSON.parse(localStorage.getItem('userRatings') || '[]');
+                ratings.unshift(feedbackData); // Add to beginning
+
+                // Keep only last 50 ratings
+                if (ratings.length > 50) {
+                    ratings = ratings.slice(0, 50);
+                }
+
+                localStorage.setItem('userRatings', JSON.stringify(ratings));
+                resolve();
+            }, 500); // Simulate network delay
+        });
+    }
+
+    async sendToServer(feedbackData) {
+        const response = await fetch('/api/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(feedbackData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Server error');
+        }
+
+        return await response.json();
+    }
+
+    async sendToGoogleSheets(feedbackData) {
+        // Replace with your Google Apps Script Web App URL
+        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+        const formDataForSheet = new FormData();
+        Object.keys(feedbackData).forEach(key => {
+            formDataForSheet.append(key, feedbackData[key]);
+        });
+
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            body: formDataForSheet
+        });
+
+        if (!response.ok) {
+            throw new Error('Google Sheets error');
+        }
+
+        return await response.json();
+    }
+
+    // UI Methods
+
+    showSuccess() {
+        this.feedbackForm.style.display = 'none';
+        this.feedbackSuccess.style.display = 'block';
+
+        // Auto-reset after 5 seconds
+        setTimeout(() => {
+            this.resetForm();
+        }, 5000);
+    }
+
+    resetForm() {
+        this.feedbackForm.reset();
+        this.feedbackForm.style.display = 'flex';
+        this.feedbackSuccess.style.display = 'none';
+        this.feedbackForm.classList.remove('loading');
+        this.ratingText.textContent = 'Select a rating';
+        this.ratingText.classList.remove('selected');
+    }
+
+    showNotification(message, type = 'info') {
+        // Simple alert for now - you can replace with a fancy toast notification
+        alert(message);
+    }
+
+    // Rating Display Methods
+
+    updateAverageRating() {
+        const ratings = JSON.parse(localStorage.getItem('userRatings') || '[]');
+
+        if (ratings.length > 0) {
+            const sum = ratings.reduce((acc, curr) => acc + curr.rating, 0);
+            const average = (sum / ratings.length).toFixed(1);
+
+            if (this.averageScoreElement) {
+                this.averageScoreElement.textContent = average;
+            }
+
+            if (this.totalRatingsElement) {
+                this.totalRatingsElement.textContent = ratings.length;
+            }
+
+            // Update star display width
+            const percentage = (average / 5) * 100;
+            if (this.starsDisplay) {
+                const starsFill = this.starsDisplay.querySelector('.stars-fill');
+                if (starsFill) {
+                    starsFill.style.width = `${percentage}%`;
+                }
+            }
+        }
+    }
+
+    displayRecentReviews(limit = 5) {
+        if (!this.reviewsList) return;
+
+        const ratings = JSON.parse(localStorage.getItem('userRatings') || '[]');
+        const recentRatings = ratings.slice(0, limit);
+
+        if (recentRatings.length === 0) return;
+
+        this.reviewsList.innerHTML = recentRatings.map(review => {
+            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+            const date = new Date(review.timestamp).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+
+            return `
+        <div class="review-item">
+          <div class="review-header">
+            <span class="review-author">${this.escapeHtml(review.name)}</span>
+            <span class="review-stars">${stars}</span>
+          </div>
+          <div class="review-date">${date}</div>
+          ${review.comment ? `<p class="review-comment">${this.escapeHtml(review.comment)}</p>` : ''}
+        </div>
+      `;
+        }).join('');
+
+        // Show the reviews section
+        const recentReviewsSection = document.getElementById('recentReviews');
+        if (recentReviewsSection) {
+            recentReviewsSection.style.display = 'block';
+        }
+    }
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Analytics Methods
+
+    getRatingDistribution() {
+        const ratings = JSON.parse(localStorage.getItem('userRatings') || '[]');
+        const distribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
+        ratings.forEach(review => {
+            distribution[review.rating]++;
+        });
+
+        return distribution;
+    }
+
+    getAverageByDateRange(startDate, endDate) {
+        const ratings = JSON.parse(localStorage.getItem('userRatings') || '[]');
+        const filteredRatings = ratings.filter(review => {
+            const reviewDate = new Date(review.timestamp);
+            return reviewDate >= startDate && reviewDate <= endDate;
+        });
+
+        if (filteredRatings.length === 0) return 0;
+
+        const sum = filteredRatings.reduce((acc, curr) => acc + curr.rating, 0);
+        return (sum / filteredRatings.length).toFixed(1);
+    }
+
+    exportRatings(format = 'json') {
+        const ratings = JSON.parse(localStorage.getItem('userRatings') || '[]');
+
+        if (format === 'json') {
+            const dataStr = JSON.stringify(ratings, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+
+            const exportLink = document.createElement('a');
+            exportLink.setAttribute('href', dataUri);
+            exportLink.setAttribute('download', `ratings-export-${Date.now()}.json`);
+            exportLink.click();
+        } else if (format === 'csv') {
+            const csvContent = this.convertToCSV(ratings);
+            const dataUri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
+
+            const exportLink = document.createElement('a');
+            exportLink.setAttribute('href', dataUri);
+            exportLink.setAttribute('download', `ratings-export-${Date.now()}.csv`);
+            exportLink.click();
+        }
+    }
+
+    convertToCSV(data) {
+        if (data.length === 0) return '';
+
+        const headers = Object.keys(data[0]);
+        const csvRows = [headers.join(',')];
+
+        data.forEach(row => {
+            const values = headers.map(header => {
+                const value = row[header] || '';
+                return `"${value.toString().replace(/"/g, '""')}"`;
+            });
+            csvRows.push(values.join(','));
+        });
+
+        return csvRows.join('\n');
+    }
+}
+
+// Initialize Feedback System
+let feedbackSystem;
+
+function initFeedbackSystem() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            feedbackSystem = new FeedbackSystem();
+        });
+    } else {
+        feedbackSystem = new FeedbackSystem();
+    }
+}
+
+// Run initialization
+initFeedbackSystem();
+
+// Export for external use
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = FeedbackSystem;
+}
+
+// Console helper for debugging
+window.getFeedbackStats = function () {
+    if (!feedbackSystem) {
+        console.log('Feedback system not initialized');
+        return;
+    }
+
+    const ratings = JSON.parse(localStorage.getItem('userRatings') || '[]');
+    const distribution = feedbackSystem.getRatingDistribution();
+
+    console.log('📊 Feedback Statistics:', {
+        totalReviews: ratings.length,
+        distribution: distribution,
+        averageRating: feedbackSystem.averageScoreElement?.textContent || 'N/A',
+        lastReview: ratings[0] || null
+    });
+};
+/* ===================================
+   WHATSAPP BUTTON JAVASCRIPT
+   Add this to your js/script.js file
+   =================================== */
+
+// WhatsApp Widget Controller
+class WhatsAppWidget {
+    constructor() {
+        this.toggle = document.getElementById('whatsappToggle');
+        this.menu = document.getElementById('whatsappMenu');
+        this.isOpen = false;
+
+        this.init();
+    }
+
+    init() {
+        if (!this.toggle || !this.menu) {
+            console.log('Simple WhatsApp button in use');
+            this.initSimpleButton();
+            return;
+        }
+
+        this.attachEventListeners();
+        this.initNotifications();
+
+        console.log('✅ Advanced WhatsApp widget initialized');
+    }
+
+    initSimpleButton() {
+        const simpleButton = document.querySelector('.whatsapp-float');
+        if (!simpleButton) return;
+
+        // Track clicks
+        simpleButton.addEventListener('click', () => {
+            this.trackEvent('WhatsApp Click', 'Simple Button');
+        });
+
+        // Add keyboard support
+        simpleButton.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                simpleButton.click();
+            }
+        });
+    }
+
+    attachEventListeners() {
+        // Toggle button click
+        this.toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleMenu();
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!this.toggle.contains(e.target) && !this.menu.contains(e.target)) {
+                this.closeMenu();
+            }
+        });
+
+        // Option clicks
+        const options = this.menu.querySelectorAll('.whatsapp-option');
+        options.forEach((option, index) => {
+            option.addEventListener('click', () => {
+                const label = option.querySelector('strong')?.textContent || `Option ${index + 1}`;
+                this.trackEvent('WhatsApp Option Click', label);
+                this.closeMenu();
+            });
+        });
+
+        // Keyboard navigation
+        this.toggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.toggleMenu();
+            } else if (e.key === 'Escape') {
+                this.closeMenu();
+            }
+        });
+
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isOpen) {
+                this.closeMenu();
+                this.toggle.focus();
+            }
+        });
+
+        // Focus trap when menu is open
+        this.menu.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                this.handleTabKey(e);
+            }
+        });
+    }
+
+    toggleMenu() {
+        if (this.isOpen) {
+            this.closeMenu();
+        } else {
+            this.openMenu();
+        }
+    }
+
+    openMenu() {
+        this.toggle.classList.add('active');
+        this.menu.classList.add('active');
+        this.toggle.setAttribute('aria-expanded', 'true');
+        this.isOpen = true;
+
+        // Focus first option
+        setTimeout(() => {
+            const firstOption = this.menu.querySelector('.whatsapp-option');
+            if (firstOption) firstOption.focus();
+        }, 100);
+
+        this.trackEvent('WhatsApp Menu', 'Opened');
+    }
+
+    closeMenu() {
+        this.toggle.classList.remove('active');
+        this.menu.classList.remove('active');
+        this.toggle.setAttribute('aria-expanded', 'false');
+        this.isOpen = false;
+    }
+
+    handleTabKey(e) {
+        const focusableElements = this.menu.querySelectorAll('.whatsapp-option');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+            // Shift + Tab
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else {
+            // Tab
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    }
+
+    // Notification badge system
+    initNotifications() {
+        // Check if there are unread messages (you can customize this logic)
+        const hasNotification = this.checkForNotifications();
+
+        if (hasNotification) {
+            this.toggle.classList.add('has-notification');
+        }
+    }
+
+    checkForNotifications() {
+        // Implement your logic here
+        // For example, check localStorage, session, or server
+        return localStorage.getItem('whatsappNotification') === 'true';
+    }
+
+    showNotification() {
+        this.toggle.classList.add('has-notification');
+        localStorage.setItem('whatsappNotification', 'true');
+    }
+
+    hideNotification() {
+        this.toggle.classList.remove('has-notification');
+        localStorage.removeItem('whatsappNotification');
+    }
+
+    // Analytics tracking
+    trackEvent(category, action, label = '') {
+        console.log('📊 Event:', { category, action, label });
+
+        // Google Analytics (if available)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', action, {
+                event_category: category,
+                event_label: label
+            });
+        }
+
+        // Meta Pixel (if available)
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'Contact', {
+                content_name: action
+            });
+        }
+    }
+
+    // Utility: Get current time greeting
+    getGreeting() {
+        const hour = new Date().getHours();
+        if (hour < 12) return 'Good morning';
+        if (hour < 17) return 'Good afternoon';
+        return 'Good evening';
+    }
+
+    // Utility: Generate dynamic WhatsApp message
+    generateMessage(type = 'general') {
+        const greeting = this.getGreeting();
+        const page = document.title || 'your website';
+
+        const messages = {
+            general: `${greeting}! I'm visiting ${page} and interested in your services.`,
+            quote: `${greeting}! I'd like to get a custom quote for a project.`,
+            support: `${greeting}! I need some assistance with my project.`,
+            project: `${greeting}! I'd like to discuss a potential collaboration.`
+        };
+
+        return encodeURIComponent(messages[type] || messages.general);
+    }
+
+    // Update WhatsApp link dynamically
+    updateWhatsAppLink(element, messageType = 'general') {
+        const phoneNumber = '919985585558'; // Your WhatsApp number
+        const message = this.generateMessage(messageType);
+        const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+        element.href = url;
+    }
+
+    // Auto-show widget after delay (optional)
+    autoShow(delay = 5000) {
+        setTimeout(() => {
+            if (!this.isOpen && !sessionStorage.getItem('whatsappAutoShown')) {
+                this.openMenu();
+                sessionStorage.setItem('whatsappAutoShown', 'true');
+
+                // Auto-close after 10 seconds if not interacted
+                setTimeout(() => {
+                    if (this.isOpen && !this.menu.matches(':hover')) {
+                        this.closeMenu();
+                    }
+                }, 10000);
+            }
+        }, delay);
+    }
+
+    // Show widget on exit intent
+    initExitIntent() {
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !sessionStorage.getItem('whatsappExitShown')) {
+                this.openMenu();
+                sessionStorage.setItem('whatsappExitShown', 'true');
+            }
+        });
+    }
+
+    // Show widget on scroll percentage
+    initScrollTrigger(percentage = 50) {
+        let triggered = false;
+
+        window.addEventListener('scroll', () => {
+            if (triggered) return;
+
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+            if (scrollPercent >= percentage) {
+                this.showNotification();
+                triggered = true;
+            }
+        });
+    }
+}
+
+// Alternative: Simple Initialization for basic button
+function initSimpleWhatsAppButton() {
+    const button = document.querySelector('.whatsapp-float');
+    if (!button) return;
+
+    // Dynamic message based on current page
+    const updateMessage = () => {
+        const hour = new Date().getHours();
+        let greeting = 'Hi';
+
+        if (hour < 12) greeting = 'Good morning';
+        else if (hour < 17) greeting = 'Good afternoon';
+        else greeting = 'Good evening';
+
+        const page = document.title || 'your website';
+        const message = `${greeting}! I'm visiting ${page} and interested in Clipo Media's services.`;
+
+        const phoneNumber = '919985585558';
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+        button.href = url;
+    };
+
+    updateMessage();
+
+    // Track click
+    button.addEventListener('click', () => {
+        console.log('📱 WhatsApp button clicked');
+
+        // Analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'click', {
+                event_category: 'WhatsApp',
+                event_label: 'Float Button'
+            });
+        }
+    });
+}
+
+// Initialize WhatsApp Widget
+let whatsappWidget;
+
+function initWhatsAppWidget() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            whatsappWidget = new WhatsAppWidget();
+
+            // Optional: Enable auto-features
+            // whatsappWidget.autoShow(8000); // Show after 8 seconds
+            // whatsappWidget.initExitIntent(); // Show on exit intent
+            // whatsappWidget.initScrollTrigger(60); // Show at 60% scroll
+        });
+    } else {
+        whatsappWidget = new WhatsAppWidget();
+    }
+}
+
+// Run initialization
+initWhatsAppWidget();
+
+// Export for external use
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = WhatsAppWidget;
+}
+
+// Console helper for debugging
+window.openWhatsAppMenu = function () {
+    if (whatsappWidget) {
+        whatsappWidget.openMenu();
+    } else {
+        console.log('WhatsApp widget not initialized');
+    }
+};
+
+window.showWhatsAppNotification = function () {
+    if (whatsappWidget) {
+        whatsappWidget.showNotification();
+    }
+};
+/* ==========================================
+   OUR WORK SHOWCASE - INTERACTIVE FEATURES
+   Tab switching and modal video playback
+   ========================================== */
+
+(function () {
+    'use strict';
+
+    // ===================================
+    // 1. TAB SWITCHING FUNCTIONALITY
+    // ===================================
+
+    function initTabs() {
+        const tabs = document.querySelectorAll('.ourwork-tab');
+        const panels = document.querySelectorAll('.tab-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                const targetTab = this.dataset.tab;
+
+                // Remove active class from all tabs and panels
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding panel
+                this.classList.add('active');
+                const targetPanel = document.querySelector(`[data-panel="${targetTab}"]`);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+
+                // Optional: Analytics tracking
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'tab_click', {
+                        'event_category': 'Our Work',
+                        'event_label': targetTab
+                    });
+                }
+            });
+        });
+    }
+
+    // ===================================
+    // 2. VIDEO MODAL FUNCTIONALITY
+    // ===================================
+
+    function initVideoModal() {
+        const modal = document.getElementById('videoModal');
+        const modalPlayer = document.getElementById('modalPlayer');
+        const modalClose = document.querySelector('.modal-close');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const showcaseCards = document.querySelectorAll('.showcase-card');
+
+        // Open modal when clicking play button or "Play in modal" link
+        // BUT only if the card is NOT wrapped in a showcase-card-link (direct YouTube link)
+        showcaseCards.forEach(card => {
+            // Check if card is wrapped in a link (direct YouTube redirect)
+            const isWrappedInLink = card.closest('.showcase-card-link');
+
+            // Skip modal functionality for cards that link directly to YouTube
+            if (isWrappedInLink) {
+                return;
+            }
+
+            const playButton = card.querySelector('.play-button');
+            const playLink = card.querySelector('.card-link');
+
+            [playButton, playLink].forEach(trigger => {
+                if (trigger) {
+                    trigger.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        openVideoModal(card);
+                    });
+                }
+            });
+        });
+
+        // Close modal handlers
+        const closeModal = () => {
+            modal.classList.remove('active');
+            // Clear video content after animation
+            setTimeout(() => {
+                modalPlayer.innerHTML = '';
+            }, 300);
+
+            // Re-enable body scroll
+            document.body.style.overflow = '';
+        };
+
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+
+        if (modalOverlay) {
+            modalOverlay.addEventListener('click', closeModal);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
+    function openVideoModal(card) {
+        const modal = document.getElementById('videoModal');
+        const modalPlayer = document.getElementById('modalPlayer');
+        const videoType = card.dataset.type;
+        const videoId = card.dataset.videoId;
+        const videoUrl = card.dataset.videoUrl;
+
+        let videoContent = '';
+
+        // Create appropriate video embed based on type
+        if (videoType === 'youtube') {
+            videoContent = `
+                <iframe 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    title="YouTube video player">
+                </iframe>
+            `;
+        } else if (videoType === 'vimeo') {
+            videoContent = `
+                <iframe 
+                    src="https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture" 
+                    allowfullscreen
+                    title="Vimeo video player">
+                </iframe>
+            `;
+        } else if (videoType === 'native' && videoUrl) {
+            videoContent = `
+                <video 
+                    controls 
+                    autoplay 
+                    playsinline
+                    style="width: 100%; height: 100%; object-fit: contain;">
+                    <source src="${videoUrl}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+        }
+
+        // Inject video and show modal
+        modalPlayer.innerHTML = videoContent;
+        modal.classList.add('active');
+
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden';
+
+        // Optional: Analytics tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'video_play', {
+                'event_category': 'Our Work',
+                'event_label': videoId || videoUrl,
+                'video_type': videoType
+            });
+        }
+    }
+
+    // ===================================
+    // 3. SMOOTH SCROLL ENHANCEMENTS
+    // ===================================
+
+    function initSmoothScroll() {
+        const showcases = document.querySelectorAll('.video-showcase');
+
+        showcases.forEach(showcase => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            // Mouse drag scrolling
+            showcase.addEventListener('mousedown', (e) => {
+                isDown = true;
+                showcase.style.cursor = 'grabbing';
+                startX = e.pageX - showcase.offsetLeft;
+                scrollLeft = showcase.scrollLeft;
+            });
+
+            showcase.addEventListener('mouseleave', () => {
+                isDown = false;
+                showcase.style.cursor = 'grab';
+            });
+
+            showcase.addEventListener('mouseup', () => {
+                isDown = false;
+                showcase.style.cursor = 'grab';
+            });
+
+            showcase.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - showcase.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll speed
+                showcase.scrollLeft = scrollLeft - walk;
+            });
+
+            // Add grab cursor
+            showcase.style.cursor = 'grab';
+        });
+    }
+
+    // ===================================
+    // 4. KEYBOARD NAVIGATION
+    // ===================================
+
+    function initKeyboardNav() {
+        const tabs = document.querySelectorAll('.ourwork-tab');
+        let currentIndex = 0;
+
+        tabs.forEach((tab, index) => {
+            if (tab.classList.contains('active')) {
+                currentIndex = index;
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            // Only handle arrow keys when modal is not open
+            if (document.getElementById('videoModal').classList.contains('active')) {
+                return;
+            }
+
+            if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                currentIndex--;
+                tabs[currentIndex].click();
+                tabs[currentIndex].focus();
+            } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
+                currentIndex++;
+                tabs[currentIndex].click();
+                tabs[currentIndex].focus();
+            }
+        });
+    }
+
+    // ===================================
+    // 5. INTERSECTION OBSERVER ANIMATIONS
+    // ===================================
+
+    function initScrollAnimations() {
+        const cards = document.querySelectorAll('.showcase-card');
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100); // Stagger animation
+
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    }
+
+    // ===================================
+    // 6. LAZY LOADING FOR VIDEO THUMBNAILS
+    // ===================================
+
+    function initLazyLoading() {
+        const images = document.querySelectorAll('.card-thumbnail img[loading="lazy"]');
+
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src; // Trigger loading
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+    }
+
+    // ===================================
+    // 7. MOBILE TOUCH OPTIMIZATIONS
+    // ===================================
+
+    function initTouchOptimizations() {
+        if (!('ontouchstart' in window)) return;
+
+        const showcases = document.querySelectorAll('.video-showcase');
+
+        showcases.forEach(showcase => {
+            // Prevent vertical scroll when swiping horizontally
+            let startY = 0;
+            let startX = 0;
+
+            showcase.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].pageY;
+                startX = e.touches[0].pageX;
+            }, { passive: true });
+
+            showcase.addEventListener('touchmove', (e) => {
+                const currentY = e.touches[0].pageY;
+                const currentX = e.touches[0].pageX;
+                const diffY = Math.abs(currentY - startY);
+                const diffX = Math.abs(currentX - startX);
+
+                // If scrolling more horizontally than vertically, prevent default
+                if (diffX > diffY) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        });
+    }
+
+    // ===================================
+    // 8. INITIALIZATION
+    // ===================================
+
+    function init() {
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+            return;
+        }
+
+        // Initialize all features
+        initTabs();
+        initVideoModal();
+        initSmoothScroll();
+        initKeyboardNav();
+        initScrollAnimations();
+        initLazyLoading();
+        initTouchOptimizations();
+
+        console.log('✅ Our Work Showcase initialized');
+    }
+
+    // Run initialization
+    init();
+
 })();

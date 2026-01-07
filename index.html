@@ -53,14 +53,21 @@
     </div>
   </label>
   <label class="switcher__option">
-    <input class="switcher__input" type="radio" name="nav" value="pricing" c-option="4" />
+    <input class="switcher__input" type="radio" name="nav" value="clients" c-option="4" />
+    <div class="switcher__content">
+        <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        <span class="switcher__text">Our Work</span>
+    </div>
+  </label>
+  <label class="switcher__option">
+    <input class="switcher__input" type="radio" name="nav" value="pricing" c-option="5" />
     <div class="switcher__content">
         <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/></svg>
         <span class="switcher__text">Pricing</span>
     </div>
   </label>
   <label class="switcher__option">
-    <input class="switcher__input" type="radio" name="nav" value="contact" c-option="5" />
+    <input class="switcher__input" type="radio" name="nav" value="contact" c-option="6" />
     <div class="switcher__content">
         <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         <span class="switcher__text">Contact</span>
@@ -250,7 +257,7 @@
             <div class="pricing__grid">
                 <div class="glass-card pricing-card iphone-card">
                     <div class="price">
-                        <span class="currency">₹</span>7,499
+                        <span class="currency">₹</span>11,999
                     </div>
                     <div class="pricing-divider"></div>
                     <ul class="features">
@@ -263,7 +270,7 @@
                 </div>
                 <div class="glass-card pricing-card iphone-card">
                     <div class="price">
-                        <span class="currency">₹</span>11,999
+                        <span class="currency">₹</span>23,999
                     </div>
                     <div class="pricing-divider"></div>
                     <ul class="features">
@@ -282,7 +289,7 @@
             <div class="pricing__grid">
                 <div class="glass-card pricing-card iphone-card">
                     <div class="price">
-                        <span class="currency">₹</span>11,999
+                        <span class="currency">₹</span>23,999
                     </div>
                     <div class="pricing-divider"></div>
                     <ul class="features">
@@ -295,7 +302,7 @@
                 </div>
                 <div class="glass-card pricing-card iphone-card">
                     <div class="price">
-                        <span class="currency">₹</span>20,999
+                        <span class="currency">₹</span>39,999
                     </div>
                     <div class="pricing-divider"></div>
                     <ul class="features">
@@ -309,6 +316,370 @@
             </div>
             <div class="pricing__footer">
                 <p>Looking for a custom solution? <a href="#contact" style="color: var(--c-action); text-decoration: none; font-weight: 600;">Get a Custom Quote →</a></p>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- OUR WORK SECTION - GLASSMORPHIC SHOWCASE -->
+    <div class="section-wrapper">
+        <section class="section ourwork-showcase" id="clients">
+            <!-- Main Section Header -->
+            <div class="ourwork-hero">
+                <h1 class="ourwork-hero__title">Our Work</h1>
+                <p class="ourwork-hero__description">
+                    Master Clipo Media's creative storytelling with comprehensive case studies and video showcases. 
+                    From fundamental brand films to advanced digital campaigns for real estate, F&B, 
+                    and corporate sectors.
+                </p>
+                
+                <!-- Feature Bullets -->
+                <div class="ourwork-features">
+                    <div class="feature-item">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span>Real Results</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span>100+ Projects</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span>All Industries</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabbed Navigation -->
+            <div class="ourwork-tabs">
+                <button class="ourwork-tab active" data-tab="essentials">Essentials</button>
+                <button class="ourwork-tab" data-tab="implementation">Implementation</button>
+                <button class="ourwork-tab" data-tab="showcase">Showcase</button>
+            </div>
+            
+            <!-- Tab Content Container -->
+            <div class="ourwork-content">
+                <!-- Tab 1: Essentials -->
+                <div class="tab-panel active" data-panel="essentials">
+                    <div class="tab-header">
+                        <h2 class="tab-title">Essentials</h2>
+                        <p class="tab-subtitle">Fundamental concepts and design principles</p>
+                    </div>
+                    
+                    <!-- Horizontal Scrolling Video Cards -->
+                    <div class="video-showcase">
+                        <!-- Video Card 1 -->
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
+                            <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
+                                <div class="card-thumbnail">
+                                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Build a UIKit with the new design" loading="lazy">
+                                    <div class="card-overlay">
+                                        <button class="play-button" aria-label="Play video">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <span class="platform-badge youtube-badge">YouTube</span>
+                                    <span class="duration-badge">12 min</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Glass Design Principles</h3>
+                                    <p class="card-description">Understanding transparency, depth and visual hierarchy in glass design.</p>
+                                    <span class="card-link">
+                                        Watch on YouTube
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- Video Card 2 -->
+                        <a href="https://www.youtube.com/watch?v=76979871" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
+                            <div class="showcase-card" data-video-id="76979871" data-type="youtube">
+                                <div class="card-thumbnail">
+                                    <img src="https://img.youtube.com/vi/76979871/maxresdefault.jpg" alt="What's new in UIKit" loading="lazy">
+                                    <div class="card-overlay">
+                                        <button class="play-button" aria-label="Play video">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <span class="platform-badge youtube-badge">YouTube</span>
+                                    <span class="duration-badge">8 min</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Color Theory in Translucent UI</h3>
+                                    <p class="card-description">How color perception changes with opacity and layering effects.</p>
+                                    <span class="card-link">
+                                        Watch on YouTube
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- Video Card 3 -->
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
+                            <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
+                                <div class="card-thumbnail">
+                                    <img src="images/iphone.jpeg" alt="Design widgets for visionOS" loading="lazy">
+                                    <div class="card-overlay">
+                                        <button class="play-button" aria-label="Play video">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <span class="platform-badge youtube-badge">YouTube</span>
+                                    <span class="duration-badge">10 min</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Typography for Glass Interfaces</h3>
+                                    <p class="card-description">Ensuring readability and contrast in translucent designs.</p>
+                                    <span class="card-link">
+                                        Watch on YouTube
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- Video Card 4 -->
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
+                            <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
+                                <div class="card-thumbnail">
+                                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Real Estate Campaign" loading="lazy">
+                                    <div class="card-overlay">
+                                        <button class="play-button" aria-label="Play video">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <span class="platform-badge youtube-badge">YouTube</span>
+                                    <span class="duration-badge">15 min</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Luxury Real Estate Campaign</h3>
+                                    <p class="card-description">Premium property showcase that sold out in 48 hours.</p>
+                                    <span class="card-link">
+                                        Watch on YouTube
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tab 2: Implementation -->
+                <div class="tab-panel" data-panel="implementation">
+                    <div class="tab-header">
+                        <h2 class="tab-title">Implementation</h2>
+                        <p class="tab-subtitle">Real-world projects and case studies</p>
+                    </div>
+                    
+                    <div class="video-showcase">
+                        <!-- Implementation videos would go here -->
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
+                            <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
+                                <div class="card-thumbnail">
+                                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Restaurant Campaign" loading="lazy">
+                                    <div class="card-overlay">
+                                        <button class="play-button" aria-label="Play video">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <span class="platform-badge youtube-badge">YouTube</span>
+                                    <span class="duration-badge">7 min</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Restaurant Brand Film</h3>
+                                    <p class="card-description">Cinematic showcase driving 50% increase in reservations.</p>
+                                    <span class="card-link">
+                                        Watch on YouTube
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tab 3: Showcase -->
+                <div class="tab-panel" data-panel="showcase">
+                    <div class="tab-header">
+                        <h2 class="tab-title">Showcase</h2>
+                        <p class="tab-subtitle">Featured work and client success stories</p>
+                    </div>
+                    
+                    <div class="video-showcase">
+                        <!-- Showcase videos would go here -->
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="showcase-card-link">
+                            <div class="showcase-card" data-video-id="dQw4w9WgXcQ" data-type="youtube">
+                                <div class="card-thumbnail">
+                                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Tech Startup" loading="lazy">
+                                    <div class="card-overlay">
+                                        <button class="play-button" aria-label="Play video">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <span class="platform-badge youtube-badge">YouTube</span>
+                                    <span class="duration-badge">5 min</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Tech Startup Success</h3>
+                                    <p class="card-description">How we helped increase social media engagement by 300%.</p>
+                                    <span class="card-link">
+                                        Watch on YouTube
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-player" id="modalPlayer">
+                <!-- Video will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIENT TESTIMONIALS -->
+    <div class="section-wrapper">
+        <section class="section testimonials" id="testimonials">
+            <div class="section__header">
+                <h2 class="section__title">What Clients Say</h2>
+                <p class="section__subtitle">Real experiences from brands we've partnered with across industries</p>
+            </div>
+            
+            <!-- Testimonials Grid -->
+            <div class="testimonials-grid">
+                <!-- Testimonial Card 1 -->
+                <div class="glass-card testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://i.pravatar.cc/150?img=33" alt="Rajesh Kumar" loading="lazy">
+                        </div>
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">Rajesh Kumar</h3>
+                            <p class="testimonial-role">CEO, TechVenture Solutions</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p class="testimonial-text">
+                        Clipo Media transformed our brand presence with stunning visuals and strategic campaigns. Their cinematic approach to our product launch video drove a 300% increase in engagement. Truly exceptional work!
+                    </p>
+                </div>
+                
+                <!-- Testimonial Card 2 -->
+                <div class="glass-card testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://i.pravatar.cc/150?img=47" alt="Priya Sharma" loading="lazy">
+                        </div>
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">Priya Sharma</h3>
+                            <p class="testimonial-role">Marketing Director, Luxury Estates</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p class="testimonial-text">
+                        Working with Clipo was a game-changer for our real estate campaigns. Their brand films captured the essence of luxury perfectly. Every project sold out faster than expected. Highly recommended!
+                    </p>
+                </div>
+                
+                <!-- Testimonial Card 3 -->
+                <div class="glass-card testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Arun Reddy" loading="lazy">
+                        </div>
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">Arun Reddy</h3>
+                            <p class="testimonial-role">Owner, Spice Republic Restaurant</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        ★★★★☆
+                    </div>
+                    <p class="testimonial-text">
+                        The restaurant showcase video they created was beyond our expectations. Beautiful cinematography that made our dishes look irresistible. Reservations increased by 50% in just two weeks!
+                    </p>
+                </div>
+                
+                <!-- Testimonial Card 4 -->
+                <div class="glass-card testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://i.pravatar.cc/150?img=32" alt="Sneha Patel" loading="lazy">
+                        </div>
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">Sneha Patel</h3>
+                            <p class="testimonial-role">Founder, GlowBeauty Cosmetics</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p class="testimonial-text">
+                        Clipo Media understands the FMCG space perfectly. Their creative strategy and execution for our product videos resulted in viral social media content and a significant boost in sales. Professional team!
+                    </p>
+                </div>
             </div>
         </section>
     </div>
@@ -413,5 +784,17 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script defer src="js/script.js"></script>
     <script defer src="js/script-animations.js"></script>
+    
+    <!-- GLASSY WHATSAPP BUTTON -->
+    <a href="https://wa.me/919985585558?text=Hi%20Clipo%20Media%2C%20I'm%20interested%20in%20your%20services" 
+       class="whatsapp-float" 
+       target="_blank"
+       rel="noopener noreferrer" 
+       aria-label="Chat with us on WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        <span class="whatsapp-text">Chat with us</span>
+    </a>
 </body>
 </html>
