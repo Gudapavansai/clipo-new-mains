@@ -171,11 +171,9 @@
             const isMobile = window.innerWidth <= 1024;
             const sectionId = intersecting.target.id;
 
-            // On mobile, handle contact section differently - only move bubble when footer is visible
-            if (isMobile && sectionId === 'contact') {
-                // Don't move bubble to contact section yet, wait for footer observer
-                return;
-            }
+            // On mobile, handle contact section normally to respond when the form appears
+            // Removed early return to allow bubble move on section entry
+
 
             const data = inputMap.get(sectionId);
             if (data && !data.input.checked) {
@@ -207,32 +205,13 @@
             const isMobile = window.innerWidth <= 1024;
 
             if (entry.isIntersecting) {
-                // On mobile and desktop: When footer is visible, move bubble to contact
+                // Ensure Contact is active when footer is visible
                 const contactInput = DOM.switcher?.querySelector('input[value="contact"]');
                 if (contactInput && !contactInput.checked) {
                     contactInput.checked = true;
                     const contactData = inputMap.get('contact');
                     if (contactData) {
                         moveBubbleToIndex(contactData.index);
-                    }
-                }
-            } else if (isMobile) {
-                // On mobile: When footer is NOT visible and we're in pricing section,
-                // move bubble to pricing instead of keeping it on contact
-                const pricingSection = $('#pricing');
-                if (pricingSection) {
-                    const pricingRect = pricingSection.getBoundingClientRect();
-                    const viewportHeight = window.innerHeight;
-                    const isPricingVisible = pricingRect.top < viewportHeight * 0.7 &&
-                        pricingRect.bottom > viewportHeight * 0.3;
-
-                    if (isPricingVisible) {
-                        const pricingInput = DOM.switcher?.querySelector('input[value="pricing"]');
-                        const pricingData = inputMap.get('pricing');
-                        if (pricingInput && !pricingInput.checked && pricingData) {
-                            pricingInput.checked = true;
-                            moveBubbleToIndex(pricingData.index);
-                        }
                     }
                 }
             }
