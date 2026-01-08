@@ -260,6 +260,14 @@
             DOM.bubble.style.width = `${optionRect.width}px`;
             DOM.bubble.style.transform = `translateX(${targetTranslate}px)`;
         }
+
+        // Initialize maxTranslate for variable widths
+        const lastOption = DOM.navOptions[DOM.navOptions.length - 1];
+        if (lastOption) {
+            const switcherRect = DOM.switcher.getBoundingClientRect();
+            const lastRect = lastOption.getBoundingClientRect();
+            maxTranslate = lastRect.left - switcherRect.left;
+        }
     };
 
     // ResizeObserver for layout updates
@@ -293,10 +301,12 @@
         const relativeX = clientX - rect.left;
         const optWidth = DOM.navOptions[0].getBoundingClientRect().width;
         const currentIndex = getCheckedIndex();
-        const bubbleX = currentIndex * optWidth;
+        const targetOption = DOM.navOptions[currentIndex];
+        const bubbleRect = targetOption.getBoundingClientRect();
+        const bubbleX = bubbleRect.left - rect.left;
 
         // Requirement 1 & 2: Only allow dragging if clicking the active bubble
-        if (relativeX < bubbleX - 10 || relativeX > bubbleX + optWidth + 10) return;
+        if (relativeX < bubbleX - 10 || relativeX > bubbleX + bubbleRect.width + 10) return;
 
         isDragging = true;
         ignoreClick = false;
@@ -305,7 +315,7 @@
 
         DOM.navOptions.forEach(opt => opt.classList.remove('switcher__option--highlight'));
         updateLayout();
-        initialTranslate = currentIndex * optWidth;
+        initialTranslate = bubbleX;
         currentTranslate = initialTranslate;
 
         DOM.switcher.classList.add('switcher--dragging');
@@ -332,14 +342,29 @@
 
         currentTranslate = Math.max(0, Math.min(initialTranslate + deltaX, maxTranslate));
 
-        const optWidth = DOM.navOptions[0].getBoundingClientRect().width;
-        const bubbleLeft = currentTranslate, bubbleRight = currentTranslate + optWidth;
+        const switcherRect = DOM.switcher.getBoundingClientRect();
+
+        // Find nearest option index based on overlaps
+        let nearestIdx = 0;
+        let minDistance = Infinity;
+        const bubbleCenter = currentTranslate + (DOM.bubble.offsetWidth / 2);
 
         DOM.navOptions.forEach((opt, idx) => {
-            const optLeft = idx * optWidth, optRight = (idx + 1) * optWidth;
-            const isOverlapping = bubbleLeft < optRight && bubbleRight > optLeft;
-            opt.classList.toggle('active', isOverlapping);
-            opt.classList.toggle('switcher__option--highlight', isOverlapping);
+            const optRect = opt.getBoundingClientRect();
+            const optLeft = optRect.left - switcherRect.left;
+            const optCenter = optLeft + (optRect.width / 2);
+            const distance = Math.abs(bubbleCenter - optCenter);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestIdx = idx;
+            }
+        });
+
+        DOM.navOptions.forEach((opt, idx) => {
+            const isActive = idx === nearestIdx;
+            opt.classList.toggle('active', isActive);
+            opt.classList.toggle('switcher__option--highlight', isActive);
         });
     };
 
@@ -352,20 +377,36 @@
         DOM.switcher.classList.remove('switcher--dragging');
         DOM.bubble.style.transition = '';
 
-        const optWidth = DOM.navOptions[0].getBoundingClientRect().width;
-        const nearestIndex = Math.round(currentTranslate / optWidth);
-        const clampedIndex = Math.max(0, Math.min(nearestIndex, DOM.navOptions.length - 1));
-        const finalTranslate = clampedIndex * optWidth;
+        const switcherRect = DOM.switcher.getBoundingClientRect();
+        let nearestIndex = 0;
+        let minDistance = Infinity;
+        const bubbleCenter = currentTranslate + (DOM.bubble.offsetWidth / 2);
+
+        DOM.navOptions.forEach((opt, idx) => {
+            const optRect = opt.getBoundingClientRect();
+            const optLeft = optRect.left - switcherRect.left;
+            const optCenter = optLeft + (optRect.width / 2);
+            const distance = Math.abs(bubbleCenter - optCenter);
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestIndex = idx;
+            }
+        });
+
+        const targetOption = DOM.navOptions[nearestIndex];
+        const finalRect = targetOption.getBoundingClientRect();
+        const finalTranslate = finalRect.left - switcherRect.left;
 
         DOM.navOptions.forEach((opt, idx) => {
             opt.classList.remove('switcher__option--highlight');
-            opt.classList.toggle('active', idx === clampedIndex);
+            opt.classList.toggle('active', idx === nearestIndex);
         });
 
+        DOM.bubble.style.width = `${finalRect.width}px`;
         DOM.bubble.style.transform = `translateX(${finalTranslate}px)`;
-        DOM.bubble.style.transition = 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        DOM.bubble.style.transition = 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
 
-        const input = DOM.navOptions[clampedIndex].querySelector('input');
+        const input = DOM.navOptions[nearestIndex].querySelector('input');
         if (!input.checked) {
             input.checked = true;
             input.dispatchEvent(new Event('change'));
