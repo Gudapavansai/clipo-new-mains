@@ -183,16 +183,6 @@
                 data.input.checked = true;
                 DOM.switcher?.setAttribute('c-previous', data.input.getAttribute('c-option'));
                 moveBubbleToIndex(data.index);
-            } else if (!data && sectionId === 'testimonials') {
-                // Testimonials section doesn't have a nav button
-                // Keep the bubble on "clients" (Our Work) when in testimonials
-                const clientsData = inputMap.get('clients');
-                if (clientsData && !clientsData.input.checked) {
-                    DOM.navInputs.forEach(i => i.parentElement.classList.remove('active'));
-                    clientsData.input.checked = true;
-                    DOM.switcher?.setAttribute('c-previous', clientsData.input.getAttribute('c-option'));
-                    moveBubbleToIndex(clientsData.index);
-                }
             }
         }
     }, {
@@ -257,16 +247,19 @@
     const getCheckedIndex = () => DOM.navOptions.findIndex(opt => opt.querySelector('input').checked);
 
     const updateLayout = () => {
-        if (!DOM.navOptions.length || !DOM.bubble) return 0;
-        const optWidth = DOM.navOptions[0].getBoundingClientRect().width;
-        maxTranslate = (DOM.navOptions.length - 1) * optWidth;
-        DOM.bubble.style.width = `${optWidth}px`;
+        if (!DOM.navOptions.length || !DOM.bubble || !DOM.switcher) return;
 
         const checkedIndex = getCheckedIndex();
         if (checkedIndex !== -1 && !isDragging) {
-            DOM.bubble.style.transform = `translateX(${checkedIndex * optWidth}px)`;
+            const targetOption = DOM.navOptions[checkedIndex];
+            const switcherRect = DOM.switcher.getBoundingClientRect();
+            const optionRect = targetOption.getBoundingClientRect();
+
+            const targetTranslate = optionRect.left - switcherRect.left;
+
+            DOM.bubble.style.width = `${optionRect.width}px`;
+            DOM.bubble.style.transform = `translateX(${targetTranslate}px)`;
         }
-        return optWidth;
     };
 
     // ResizeObserver for layout updates
@@ -589,7 +582,6 @@
     // Lazy Load Videos (Performance Optimization)
     function initVideoLazyLoading() {
         const videoCards = document.querySelectorAll('.video-card');
-
         if (!videoCards.length || !('IntersectionObserver' in window)) return;
 
         const videoObserver = new IntersectionObserver((entries) => {
@@ -597,36 +589,49 @@
                 if (entry.isIntersecting) {
                     const wrapper = entry.target.querySelector('.video-wrapper');
                     const iframe = wrapper?.querySelector('iframe');
-                    const video = wrapper?.querySelector('video');
-
-                    // Load iframe if it has data-src
                     if (iframe && iframe.dataset.src && !iframe.src) {
-                        wrapper.classList.add('loading');
                         iframe.src = iframe.dataset.src;
-
-                        iframe.addEventListener('load', () => {
-                            wrapper.classList.remove('loading');
-                        });
                     }
-
-                    // Preload video metadata
-                    if (video && video.preload === 'none') {
-                        video.preload = 'metadata';
-                    }
-
-                    // Stop observing once loaded
                     videoObserver.unobserve(entry.target);
                 }
             });
-        }, {
-            rootMargin: '50px', // Start loading 50px before entering viewport
-            threshold: 0.1
-        });
+        }, { rootMargin: '100px' });
 
-        videoCards.forEach(card => {
-            videoObserver.observe(card);
+        videoCards.forEach(card => videoObserver.observe(card));
+    }
+
+    // Initialize these features
+    document.addEventListener('DOMContentLoaded', () => {
+        initVideoFilters();
+        initVideoLazyLoading();
+        initBubbleAnimations();
+    });
+
+    // Speech Bubble Entrance Animations
+    function initBubbleAnimations() {
+        const bubbles = document.querySelectorAll('.speech-bubble');
+        if (!bubbles.length || !('IntersectionObserver' in window)) return;
+
+        const bubbleObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, idx) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, idx * 150);
+                    bubbleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        bubbles.forEach(bubble => {
+            bubble.style.opacity = '0';
+            bubble.style.transform = 'translateY(40px) scale(0.95)';
+            bubble.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
+            bubbleObserver.observe(bubble);
         });
     }
+
 
     // Track Video Interactions (Analytics)
     function initVideoTracking() {
@@ -759,16 +764,7 @@
     // Video statistics counter
     function updateVideoStats() {
         const totalVideos = document.querySelectorAll('.video-card').length;
-        const testimonials = document.querySelectorAll('[data-category="testimonials"]').length;
-        const caseStudies = document.querySelectorAll('[data-category="case-studies"]').length;
-        const brandFilms = document.querySelectorAll('[data-category="brand-films"]').length;
-
-        console.log('Video Statistics:', {
-            total: totalVideos,
-            testimonials,
-            caseStudies,
-            brandFilms
-        });
+        const testimonials = 0; // Testimonials section removed
     }
 
     // Initialize all video features
@@ -1554,33 +1550,11 @@
     // ==========================================
     // OUR WORK SHOWCASE - INTERACTIVE FEATURES
     // ==========================================
-    function initOurWorkShowcase() {
-        const tabs = document.querySelectorAll('.ourwork-tab');
-        const panels = document.querySelectorAll('.tab-panel');
-        const modal = document.getElementById('videoModal');
-        const modalPlayer = document.getElementById('modalPlayer');
-
-        // 1. Tab Switching
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function () {
-                const targetTab = this.dataset.tab;
-                tabs.forEach(t => t.classList.remove('active'));
-                panels.forEach(p => p.classList.remove('active'));
-                this.classList.add('active');
-                const targetPanel = document.querySelector(`[data-panel="${targetTab}"]`);
-                if (targetPanel) {
-                    targetPanel.classList.add('active');
-                    const activeShowcase = targetPanel.querySelector('.video-showcase');
-                    if (activeShowcase) activeShowcase.scrollLeft = 0;
-                }
-
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'tab_click', { 'event_category': 'Our Work', 'event_label': targetTab });
-                }
-            });
-        });
-
-        // 2. Video Redirect Logic (Replaced Modal)
+    // ==========================================
+    // PORTFOLIO - DIRECT REDIRECT LOGIC
+    // ==========================================
+    function initPortfolioRedirect() {
+        // Direct click redirection to YouTube or other platforms
         document.addEventListener('click', (e) => {
             const card = e.target.closest('.showcase-card');
             if (card) {
@@ -1589,9 +1563,9 @@
                 const videoUrl = card.dataset.videoUrl;
 
                 let targetUrl = '';
-                if (videoType === 'youtube') {
+                if (videoType === 'youtube' && videoId) {
                     targetUrl = `https://www.youtube.com/watch?v=${videoId}`;
-                } else if (videoType === 'vimeo') {
+                } else if (videoType === 'vimeo' && videoId) {
                     targetUrl = `https://vimeo.com/${videoId}`;
                 } else if (videoType === 'native' && videoUrl) {
                     targetUrl = videoUrl;
@@ -1603,110 +1577,34 @@
             }
         });
 
-        // 3. INFINITE AUTO-SCROLL (MARQUEE)
-        const showcases = document.querySelectorAll('.video-showcase');
-
-        showcases.forEach(showcase => {
-            let isInteracting = false;
-            let scrollSpeed = 2.5; // Increased speed for faster movement
-            let rafId = null;
-
-            // Clone items for infinite effect
-            const cards = Array.from(showcase.children);
-            cards.forEach(card => {
-                const clone = card.cloneNode(true);
-                showcase.appendChild(clone);
-            });
-
-            const animate = () => {
-                if (!isInteracting) {
-                    showcase.scrollLeft += scrollSpeed;
-                    if (showcase.scrollLeft >= showcase.scrollWidth / 2) {
-                        showcase.scrollLeft = 0;
+        // Initialize scroll animations for the new grid cards
+        if ('IntersectionObserver' in window) {
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, idx) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, idx * 80);
+                        cardObserver.unobserve(entry.target);
                     }
-                }
-                rafId = requestAnimationFrame(animate);
-            };
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-            animate();
-
-            const stopScroll = () => { isInteracting = true; };
-            const startScroll = () => { isInteracting = false; };
-
-            showcase.addEventListener('mouseenter', stopScroll);
-            showcase.addEventListener('mouseleave', startScroll);
-            showcase.addEventListener('touchstart', stopScroll, { passive: true });
-            showcase.addEventListener('touchend', startScroll, { passive: true });
-            showcase.addEventListener('mousedown', stopScroll);
-            showcase.addEventListener('mouseup', startScroll);
-
-            // Manual scroll support (Drag)
-            let isDragging = false;
-            let startX, scrollLeft;
-
-            showcase.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                showcase.classList.add('grabbing');
-                startX = e.pageX - showcase.offsetLeft;
-                scrollLeft = showcase.scrollLeft;
+            document.querySelectorAll('.showcase-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                cardObserver.observe(card);
             });
-
-            window.addEventListener('mouseup', () => {
-                isDragging = false;
-                showcase.classList.remove('grabbing');
-                isInteracting = false;
-            });
-
-            showcase.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                const x = e.pageX - showcase.offsetLeft;
-                const walk = (x - startX) * 2;
-                showcase.scrollLeft = scrollLeft - walk;
-            });
-        });
-
-        // 4. Keyboard Nav for Tabs
-        let currentTabIndex = 0;
-        document.addEventListener('keydown', (e) => {
-            if (modal && modal.classList.contains('active')) return;
-            if (e.key === 'ArrowLeft' && currentTabIndex > 0) {
-                currentTabIndex--;
-                tabs[currentTabIndex].click();
-            } else if (e.key === 'ArrowRight' && currentTabIndex < tabs.length - 1) {
-                currentTabIndex++;
-                tabs[currentTabIndex].click();
-            }
-        });
-
-        // 5. Scroll Animations
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, idx) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, idx * 100);
-                    cardObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.showcase-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            cardObserver.observe(card);
-        });
-
-        console.log('✅ Faster Infinite Scroll Initialized');
+        }
     }
 
     // Global Initialization
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initOurWorkShowcase);
+        document.addEventListener('DOMContentLoaded', initPortfolioRedirect);
     } else {
-        initOurWorkShowcase();
+        initPortfolioRedirect();
     }
 
 })();
