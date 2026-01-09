@@ -265,9 +265,14 @@
 
     const updateVisuals = () => {
         if (!isDragging) return;
-        // iOS Style: Expand slightly and add soft elastic hover
-        DOM.bubble.style.transform = `translateX(${currentTranslate}px) scale(1.1, 1.05)`;
-        DOM.bubble.style.filter = 'blur(4px) brightness(1.2)';
+
+        const isMobile = window.innerWidth <= 1024;
+        // iOS Style: Expand big on mobile, subtle on desktop
+        const scale = isMobile ? 'scale(1.4, 1.3)' : 'scale(1.1, 1.05)';
+        const blur = isMobile ? 'none' : 'blur(4px) brightness(1.2)';
+
+        DOM.bubble.style.transform = `translateX(${currentTranslate}px) ${scale}`;
+        DOM.bubble.style.filter = blur;
         animationFrameId = raf(updateVisuals);
     };
 
