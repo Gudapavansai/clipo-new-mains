@@ -6725,7 +6725,6 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
 .client-card {
     flex: 0 0 240px;
-    /* Fixed width for cards */
     height: 120px;
     padding: 20px;
     display: flex;
@@ -6733,6 +6732,11 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     justify-content: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+}
+
+.client-card::before {
+    display: none !important;
+    /* Removes hover glow */
 }
 
 /* Animations Row 1 (Left to Right) */
@@ -6758,8 +6762,6 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     100% {
         transform: translateX(calc(-50% - 15px));
     }
-
-    /* Half of total width + half gap */
 }
 
 @keyframes scroll-right {
@@ -6773,10 +6775,8 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 }
 
 .client-card:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
-    z-index: 10;
+    transform: translateY(-5px);
+    background: color-mix(in srgb, var(--c-glass) 15%, transparent);
 }
 
 .client-logo {
@@ -6785,19 +6785,51 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: brightness(1.1) contrast(1.1);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-card:hover .client-logo {
-    filter: brightness(1.2) contrast(1.2);
+    transform: none;
+}
+
+
+
+/* Consistent logo fitting */
+.client-logo img {
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    mix-blend-mode: normal;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.client-card:hover .client-logo img {
     transform: scale(1.08);
 }
 
-.client-logo img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
+/* Specific logo adjustment for visibility */
+img[src*="Cropzy"],
+img[src*="connect thrive"],
+img[src*="AVIZ"],
+img[src*="client7"] {
+    max-width: 120%;
+    max-height: 120%;
+    transform: scale(1.1);
+}
+
+.client-card:hover img[src*="Cropzy"],
+.client-card:hover img[src*="connect thrive"],
+.client-card:hover img[src*="AVIZ"],
+.client-card:hover img[src*="client7"] {
+    transform: scale(1.18);
+}
+
+img[src*="puma"],
+img[src*="Puma"],
+img[src*="fynans"] {
+    mix-blend-mode: normal !important;
 }
 
 /* Responsive Adjustments */
