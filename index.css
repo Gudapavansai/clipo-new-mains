@@ -3675,6 +3675,14 @@ body:has(input[value="dim"]:checked) .pricing-card:hover {
     display: block;
 }
 
+.custom-modal.video-modal .video-modal-native {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+    background-color: #000;
+}
+
 .video-modal-close {
     position: absolute;
     top: -40px;

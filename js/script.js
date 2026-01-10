@@ -480,6 +480,9 @@
     window.openVideoModal = (videoUrl, isDirectFile = false) => {
         const { modal, closeModal } = createModal('video-modal', '');
 
+        // Set modal to relative for close button positioning
+        modal.style.position = 'relative';
+
         const closeBtn = document.createElement('button');
         closeBtn.className = 'video-modal-close';
         closeBtn.innerHTML = '&times;';
