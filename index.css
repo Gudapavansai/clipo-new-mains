@@ -6839,10 +6839,46 @@ img[src*="aniva"] {
     transform: scale(1.3);
 }
 
+/* Invert Varmas logo to make black appear as white */
+img[src*="varmas"] {
+    filter: invert(1) brightness(1.2);
+    -webkit-filter: invert(1) brightness(1.2);
+}
+
 img[src*="puma"],
 img[src*="Puma"],
 img[src*="fynans"] {
     mix-blend-mode: normal !important;
+}
+
+/* Design Studio logo - Black in light theme, White in dark theme */
+body:has(input[value="light"]:checked) img[src*="design studio"] {
+    filter: invert(0) brightness(0);
+    -webkit-filter: invert(0) brightness(0);
+}
+
+body:has(input[value="dark"]:checked) img[src*="design studio"] {
+    filter: invert(1) brightness(2);
+    -webkit-filter: invert(1) brightness(2);
+}
+
+/* Chiguru logo - Adjust color based on theme */
+/* Light theme: Display logo in its original dark colors */
+body:has(input[value="light"]:checked) img[src*="chiguru"] {
+    filter: none;
+    -webkit-filter: none;
+}
+
+/* Dark theme: Invert the logo so brown text becomes white for visibility */
+body:has(input[value="dark"]:checked) img[src*="chiguru"] {
+    filter: invert(1) brightness(1.2) hue-rotate(180deg);
+    -webkit-filter: invert(1) brightness(1.2) hue-rotate(180deg);
+}
+
+/* Dim theme: Similar to dark theme but with softer adjustment */
+body:has(input[value="dim"]:checked) img[src*="chiguru"] {
+    filter: invert(1) brightness(1.1) hue-rotate(180deg);
+    -webkit-filter: invert(1) brightness(1.1) hue-rotate(180deg);
 }
 
 /* Responsive Adjustments */
