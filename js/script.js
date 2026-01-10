@@ -565,13 +565,15 @@
     }
 
     // ==========================================
-    // HERO VIDEO BUTTON
+    // HERO VIDEO BUTTON - Now a direct YouTube link
     // ==========================================
+    /*
     if (DOM.heroPlayBtn) {
         DOM.heroPlayBtn.addEventListener('click', () => {
             openVideoModal('https://res.cloudinary.com/dgsr755tt/video/upload/v1753687256/Render_V2_cku6w4.mp4', true);
         });
     }
+    */
 
     // ==========================================
     // SECURITY & BRAND PROTECTION
