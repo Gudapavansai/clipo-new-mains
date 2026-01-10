@@ -49,8 +49,9 @@
             }, '-=0.8');
 
         // ==========================================
-        // HERO VIDEO SCROLL CONTROL
+        // HERO VIDEO SCROLL CONTROL (Commented out to allow normal autoplay)
         // ==========================================
+        /*
         const heroVideo = document.getElementById('hero-video');
         if (heroVideo) {
             const initVideoScroll = () => {
@@ -76,6 +77,7 @@
                 heroVideo.addEventListener('loadedmetadata', initVideoScroll);
             }
         }
+        */
 
         // ==========================================
         // SECTION TITLES
