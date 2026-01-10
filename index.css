@@ -223,7 +223,7 @@ body {
 }
 
 section {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 80px;
 }
 
 /* ==========================================
@@ -355,7 +355,7 @@ li,
     z-index: 100;
     top: 0;
     left: 0;
-    padding: 24px 60px;
+    padding: 16px 40px;
     display: flex;
     align-items: center;
 }
@@ -413,7 +413,7 @@ body:has(input[value="light"]:checked) .navbar__logo--dark {
     z-index: 100;
     top: 0;
     right: 0;
-    padding: 24px 60px;
+    padding: 16px 40px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -974,12 +974,13 @@ img {
     align-items: center;
     justify-content: center;
     /* Center align everything */
-    min-height: 100vh;
-    padding: 120px 20px 40px;
-    /* Reduced side padding */
+    min-height: calc(100vh - 80px);
+    /* Slightly less than full height to account for navbar */
+    padding: 160px 20px 80px;
+    /* Increased top padding significantly for more breathing space */
     box-sizing: border-box;
-    gap: 100px;
-    /* Large gap between text and image */
+    gap: 30px;
+    /* Reduced gap */
     max-width: 1320px;
     margin: 0 auto;
     position: relative;
@@ -1012,7 +1013,7 @@ img {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-radius: 100px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 
     /* Border & Depth */
     border: 1px solid color-mix(in srgb, var(--c-light) 20%, transparent);
@@ -1054,7 +1055,7 @@ img {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1.1;
-    margin: 0 0 24px;
+    margin: 0 0 16px;
     color: var(--c-content);
     /* animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s backwards; */
 }
@@ -1076,7 +1077,7 @@ img {
     font-size: 16px;
     line-height: 1.7;
     color: var(--c-content);
-    margin: 0 0 32px;
+    margin: 0 0 16px;
     max-width: 450px;
     /* animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s backwards; */
 }
@@ -1240,7 +1241,7 @@ video.hero__device-image {
 @media (max-width: 900px) {
     .hero {
         flex-direction: column;
-        padding-top: 120px;
+        padding-top: 160px;
         text-align: center;
     }
 
@@ -1276,7 +1277,8 @@ video.hero__device-image {
     .hero {
         flex-direction: column;
         /* More top padding to push content down */
-        padding: 140px 20px 80px 20px;
+        padding: 180px 20px 100px 20px;
+        /* More top padding to push content down on mobile */
         text-align: center;
     }
 
@@ -1567,14 +1569,14 @@ video.hero__device-image {
    General Section Styles
    ========================================== */
 .section {
-    padding: 100px 60px;
+    padding: 50px 60px;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 60px;
+    gap: 30px;
     box-sizing: border-box;
 }
 
@@ -1588,8 +1590,8 @@ video.hero__device-image {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 12px;
-    /* Reduced from 24px for tighter spacing */
+    margin-bottom: 8px;
+    /* Reduced from 12px for tighter spacing */
     color: var(--c-content);
 }
 
@@ -1650,15 +1652,15 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     font-size: 1.1rem;
     line-height: 1.6;
     color: color-mix(in srgb, var(--c-content) 90%, transparent);
-    margin: 8px auto 0;
-    /* Reduced from 20px */
+    margin: 4px auto 0;
+    /* Reduced from 8px */
 }
 
 /* Reusable Glass Card - Restored to Liquid Glass (Navbar) Theme */
 .glass-card {
     background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
     border-radius: 32px;
-    padding: 40px;
+    padding: 32px;
     backdrop-filter: blur(8px) saturate(var(--saturation));
     -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
     box-shadow:
@@ -1708,7 +1710,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     /* Equal height rows */
     gap: 24px;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 20px;
     text-align: left;
 }
 
@@ -1752,7 +1754,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 32px;
+    padding: 24px;
     height: 100%;
     min-height: 280px;
     /* Minimum height for consistency */
@@ -1835,7 +1837,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
 
 .vision-card:hover .vision-icon {
     transform: scale(1.1) rotate(-5deg);
-    filter: brightness(1.1);
+    filter: brightness(1.2);
 }
 
 .vision-card h3,
@@ -1860,11 +1862,11 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-top: 40px;
+    margin-top: 20px;
     flex-wrap: wrap;
     width: 100%;
     border-top: 1px solid color-mix(in srgb, var(--c-content) 10%, transparent);
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .stat {
@@ -1895,7 +1897,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     width: 100%;
 }
 
@@ -1906,15 +1908,13 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    padding: 32px;
+    padding: 24px;
     min-height: 320px;
     /* height: auto; -> let flex stretch handle it, but allow content to push */
     box-sizing: border-box;
     /* Ensure cards are strictly 3 cols */
     flex-grow: 0;
     flex-shrink: 0;
-
-
 }
 
 /* Light Theme - Service Cards with Navigation Bar Glass Effect */
@@ -1942,7 +1942,6 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
 }
 
 
-
 .service-icon {
     width: 56px;
     height: 56px;
@@ -1952,7 +1951,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     border-radius: 16px;
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     color: #fff;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
@@ -1972,7 +1971,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
 .pricing__grid {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     width: 100%;
     align-items: stretch;
     flex-wrap: wrap;
@@ -2042,7 +2041,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
 .price {
     font-size: 2.5rem;
     font-weight: 700;
-    margin: 16px 0 8px;
+    margin: 8px 0 4px;
     color: var(--c-content);
     display: flex;
     align-items: baseline;
@@ -2071,7 +2070,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
 .features {
     list-style: none;
     padding: 0;
-    margin: 0 0 32px;
+    margin: 0 0 20px;
     width: 100%;
     text-align: left;
 }
@@ -2102,7 +2101,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     /* Use standard glass card theme */
     width: 100%;
     max-width: 1000px;
-    padding: 40px;
+    padding: 32px;
     position: relative;
     overflow: hidden;
 }
@@ -2119,7 +2118,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
 .contact__card {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: 60px;
+    gap: 30px;
 }
 
 
@@ -2146,7 +2145,7 @@ body:has(input[value="dim"]:checked) .pricing .section__subtitle {
     font-size: clamp(2rem, 4.5vw, 3.5rem);
     /* Increased to match hero scale */
     line-height: 1.1;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     font-weight: 700;
     font-family: var(--font-heading);
 }
@@ -2323,7 +2322,7 @@ textarea.glass-input {
 /* Responsive adjustments */
 @media (max-width: 900px) {
     .section {
-        padding: 60px 20px;
+        padding: 40px 20px;
     }
 
     .contact__card {
@@ -2363,8 +2362,8 @@ textarea.glass-input {
    Footer Styles
    ========================================== */
 .footer {
-    padding: 80px 60px 40px;
-    margin-top: 100px;
+    padding: 40px 60px 20px;
+    margin-top: 40px;
     border-top: 1px solid color-mix(in srgb, var(--c-light) 20%, transparent);
 
     /* Thick Glass Effect */
@@ -2388,7 +2387,7 @@ textarea.glass-input {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 60px;
+    gap: 40px;
 }
 
 .footer__brand {
@@ -2431,7 +2430,7 @@ body:has(input[value="dim"]:checked) .footer__logo--dark {
 
 .footer__links {
     display: flex;
-    gap: 80px;
+    gap: 40px;
     flex-wrap: wrap;
 }
 
@@ -2498,14 +2497,14 @@ body:has(input[value="dim"]:checked) .footer__logo--dark {
 
 .footer__bottom {
     max-width: 1200px;
-    margin: 60px auto 0;
+    margin: 40px auto 0;
     padding-top: 40px;
     border-top: 1px solid color-mix(in srgb, var(--c-content) 5%, transparent);
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
 }
 
 .footer__powered {
@@ -2983,7 +2982,7 @@ body:has(input[value="dim"]:checked) .footer__logo--dark {
     .glass-card:hover,
     .service-card:hover,
     .pricing-card:hover {
-        transform: translateY(-2px);
+        transform: none;
     }
 
     /* Disable decorative pseudo-elements on mobile */
@@ -5428,7 +5427,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
 /* Main Section */
 .clients-video {
-    padding: 80px 0;
+    padding: 60px 0;
 }
 
 /* Video Filter Tabs */
@@ -5437,7 +5436,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 40px 0 50px;
+    margin: 30px 0 40px;
     padding: 0 20px;
 }
 
@@ -5732,19 +5731,19 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
 /* Main Feedback Section */
 .feedback {
-    padding: 80px 0;
+    padding: 60px 0;
 }
 
 .feedback__card {
     max-width: 700px;
     margin: 0 auto;
-    padding: 60px 40px;
+    padding: 40px 30px;
 }
 
 /* Rating Summary Box */
 .rating-summary {
     text-align: center;
-    margin: 40px 0 50px;
+    margin: 30px 0 40px;
     padding: 30px;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 16px;
@@ -5901,7 +5900,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 /* Feedback Success Message */
 .feedback-success {
     text-align: center;
-    padding: 60px 40px;
+    padding: 40px 30px;
     animation: fadeInScale 0.5s ease forwards;
 }
 
@@ -5973,7 +5972,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
 /* Recent Reviews Section */
 .recent-reviews {
-    margin-top: 50px;
+    margin-top: 30px;
     padding-top: 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -6679,7 +6678,8 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
    =================================== */
 
 .our-clients {
-    padding: 80px 0;
+    padding: 30px 0;
+    gap: 20px;
     overflow: hidden;
     /* Prevent horizontal scroll from tracks */
 }
@@ -6687,8 +6687,8 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 .clients-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    margin-top: 40px;
+    gap: 15px;
+    margin-top: 10px;
 }
 
 .clients-track {
@@ -6701,24 +6701,41 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
 .track-content {
     display: flex;
-    gap: 30px;
+    gap: 15px;
     padding: 10px 0;
 }
 
 .client-card {
-    flex: 0 0 240px;
-    height: 120px;
-    padding: 20px;
+    flex: 0 0 280px;
+    height: 140px;
+    padding: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+
+    /* Premium Glass Effect */
+    background: color-mix(in srgb, var(--c-glass) 12%, transparent);
+    backdrop-filter: blur(12px) saturate(var(--saturation));
+    -webkit-backdrop-filter: blur(12px) saturate(var(--saturation));
+    border-radius: 28px;
+    border: 1px solid color-mix(in srgb, var(--c-light) 20%, transparent);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+        inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
+        0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
 .client-card::before {
-    display: none !important;
-    /* Removes hover glow */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--c-light) 10%, transparent), transparent);
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 /* Animations Row 1 (Left to Right) */
@@ -6731,10 +6748,6 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     animation: scroll-right 40s linear infinite;
 }
 
-/* Pause on Hover */
-.clients-track:hover .track-content {
-    animation-play-state: paused;
-}
 
 @keyframes scroll-left {
     0% {
@@ -6742,13 +6755,13 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     }
 
     100% {
-        transform: translateX(calc(-50% - 15px));
+        transform: translateX(calc(-50% - 7.5px));
     }
 }
 
 @keyframes scroll-right {
     0% {
-        transform: translateX(calc(-50% - 15px));
+        transform: translateX(calc(-50% - 7.5px));
     }
 
     100% {
@@ -6777,17 +6790,15 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
 /* Consistent logo fitting */
 .client-logo img {
-    width: auto;
-    height: auto;
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 85%;
+    max-height: 85%;
     object-fit: contain;
     mix-blend-mode: normal;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-card:hover .client-logo img {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
 /* Specific logo adjustment for visibility */
@@ -6801,37 +6812,17 @@ img[src*="varmas"],
 img[src*="fruit"],
 img[src*="taberna"],
 img[src*="Family"] {
-    max-width: 120%;
-    max-height: 120%;
     transform: scale(1.1);
 }
 
 /* Super Size logos per user request */
-img[src*="Cropzy"],
+img[src*="Cropzy"] {
+    transform: scale(1.6);
+}
+
 img[src*="file easy"],
 img[src*="aniva"] {
-    max-width: 140%;
-    max-height: 140%;
     transform: scale(1.3);
-}
-
-.client-card:hover img[src*="connect thrive"],
-.client-card:hover img[src*="AVIZ"],
-.client-card:hover img[src*="client7"],
-.client-card:hover img[src*="varcas"],
-.client-card:hover img[src*="niravana"],
-.client-card:hover img[src*="design studio"],
-.client-card:hover img[src*="varmas"],
-.client-card:hover img[src*="fruit"],
-.client-card:hover img[src*="taberna"],
-.client-card:hover img[src*="Family"] {
-    transform: scale(1.18);
-}
-
-.client-card:hover img[src*="Cropzy"],
-.client-card:hover img[src*="file easy"],
-.client-card:hover img[src*="aniva"] {
-    transform: scale(1.4);
 }
 
 img[src*="puma"],
@@ -6843,11 +6834,11 @@ img[src*="fynans"] {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .our-clients {
-        padding: 60px 0;
+        padding: 0;
     }
 
     .clients-container {
-        gap: 20px;
+        gap: 10px;
     }
 
     .client-card {
@@ -6864,7 +6855,7 @@ img[src*="fynans"] {
 /* Custom Quote CTA */
 .custom-quote-cta {
     text-align: center;
-    padding: 80px 60px 40px;
+    padding: 30px 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -6922,8 +6913,8 @@ img[src*="fynans"] {
    =================================== */
 
 .ourwork-showcase {
-    padding: 60px 60px;
-    /* Reduced from 100px for less margin */
+    padding: 60px 60px 30px;
+    /* Restored balanced spacing */
     max-width: 1200px;
     margin: 0 auto;
     overflow: hidden;
@@ -6937,7 +6928,7 @@ img[src*="fynans"] {
 .ourwork-hero {
     max-width: 700px;
     margin: 0 auto 32px;
-    /* Reduced for compact spacing */
+    /* Restored standard margin */
     text-align: center;
 }
 
@@ -7131,7 +7122,8 @@ img[src*="fynans"] {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
-    padding: 20px 0 60px;
+    padding: 10px 0 0;
+    /* Aggressively reduced padding */
     width: 100%;
 }
 
@@ -7466,11 +7458,11 @@ img[src*="fynans"] {
 /* Mobile */
 @media (max-width: 768px) {
     .ourwork-showcase {
-        padding: 40px 20px;
+        padding: 15px 20px 0;
     }
 
     .ourwork-hero {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     .ourwork-hero__title {
