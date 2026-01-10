@@ -6777,9 +6777,12 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     }
 }
 
+/* Hover effects removed per user request */
+/*
 .client-card:hover {
     transform: translateY(-5px);
 }
+*/
 
 .client-logo {
     width: 100%;
@@ -6790,9 +6793,11 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/*
 .client-card:hover .client-logo {
     transform: none;
 }
+*/
 
 
 
@@ -6805,6 +6810,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/*
 .client-card:hover .client-logo img {
     transform: scale(1.1);
 }
