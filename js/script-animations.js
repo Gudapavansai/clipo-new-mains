@@ -225,55 +225,7 @@
             });
         }
 
-        // ==========================================
-        // MOUSE GLOW EFFECT (Optimized)
-        // ==========================================
-        const glowCards = gsap.utils.toArray('.glass-card, .vision-card, .pricing-card');
 
-        glowCards.forEach(card => {
-            let glow = card.querySelector('.scroll-glow-effect');
-            if (!glow) {
-                glow = document.createElement('div');
-                glow.className = 'scroll-glow-effect';
-                Object.assign(glow.style, {
-                    position: 'absolute',
-                    inset: '0',
-                    background: 'radial-gradient(circle at center, rgba(200,80,192,0.35), transparent 70%)',
-                    opacity: 0,
-                    pointerEvents: 'none',
-                    transition: 'opacity 0.3s ease',
-                    mixBlendMode: 'overlay'
-                });
-                card.appendChild(glow);
-            }
-
-            card.style.position = 'relative';
-            card.style.overflow = 'hidden';
-
-            let ticking = false;
-            card.addEventListener('mousemove', e => {
-                if (ticking) return;
-                ticking = true;
-
-                requestAnimationFrame(() => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    glow.style.background = `radial-gradient(circle at ${x}px ${y}px, 
-                        rgba(240, 148, 51, 0.4) 0%, 
-                        rgba(220, 39, 67, 0.4) 40%, 
-                        rgba(188, 24, 136, 0.4) 80%, 
-                        transparent 100%)`;
-                    glow.style.opacity = 1;
-                    ticking = false;
-                });
-            }, { passive: true });
-
-            card.addEventListener('mouseleave', () => {
-                glow.style.opacity = 0;
-            }, { passive: true });
-        });
 
     });
 

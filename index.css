@@ -4282,24 +4282,7 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
 /* 5. Scroll Glow Tracking */
 /* A subtle glow that follows the active card/section */
-.scroll-glow-effect {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.3) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: -1;
-    transform: translate(-50%, -50%);
-}
 
-.glass-card:hover .scroll-glow-effect,
-.glass-card.active-glow .scroll-glow-effect {
-    opacity: 1;
-}
 
 /* Responsive adjustments for sticky story */
 @media (max-width: 900px) {
