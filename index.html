@@ -27,6 +27,8 @@
 
     <!-- Critical CSS -->
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/portfolio-cards.css">
+    <link rel="stylesheet" href="css/video-thumbnails.css">
 </head>
 <body>
 <fieldset class="switcher">
@@ -77,8 +79,8 @@
 </fieldset>
 
     <!-- Hidden theme switcher -->
-    <input type="radio" name="theme" value="light" id="theme-light" class="theme-radio" checked hidden>
-    <input type="radio" name="theme" value="dark" id="theme-dark" class="theme-radio" hidden>
+    <input type="radio" name="theme" value="light" id="theme-light" class="theme-radio" hidden>
+    <input type="radio" name="theme" value="dark" id="theme-dark" class="theme-radio" checked hidden>
     <input type="radio" name="theme" value="dim" id="theme-dim" class="theme-radio" hidden>
     
     <div class="background-container">
@@ -144,12 +146,12 @@
             <div class="hero__visual">
                 <div class="hero__device">
                     <div class="hero__device-screen">
-                        <video id="hero-video" src="https://res.cloudinary.com/dgsr755tt/video/upload/v1753687256/Render_V2_cku6w4.mp4" class="hero__device-image" autoplay loop muted playsinline preload="auto" poster="images/iphone.jpeg"></video>
-                        <a href="https://youtube.com/@clipobydigitalwin" target="_blank" rel="noopener noreferrer" class="hero__play-btn" aria-label="Watch on YouTube">
+                        <video id="hero-video" src="images/Clipo_Ad_Video.mp4" class="hero__device-image" autoplay loop muted playsinline preload="auto" poster="images/iphone.jpeg"></video>
+                        <button class="hero__play-btn" aria-label="Watch Video">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -355,120 +357,77 @@
 
             <!-- Tab Content Area -->
             <div class="ourwork-content">
-                <div class="video-showcase-grid">
-                    <!-- Video Card: Cinematic Production Showcase -->
-                    <div class="showcase-card" data-video-id="L9NYz6X9x6w" data-type="youtube">
-                        <div class="card-thumbnail">
-                            <img src="https://img.youtube.com/vi/L9NYz6X9x6w/maxresdefault.jpg" alt="Cinematic Production Showcase" loading="lazy">
-                            <div class="card-overlay">
-                                <button class="play-button" aria-label="Play video">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
+                <div class="portfolio-cards-grid">
+                    <!-- Video Card 1 -->
+                    <div class="portfolio-card video-card" data-video-id="L9NYz6X9x6w" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/L9NYz6X9x6w/maxresdefault.jpg" alt="Cinematic Production" loading="lazy">
+                           
+                            <span class="badge-duration">0:15</span>
+                            <div class="video-overlay">
+                                <!-- Play button hidden/subtle per design -->
                             </div>
-                            <span class="platform-badge youtube-badge">YouTube</span>
-                            <span class="duration-badge">0:15</span>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title"> Cinematic Production</h3>
-                            <p class="card-description"></p>
-                            <a href="#" class="card-link"></a>
-                        </div>
+                       
                     </div>
-                    
 
-                    <!-- Video Card 2: Premium Brand Storytelling -->
-                    <div class="showcase-card" data-video-id="yc00mSqS4WQ" data-type="youtube">
-                        <div class="card-thumbnail">
+                    <!-- Video Card 2 -->
+                    <div class="portfolio-card video-card" data-video-id="yc00mSqS4WQ" data-type="youtube">
+                        <div class="video-thumbnail">
                             <img src="https://img.youtube.com/vi/yc00mSqS4WQ/maxresdefault.jpg" alt="Premium Brand Storytelling" loading="lazy">
-                            <div class="card-overlay">
-                                <button class="play-button" aria-label="Play video">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
+                            
+                            <span class="badge-duration">1:30</span>
+                            <div class="video-overlay">
                             </div>
-                            <span class="platform-badge youtube-badge">YouTube</span>
-                            <span class="duration-badge">1:30</span>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title"> Premium Brand Storytelling</h3>
-                            <p class="card-description"></p>
-                            <a href="#" class="card-link"></a>
-                        </div>
+                         
                     </div>
 
-                    <!-- Video Card 3: Soft Glow, Smooth Frame -->
-                    <div class="showcase-card" data-video-id="krmrrm_6Xxw" data-type="youtube">
-                        <div class="card-thumbnail">
+                    <!-- Video Card 3 -->
+                    <div class="portfolio-card video-card" data-video-id="krmrrm_6Xxw" data-type="youtube">
+                        <div class="video-thumbnail">
                             <img src="https://img.youtube.com/vi/krmrrm_6Xxw/maxresdefault.jpg" alt="Soft Glow, Smooth Frame" loading="lazy">
-                            <div class="card-overlay">
-                                <button class="play-button" aria-label="Play video">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
+                            <span class="badge-youtube">YOUTUBE</span>
+                            <span class="badge-duration">4:20</span>
+                            <div class="video-overlay">
                             </div>
-                            <span class="platform-badge youtube-badge">YouTube</span>
-                            <span class="duration-badge">4:20</span>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Soft Glow, Smooth Frame  </h3>
-                            <p class="card-description"></p>
-                            <a href="#" class="card-link"></a>
+                        <h3 class="video-title">Soft Glow, Smooth Frame</h3>
+                    </div>
+
+                    <!-- Video Card 4 -->
+                    <div class="portfolio-card video-card" data-video-id="cKyH-IUkLwM" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/cKyH-IUkLwM/maxresdefault.jpg" alt="Commercial Ad" loading="lazy">
+                            
+                            <span class="badge-duration">2:15</span>
+                            <div class="video-overlay">
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Video Card 4: Step Inside the Chaos -->
-                    <div class="showcase-card" data-video-id="cKyH-IUkLwM" data-type="youtube">
-                        <div class="card-thumbnail">
-                            <img src="https://img.youtube.com/vi/cKyH-IUkLwM/maxresdefault.jpg" alt="Step Inside the Chaos" loading="lazy">
-                            <div class="card-overlay">
-                                <button class="play-button" aria-label="Play video">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
+                    <!-- Video Card 5 -->
+                    <div class="portfolio-card video-card" data-video-id="dh_3laUsBiU" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/dh_3laUsBiU/maxresdefault.jpg" alt="Food & Ambience" loading="lazy">
+                            
+                            <span class="badge-duration">1:55</span>
+                            <div class="video-overlay">
                             </div>
-                            <span class="platform-badge youtube-badge">YouTube</span>
-                            <span class="duration-badge">2:15</span>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Step Inside the Chaos</h3>
-                            <p class="card-description"> </p>
-                            <a href="#" class="card-link"> </a>
-                        </div>
+
                     </div>
 
-                    <!-- Video Card 5: Clipo Crafted Experience -->
-                    <div class="showcase-card" data-video-id="dh_3laUsBiU" data-type="youtube">
-                        <div class="card-thumbnail">
-                            <img src="https://img.youtube.com/vi/dh_3laUsBiU/maxresdefault.jpg" alt="Clipo Crafted Experience" loading="lazy">
-                            <div class="card-overlay">
-                                <button class="play-button" aria-label="Play video">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
+                    <!-- Video Card 6 -->
+                    <div class="portfolio-card video-card" data-video-id="EkltWPdWcVM" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/EkltWPdWcVM/maxresdefault.jpg" alt="Brand Identity" loading="lazy">
+                            
+                            <span class="badge-duration">3:10</span>
+                            <div class="video-overlay">
                             </div>
-                            <span class="platform-badge youtube-badge">YouTube</span>
-                            <span class="duration-badge">1:55</span>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Clipo Crafted Experience </h3>
-                            <p class="card-description"> </p>
-                            <a href="#" class="card-link"> </a>
-                        </div>
-                    </div>
-
-                    <!-- Video Card 6: Visual Masterpieces -->
-                    <div class="showcase-card" data-video-id="EkltWPdWcVM" data-type="youtube">
-                        <div class="card-thumbnail">
-                            <img src="https://img.youtube.com/vi/EkltWPdWcVM/maxresdefault.jpg" alt="Visual Masterpieces" loading="lazy">
-                            <div class="card-overlay">
-                                <button class="play-button" aria-label="Play video">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
-                            </div>
-                            <span class="platform-badge youtube-badge">YouTube</span>
-                            <span class="duration-badge">3:10</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Visual Masterpieces</h3>
-                            <p class="card-description"></p>
-                            <a href="#" class="card-link"> </a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

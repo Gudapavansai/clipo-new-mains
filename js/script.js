@@ -269,10 +269,8 @@
         const isMobile = window.innerWidth <= 1024;
         // iOS Style: Expand big on mobile, subtle on desktop
         const scale = isMobile ? 'scale(1.4, 1.3)' : 'scale(1.1, 1.05)';
-        const blur = isMobile ? 'none' : 'blur(4px) brightness(1.2)';
 
         DOM.bubble.style.transform = `translateX(${currentTranslate}px) ${scale}`;
-        DOM.bubble.style.filter = blur;
         animationFrameId = raf(updateVisuals);
     };
 
@@ -390,8 +388,7 @@
 
         DOM.bubble.style.width = `${finalRect.width}px`;
         DOM.bubble.style.transform = `translateX(${finalTranslate}px) scale(1)`;
-        DOM.bubble.style.filter = '';
-        DOM.bubble.style.transition = 'transform 0.5s cubic-bezier(0.32, 2, 0, 1), width 0.4s cubic-bezier(0.32, 2, 0, 1), filter 0.3s ease';
+        DOM.bubble.style.transition = 'transform 0.5s cubic-bezier(0.32, 2, 0, 1), width 0.4s cubic-bezier(0.32, 2, 0, 1)';
 
         const input = DOM.navOptions[nearestIndex].querySelector('input');
         if (!input.checked) {
@@ -476,33 +473,44 @@
         modal.querySelector('.success-btn').onclick = closeModal;
     };
 
-    // Video Modal
+    // Video Modal - Uses the existing #videoModal in DOM
     window.openVideoModal = (videoUrl, isDirectFile = false) => {
-        const { modal, closeModal } = createModal('video-modal', '');
+        const modal = document.getElementById('videoModal');
+        const player = document.getElementById('modalPlayer');
+        if (!modal || !player) return;
 
-        // Set modal to relative for close button positioning
-        modal.style.position = 'relative';
-
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'video-modal-close';
-        closeBtn.innerHTML = '&times;';
-        closeBtn.onclick = closeModal;
+        // Clean previous content
+        player.innerHTML = '';
 
         if (isDirectFile || videoUrl.endsWith('.mp4')) {
             const video = document.createElement('video');
             video.src = videoUrl;
             video.controls = true;
             video.autoplay = true;
-            video.className = 'video-modal-native';
-            modal.appendChild(video);
+            // Class handled by CSS: .modal-player video
+            player.appendChild(video);
         } else {
             const iframe = document.createElement('iframe');
             iframe.src = videoUrl;
             iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
             iframe.allowFullscreen = true;
-            modal.appendChild(iframe);
+            player.appendChild(iframe);
         }
-        modal.appendChild(closeBtn);
+
+        modal.classList.add('active');
+
+        // Close Logic
+        const closeBtn = modal.querySelector('.modal-close');
+        const overlay = modal.querySelector('.modal-overlay');
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            // Clear content after fade out to stop audio
+            setTimeout(() => { player.innerHTML = ''; }, 300);
+        };
+
+        if (closeBtn) closeBtn.onclick = closeModal;
+        if (overlay) overlay.onclick = closeModal;
     };
 
     // ==========================================
@@ -565,15 +573,22 @@
     }
 
     // ==========================================
-    // HERO VIDEO BUTTON - Now a direct YouTube link
     // ==========================================
-    /*
+    // HERO VIDEO BUTTON - Plays Inline
+    // ==========================================
     if (DOM.heroPlayBtn) {
-        DOM.heroPlayBtn.addEventListener('click', () => {
-            openVideoModal('https://res.cloudinary.com/dgsr755tt/video/upload/v1753687256/Render_V2_cku6w4.mp4', true);
+        DOM.heroPlayBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const heroVideo = $('#hero-video');
+
+            if (heroVideo) {
+                const videoSrc = heroVideo.currentSrc || heroVideo.src;
+                if (videoSrc) {
+                    window.openVideoModal(videoSrc, true);
+                }
+            }
         });
     }
-    */
 
     // ==========================================
     // SECURITY & BRAND PROTECTION
@@ -1596,9 +1611,10 @@
     // ==========================================
     // PORTFOLIO - DIRECT REDIRECT LOGIC
     // ==========================================
-    function initPortfolioRedirect() {
-        // Direct click redirection to YouTube or other platforms
+    function initPortfolioFeatures() {
+        // Direct click redirection or Modal Opening
         document.addEventListener('click', (e) => {
+            // Handle .showcase-card (Redirect logic - if still used)
             const card = e.target.closest('.showcase-card');
             if (card) {
                 const videoType = card.dataset.type;
@@ -1618,9 +1634,25 @@
                     window.open(targetUrl, '_blank');
                 }
             }
+
+            // Handle .video-card (Modal logic for restored section)
+            const videoCard = e.target.closest('.video-card');
+            // Only trigger if NOT a showcase-card (to avoid double handling if they share classes) 
+            // and NOT inside an anchor tag (which handles its own navigation)
+            if (videoCard && !videoCard.classList.contains('showcase-card') && !videoCard.closest('a')) {
+                const videoId = videoCard.dataset.videoId;
+                const type = videoCard.dataset.type;
+
+                if (type === 'youtube' && videoId) {
+                    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                    if (window.openVideoModal) {
+                        window.openVideoModal(embedUrl);
+                    }
+                }
+            }
         });
 
-        // Initialize scroll animations for the new grid cards
+        // Initialize scroll animations for grid cards
         if ('IntersectionObserver' in window) {
             const cardObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry, idx) => {
@@ -1634,7 +1666,8 @@
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-            document.querySelectorAll('.showcase-card').forEach(card => {
+            // Animate both showcase-cards and the restored portfolio video-cards
+            document.querySelectorAll('.showcase-card, .portfolio-card').forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
                 card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
@@ -1645,9 +1678,9 @@
 
     // Global Initialization
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initPortfolioRedirect);
+        document.addEventListener('DOMContentLoaded', initPortfolioFeatures);
     } else {
-        initPortfolioRedirect();
+        initPortfolioFeatures();
     }
 
 })();
